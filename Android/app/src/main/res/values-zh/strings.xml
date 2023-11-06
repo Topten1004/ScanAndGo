@@ -1,0 +1,1003 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UHF-ble</string>
+
+    <string name="action_settings">设置</string>
+    <string name="action_about">关于</string>
+    <string name="action_display">显示设置</string>
+    <string name="title_ip_or_domain">输入域名/IP</string>
+    <string name="title_ping_count">PING次数</string>
+    <string name="title_ping_succ">PING成功</string>
+    <string name="title_ping_fail">PING失败</string>
+    <string name="title_ping_seconds"> 秒</string>
+    <string name="title_ping_background">后台运行</string>
+    <string name="title_ping_wait">超时时间(秒)</string>
+    <string name="title_start">开始</string>
+    <string name="title_ping_restart">重新开始</string>
+    <string name="title_ping_pingresult">Ping 结果</string>
+    <string name="title_ping_uploadresult">上传 结果</string>
+    <string name="title_ping_downloadresult">下载 结果</string>
+    <string name="title_stop">停止</string>
+    <string name="title_activity_settings">设置</string>
+    <string name="action_set">设置</string>
+    <string name="msg_network_none">无网络，请先打开网络</string>
+    <string name="msg_network_ok">网络已连接</string>
+    <string name="msg_network_unavailable">无网络</string>
+    <string name="msg_domain_ip_bad">域名/IP格式错误</string>
+    <string name="msg_loding">加载中...</string>
+    <string name="msg_no_data">无数据</string>
+    <string name="msg_mac_error">错误</string>
+    <string name="msg_mac_change">变化</string>
+    <string name="msg_mac_unmatched">不匹配</string>
+    <string name="app_title">AppCenter %s</string>
+    <string name="app_msg_exit_confirm">再按一次退出</string>
+    <string name="upload_title">上传测速 %s</string>
+    <string name="download_title">下载测速 %s</string>
+    <string name="action_back">返回</string>
+    <string name="ok">确定</string>
+    <string name="exit">退出</string>
+    <string name="save">保存</string>
+    <string name="set">设置</string>
+    <string name="get">获取</string>
+    <string name="set_link">设置链路参数</string>
+    <string name="get_link">获取链路参数</string>
+    <string name="clear">清除</string>
+    <string name="close">关闭</string>
+    <string name="up_one_level">..(返回上一级目录)</string>
+    <string name="current_dir">.(刷新)</string>
+    <string name="strFilePath">文件路径</string>
+    <string name="strBrowser">浏览...</string>
+    <string name="strPermissionDeny">无权限访问该目录</string>
+    <string name="title_activity_download">下载测速</string>
+    <string name="title_activity_upload">上传测速</string>
+    <string name="title_Ping">Ping测试</string>
+    <string name="title_Download">下载测速</string>
+    <string name="title_Upload">上传测速</string>
+    <string name="strUpload">上传</string>
+    <string name="title_activity_ping">PingActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_ping_packet_size">数据包大小</string>
+    <string name="ping_title">Ping测试 %s</string>
+    <string name="yid_title">一维条码测试</string>
+    <string name="erd_title">二维条码测试</string>
+    <string name="title_activity_yi_d">一维条码</string>
+    <string name="title_activity_er_d">二维条码</string>
+    <string name="title_scan">扫描</string>
+    <string name="title_clear">清除</string>
+    <string name="title_init_barcode">初始条码</string>
+    <string name="title_scan_between">执行间隔</string>
+    <string name="yid_title_scan_compare">比较</string>
+    <string name="yid_title_scan_continuous">连续,间隔</string>
+    <string name="yid_msg_scan_fail">读取失败</string>
+    <string name="yid_msg_scan_error">条码不正确</string>
+    <string name="title_scan_count">扫描次数</string>
+    <string name="title_succ_count">成功次数</string>
+    <string name="title_fail_count">失败次数</string>
+    <string name="title_error_count">错误次数</string>
+    <string name="title_error_rate">错误率</string>
+    <string name="title_succ_rate">成功率</string>
+    <string name="title_fail_rate">失败率</string>
+    <string name="title_activity_bluetooth_print">蓝牙</string>
+
+    <!-- BTPrinterDemo -->
+    <string name="send">发送</string>
+    <string name="Print">打印</string>
+    <string name="Clear">清空</string>
+    <string name="not_connected">请先连接蓝牙打印机</string>
+    <string name="bt_not_enabled_leaving">蓝牙没有启动，不能打单据</string>
+    <string name="title_connecting">正在连接...</string>
+    <string name="title_connected_to">已连接: </string>
+    <string name="title_not_connected">没有连接</string>
+    <string name="default_font_gray_scale">4</string>
+    <string name="fontGrayscaleName">打印灰度</string>
+    <string name="fontGrayScaleRange">(1~8)</string>
+    <string name="PrintContent"> HELLO WORLD! \n</string>
+    <string name="rfid_mgs_erase_fail">擦除失败</string>
+    <string name="rfid_mgs_erase_succ">擦除成功</string>
+
+    <!-- DeviceListActivity -->
+    <string name="scanning">正在扫描...</string>
+    <string name="select_device">选择连接的设备</string>
+    <string name="none_paired">没有匹配的设备</string>
+    <string name="none_found">没有找到设备</string>
+    <string name="title_paired_devices">匹配的设备</string>
+    <string name="title_other_devices">其它可用设备</string>
+    <string name="button_scan">扫描设备</string>
+    <string name="title_activity_uhfmain">UHF</string>
+
+    <!-- inventorytag -->
+    <string name="tvInventoryName">识别标签</string>
+    <string name="tvCountOfTags">标签数&#160;&#160;</string>
+    <string name="rbInventorySingle">单步</string>
+    <string name="rbInventoryLoop">循环</string>
+    <string name="rbInventoryAnti">防碰撞</string>
+    <string name="tvQ">Q值：</string>
+    <string name="btInventory">开始识别</string>
+    <string name="title_stop_Inventory">停止识别</string>
+    <string name="tvTagEPC">EPC</string>
+    <string name="tvTagLen">长度</string>
+    <string name="tvTagCount">数量</string>
+    <string name="btClear">清空数据</string>
+    <string name="millisecond">毫秒</string>
+    <string name="second">秒</string>
+    <string name="workTime">盘点持续时间</string>
+    <string-array name="arrayAntiQ">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </string-array>
+    <string-array name="arrayLF">
+        <item>ID卡</item>
+        <item>动物标签</item>
+        <item>HiTag</item>
+        <item>HDX标签</item>
+        <item>EM4450</item>
+    </string-array>
+    <!-- read -->
+    <string name="btUii">读标签号</string>
+    <string name="ckWithUii">指定标签</string>
+    <string name="tvTagUii_Read">标&#160;&#160;签&#160;&#160;号：</string>
+    <string name="tvBank">存&#160;&#160;储&#160;&#160;区：</string>
+    <string name="tvPtr">地&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;址：</string>
+    <string name="tvLen">长&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;度：</string>
+    <string name="tvAccessPwd">访问密码：</string>
+    <string name="tvOption_Read">读取模式：</string>
+    <string name="ckLoop_Read">循环</string>
+    <string name="ckAnti_Read">防碰撞</string>
+    <string name="ckSecond">2级参数设置</string>
+    <string name="tvBank2_Read">存&#160;&#160;储&#160;&#160;区：</string>
+    <string name="tvPtr2_Read">地&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;址：</string>
+    <string name="tvLen2_Read">长&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;度：</string>
+    <string name="tvData_Read">数据内容：</string>
+    <string name="btRead">读取数据</string>
+    <string name="btSetFilter">设置过滤</string>
+    <string-array name="arrayBank">
+        <item>RESERVED</item>
+        <item>EPC</item>
+        <item>TID</item>
+        <item>USER</item>
+    </string-array>
+    <string-array name="arrayOption_Read">
+        <item>单次读</item>
+        <item>循环读</item>
+        <item>防碰撞读（1级）</item>
+        <item>防碰撞读（2级）</item>
+    </string-array>
+
+    <!-- power -->
+    <string name="uhf_title_power">输出功率：</string>
+    <string name="uhf_btn_setpower">设置功率</string>
+    <string name="uhf_btn_getpower">读取功率</string>
+    <string name="tvProtocol">协议(仅R2000)：</string>
+    <string name="uhf_title_dbm">dBm</string>
+
+    <string name="btSetProtocol">设置协议</string>
+    <string name="btGetProtocol">获取协议</string>
+
+    <string name="uhf_msg_set_protocol_succ">设置协议成功</string>
+    <string name="uhf_msg_set_protocol_fail">设置协议失败</string>
+
+    <string name="uhf_msg_get_protocol_succ">获取协议成功</string>
+    <string name="uhf_msg_get_protocol_fail">获取协议失败</string>
+
+    <string-array name="arrayPower">
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+    </string-array>
+
+    <!-- chooseuii -->
+    <string name="tvChooseInfo">请选择UII的去向</string>
+    <string name="rbRead">读取数据</string>
+    <string name="rbWrite">写入数据</string>
+    <string name="rbErase">擦除数据</string>
+    <string name="rbLock">锁定数据</string>
+    <string name="btEnter">确定</string>
+    <string name="btCancel">取消</string>
+
+    <!-- getuiiforoperation -->
+    <string name="tvGetUiiForOperation">标签列表</string>
+    <string name="btReadUii">读取UII</string>
+
+    <!-- datalist -->
+    <string name="btStop">停止</string>
+    <string name="btBack1">返回</string>
+
+    <!-- datalist_items -->
+    <string name="tvTagUii_Data">标签号：</string>
+    <string name="tvBank_Data">存储区：</string>
+    <string name="tvPtr_Data">地址：</string>
+    <string name="tvLen_Data">长度：</string>
+    <string name="tvCount_Data">次数：</string>
+    <string name="tvData_Data">数据：</string>
+    <string name="tvStatus_Data">状态：</string>
+
+    <!-- write -->
+    <string name="tvTagUii_Write">标&#160;&#160;签&#160;&#160;号：</string>
+    <string name="tvOption_Write">写入模式：</string>
+    <string name="tvData_Write">写入数据：</string>
+    <string name="btWrite">写入数据</string>
+
+    <string-array name="arrayOption_Write">
+        <item>单字单次</item>
+        <item>多字单次</item>
+    </string-array>
+
+    <!-- lock -->
+    <string name="tvTagUii_Lock">标&#160;&#160;签&#160;&#160;号：</string>
+    <string name="tvKill_Lock">KillPwd：</string>
+    <string name="tvAccess_Lock">AccessPwd：</string>
+    <string name="tvUII_Lock">UII：</string>
+    <string name="tvTID_Lock">TID：</string>
+    <string name="tvUSER_Lock">USER：</string>
+    <string name="tvLockCode_Lock">锁&#160;&#160;定&#160;&#160;码：</string>
+    <string name="btCreateCode">生成</string>
+    <string name="btLock">锁定</string>
+
+    <string-array name="arrayLock">
+        <item>保持状态</item>
+        <item>锁定</item>
+        <item>解锁</item>
+        <item>永久锁定</item>
+        <item>永久解锁</item>
+    </string-array>
+    <string name="tvFreHop">频点：</string>
+    <!-- killtag -->
+    <string name="tvTagUii_Kill">标&#160;&#160;签&#160;&#160;号：</string>
+    <string name="tvKillPwd">销毁密码：</string>
+    <string name="btKill">销毁</string>
+    <string name="btSetFreHop">设置频点</string>
+    <!-- select -->
+    <string name="tvBank_Select">存储区：</string>
+    <string name="tvPtr_Select">地&#160;&#160;&#160;&#160;址：</string>
+    <string name="tvMask">掩&#160;&#160;&#160;&#160;码：</string>
+    <string name="tvOrder">序&#160;&#160;&#160;&#160;号：</string>
+    <string name="num">数量：</string>
+    <string name="btAdd_Select">添加</string>
+    <string name="btDel_Select">删除</string>
+    <string name="btChoose_Select">选择</string>
+    <string name="btRead_Select">读取</string>
+    <string name="title_us_hop">美国</string>
+    <string name="title_BRA_hop">巴西</string>
+    <string name="title_other_hop">其他</string>
+
+    <string-array name="arrayFreHop_us" translatable="false">
+        <item>902.75</item>
+        <item>903.25</item>
+        <item>903.75</item>
+        <item>904.25</item>
+        <item>904.75</item>
+        <item>905.25</item>
+        <item>905.75</item>
+        <item>906.25</item>
+        <item>906.75</item>
+        <item>907.25</item>
+        <item>907.75</item>
+        <item>908.25</item>
+        <item>908.75</item>
+        <item>909.25</item>
+        <item>909.75</item>
+        <item>910.25</item>
+        <item>910.75</item>
+        <item>911.25</item>
+        <item>911.75</item>
+        <item>912.25</item>
+        <item>912.75</item>
+        <item>913.25</item>
+        <item>913.75</item>
+        <item>914.25</item>
+        <item>914.75</item>
+        <item>915.25</item>
+        <item>915.75</item>
+        <item>916.25</item>
+        <item>916.75</item>
+        <item>917.25</item>
+        <item>917.75</item>
+        <item>918.25</item>
+        <item>918.75</item>
+        <item>919.25</item>
+        <item>919.75</item>
+        <item>920.25</item>
+        <item>920.75</item>
+        <item>921.25</item>
+        <item>921.75</item>
+        <item>922.25</item>
+        <item>922.75</item>
+        <item>923.25</item>
+        <item>923.75</item>
+        <item>924.25</item>
+        <item>924.75</item>
+        <item>925.25</item>
+        <item>925.75</item>
+        <item>926.25</item>
+        <item>926.75</item>
+        <item>927.25</item>
+    </string-array>
+
+    <string-array name="arrayFreHop_2" translatable="false">
+        <item>920.625</item>
+        <item>920.875</item>
+        <item>921.125</item>
+        <item>921.375</item>
+        <item>921.625</item>
+        <item>921.875</item>
+        <item>922.125</item>
+        <item>922.375</item>
+        <item>922.625</item>
+        <item>922.875</item>
+        <item>923.125</item>
+        <item>923.375</item>
+        <item>923.625</item>
+        <item>923.875</item>
+        <item>924.125</item>
+        <item>924.375</item>
+    </string-array>
+
+    <string-array name="arrayNum">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </string-array>
+
+    <!-- frequency -->
+    <string name="tvFrequencyBand">频段：</string>
+    <string name="btSetFre">设置频率</string>
+    <string name="tvFreRange">频率范围：</string>
+    <string name="btGetFre">读取频率</string>
+    <string name="tvStartFreI">起始频率整数：</string>
+    <string name="tvFreI">840</string>
+    <string name="btAddI">+</string>
+    <string name="btReduceI">-</string>
+    <string name="tvStartFreD">起始频率小数：</string>
+    <string name="tvFreD">50</string>
+    <string name="btAddD">+</string>
+    <string name="btReduceD">-</string>
+    <string name="tvBase">频率基数：</string>
+    <string name="tvChannelCount">频道数：</string>
+    <string name="HintChannelCount">频道数不小于1</string>
+    <string name="tvChinnelSpace">频道带宽：</string>
+    <string name="tvHop">跳频方式：</string>
+    <string name="btCalRange">计算</string>
+    <string name="tvMHz">MHz</string>
+    <string name="tvKHz">KHz</string>
+    <string name="ETSI915_921">欧洲标准(915-921MHz)</string>
+    <string name="china_standard1">中国标准1(840~845MHz)</string>
+    <string name="china_standard2">中国标准2(920~925MHz)</string>
+    <string name="europe_standard">欧洲标准(865~868MHz)</string>
+    <string name="united_states_standard">美国标准(902~928MHz)</string>
+    <string name="korea">韩国标准(917~923MHz)</string>
+    <string name="japan">日本标准(952~953MHz)</string>
+    <string name="Morocco">摩洛哥标准</string>
+    <string name="Peru_915_928MHz">秘鲁(915MHz-928MHz)</string>
+    <string name="Russia_860_867MHZ">俄罗斯(866MHz-867.6MHz)</string>
+    <string name="vietnam_918_923MHz">越南标准(918~923MHz)</string>
+    <string name="South_Africa_915_919MHz">南非(915~919MHz)</string>
+    <string name="TAIWAN">台湾(920~928Mhz)</string>
+    <string name="Malaysia">马来西亚</string>
+    <string-array name="arrayBase">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="arrayChannelSpc0">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+    </string-array>
+    <string-array name="arrayChannelSpc1">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+    <string-array name="arrayHop">
+        <item>随机跳频</item>
+        <item>从高往低顺序跳频</item>
+        <item>从低往高顺序跳频</item>
+    </string-array>
+    <string-array name="arrayVoltage">
+        <item>5V</item>
+        <item>3V</item>
+        <item>1.8V</item>
+        <item>iso</item>
+    </string-array>
+    <string-array name="arrayBaud">
+        <item>9600</item>
+        <item>19200</item>
+        <item>38400</item>
+        <item>43000</item>
+        <item>56000</item>
+        <item>57600</item>
+        <item>115200</item>
+    </string-array>
+
+    <string name="title_activity_uhfset">设置</string>
+    <string name="title_activity_network_status">网络信号</string>
+    <string name="ap_list_header_channel">通道</string>
+    <string name="ap_list_header_level">等级</string>
+    <string name="ap_list_header_ssid">子网掩码</string>
+    <string name="ap_list_header_state">状态</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="ap_title_ssid">已连接：</string>
+    <string name="ap_title_pause">暂停</string>
+    <string name="ap_title_goon">继续</string>
+    <string name="ap_title_wifi_size">WiFi个数：</string>
+    <string name="ap_dialog_title">连接到</string>
+    <string name="ap_title_bssid">BSSID：</string>
+    <string name="ap_title_security">安全：</string>
+    <string name="ap_title_pwd">密码：</string>
+    <string name="ap_title_ip">IP地址：</string>
+    <string name="tel_title_OperatorName">运营商：</string>
+    <string name="tel_title_Status">状态：</string>
+    <string name="tel_title_NetworkType">网络类型：</string>
+    <string name="tel_title_Signal">信号强度：</string>
+    <string name="title_activity_gps">GPS</string>
+    <string name="gps_title_Longitude">经度：</string>
+    <string name="gps_title_Latitude">纬度：</string>
+    <string name="gps_title_SatelliteCount">连接卫星数：</string>
+    <string name="gps_title_Altitude">海拔：</string>
+    <string name="gps_title_GpsStatus">GPS状态：</string>
+    <string name="gps_title_Time">定位耗时：</string>
+    <string name="title_activity_app_set">全局设置</string>
+    <string name="title_activity_a1443">14443A</string>
+    <string name="title_activity_iso15693">15693</string>
+    <string name="m1_title_tag_type">标签类型:</string>
+    <string name="m1_title_key_type">密钥类型:</string>
+    <string name="m1_title_key_value">密钥:</string>
+    <string name="m1_title_sector">扇区:</string>
+    <string name="m1_title_block">块:</string>
+    <string name="m1_title_read">读取</string>
+    <string name="m1_title_write">写入</string>
+    <string name="ul_title_uid">UID：</string>
+    <string name="ul_title_scan">扫描标签</string>
+    <string name="ul_title_AFI">AFI(1 Byte)</string>
+    <string name="ul_title_DSFID">DSFID(1 Byte)</string>
+    <string name="ml_title_read_id">读取ID</string>
+    <string name="ul_title_write_AFI">写入</string>
+    <string name="ul_title_lock_AFI">锁定</string>
+    <string name="ul_title_write_DSFID">写入</string>
+    <string name="ul_title_lock_DSFID">锁定</string>
+    <string name="rfid_title_continuous">连续读写</string>
+    <string name="rfid_title_continuous_read">连续读</string>
+    <string name="rfid_title_continuous_write">连续写</string>
+    <string name="rfid_title_continuous_read_write">连续读写</string>
+    <string name="rfid_title_continuous_count">总次数:</string>
+    <string name="rfid_title_continuous_read_succ_count">读卡成功次数:</string>
+    <string name="rfid_title_continuous_read_fail_count">读卡失败次数:</string>
+    <string name="rfid_title_continuous_write_succ_count">写卡成功次数:</string>
+    <string name="rfid_title_continuous_write_fail_count">写卡失败次数:</string>
+    <string name="action_rfid_ver">RFID版本</string>
+    <string name="action_uhf_ver">UHF版本</string>
+    <string name="action_ble_ver">蓝牙版本</string>
+    <string name="title_about_ram">内存:</string>
+    <string name="title_about_storage">存储:</string>
+    <string name="title_about_display">分辨率:</string>
+    <string name="title_about_model">设备型号:</string>
+    <string name="title_about_android_release">Android版本:</string>
+    <string name="title_about_device_release">系统版本:</string>
+    <string name="title_about_device_kernel_version">内核版本:</string>
+    <string name="title_about_jar_release">jar版本:</string>
+    <string name="title_about_mac">MAC:</string>
+    <string name="title_about_sn">序列号:</string>
+    <string name="title_about_imei">IMEI:</string>
+    <string name="title_activity_global_set">请选择功能模块...</string>
+    <string name="title_activity_key_test">按键测试</string>
+    <string name="title_activity_key_power">电\n源\n键</string>
+    <string name="title_activity_key_home">HOME键</string>
+    <string name="title_activity_key_back">返回键</string>
+    <string name="ping_msg_pinging">正在 Ping </string>
+    <string name="ping_msg_fail">Ping已终止，域名/IP错误</string>
+    <string name="up_msg_net_not_conn">网络未连接</string>
+    <string name="up_msg_sel_file">请先选择文件</string>
+    <string name="up_msg_file_not_exist">文件不存在</string>
+    <string name="up_msg_file_size">文件大小：</string>
+    <string name="up_msg_start_time">开始时间：</string>
+    <string name="app_msg_Upgrade">升级中...\n请勿退出，以免损坏硬件！</string>
+    <string name="uhf_msg_upgrade_fail">超高频升级失败</string>
+    <string name="uhf_msg_upgrade_succ">超高频升级成功</string>
+    <string name="up_msg_stop_time">结束时间：</string>
+    <string name="up_msg_total_time">上传耗时：</string>
+    <string name="up_msg_avg_speed">平均速度：</string>
+    <string name="download_msg_down_file">下载文件</string>
+    <string name="download_msg_down_confirm">确认下载该文件?</string>
+    <string name="download_msg_confirm">确定</string>
+    <string name="download_msg_cancel">取消</string>
+    <string name="download_msg_close">关闭</string>
+    <string name="download_msg_file_path_not_exist">文件路径不存在</string>
+    <string name="download_msg_down_succ">下载完成</string>
+    <string name="download_msg_down_fail">下载失败</string>
+    <string name="download_msg_down_report">测试结果</string>
+    <string name="download_msg_down_file_size">下载大小：</string>
+    <string name="download_msg_total_time">下载耗时：</string>
+    <string name="download_msg_sdcard_not_exist">SD不存在</string>
+    <string name="download_msg_downing">正在下载 ...</string>
+    <string name="bluetooth_msg_not_supp">设备不支持蓝牙</string>
+    <string name="network_msg_title_mobile">蜂窝数据</string>
+    <string name="network_msg_sim_not_exist">无Sim卡信息</string>
+    <string name="network_msg_emergency_only">仅限紧急呼叫</string>
+    <string name="network_msg_in_service">信号正常</string>
+    <string name="network_msg_out_of_service">不在服务区</string>
+    <string name="network_msg_power_off">断电</string>
+    <string name="network_msg_wifi_conn_fail">WiFi连接失败</string>
+    <string name="network_msg_wifi_conning">WiFi连接中...</string>
+    <string name="network_msg_wifi_not_enable">WiFi不可用</string>
+    <string name="network_msg_wifi_conn">连接</string>
+    <string name="network_msg_wifi_speed">速度：</string>
+    <string name="network_msg_wifi_level">等级：</string>
+    <string name="gps_msg_open_gps">请开启GPS导航...</string>
+    <string name="gps_msg_Locate_succ">定位成功</string>
+    <string name="gps_msg_Locateing">正在定位...</string>
+    <string name="gps_msg_Locate_stop">定位结束</string>
+    <string name="gps_msg_title_satellite_signal">卫星信号</string>
+    <string name="uhf_msg_tab_scan">扫描</string>
+    <string name="uhf_msg_tab_read">读数据</string>
+    <string name="uhf_msg_tab_write">写数据</string>
+    <string name="uhf_msg_tab_erase">擦除</string>
+    <string name="uhf_msg_tab_set">设置</string>
+    <string name="uhf_msg_tab_kill">销毁</string>
+    <string name="uhf_msg_tab_lock">锁</string>
+    <string name="rfid_msg_scan_fail">扫描失败</string>
+    <string name="rfid_msg_scan_continuous">连续扫描</string>
+    <string name="ping_msg_background_ping">Ping</string>
+    <string name="ping_msg_runing">正在ping,完成后点击查看结果</string>
+    <string name="ping_msg_finish">完成</string>
+    <string name="bluetooth_title_file">文件</string>
+    <string name="title_activity_battery_monitor">电量监视</string>
+    <string name="battery_title_tips">提示：结果保存在SD卡的handset/BatteryMonitor目录中</string>
+    <string name="battery_msg_background_monitoring">电量监视</string>
+    <string name="battery_msg_runing">电量监视中...</string>
+    <string name="title_activity_fingerprint">指纹识别</string>
+    <string name="fingerprint_tab_identification">识别</string>
+    <string name="fingerprint_tab_verify">模版验证</string>
+    <string name="fingerprint_tab_acquisition">采集</string>
+    <string name="fingerprint_title_page_id">存储ID</string>
+    <string name="fingerprint_title_page_mode">模式</string>
+    <string name="fingerprint_title_page_mode_1">默认</string>
+    <string name="fingerprint_title_page_mode_2">ISO</string>
+    <string name="fingerprint_title_name">用户名称</string>
+    <string name="fingerprint_btn_save">指纹采集</string>
+    <string name="fingerprint_btn_save_stop">停止采集</string>
+    <string name="fingerprint_btn_identification">指纹识别</string>
+    <string name="fingerprint_msg_page_id_not_null">存储ID不能为空</string>
+    <string name="fingerprint_msg_name_not_null">用户名称不能为空</string>
+    <string name="fingerprint_msg_page_id_need_digits">存储ID必须为数字</string>
+    <string name="fingerprint_msg_page_id_need_0_to_1000">存储ID必须0~1000范围内</string>
+    <string name="fingerprint_msg_acq_succ">采集成功</string>
+    <string name="fingerprint_msg_acq_fail">采集失败</string>
+    <string name="fingerprint_title_show_img">图片</string>
+    <string name="fingerprint_title_show_imgiso">图片(ISO)</string>
+    <string name="fingerprint_title_auto_acquisition">自动</string>
+    <string name="fingerprint_title_get_img_fail">获取指纹图片失败</string>
+    <string name="fingerprint_msg_init_fail">模块初始化失败</string>
+    <string name="fingerprint_msg_ident_fail">认证失败</string>
+    <string name="fingerprint_msg_ident_succ">认证成功</string>
+    <string name="fingerprint_title_score">匹配得分</string>
+    <string name="fingerprint_tab_history">数据</string>
+    <string name="fingerprint_btn_import">导入模块</string>
+    <string name="fingerprint_btn_clear">重置模块</string>
+    <string name="fingerprint_msg_import_fail">导入失败(succ:%1$d,fail:%2$d)</string>
+    <string name="fingerprint_msg_import_succ">导入成功</string>
+    <string name="fingerprint_msg_sure_clear">您确定要重置吗？</string>
+    <string name="fingerprint_msg_clear_fail">重置失败</string>
+    <string name="fingerprint_msg_clear_succ">重置成功</string>
+    <string name="fingerprint_title_index">序号</string>
+    <string name="fingerprint_title_pageid">页ID</string>
+    <string name="fingerprint_title_uname">名称</string>
+    <string name="fingerprint_title_create">采集时间</string>
+    <string name="fingerprint_title_local_num">本地指纹数：</string>
+    <string name="fingerprint_title_model_num">模块指纹数：</string>
+    <string name="fingerprint_menu_del">删除</string>
+    <string name="network_msg_operator_is_null">无运营商信息</string>
+    <string name="file_title_sel_file">选择文件</string>
+    <string name="file_title_sel_file_confirm">确认选择该文件?</string>
+    <string name="file_btn_confirm">确定</string>
+    <string name="file_btn_cancel">取消</string>
+    <string name="file_msg_cancel">取消选择</string>
+    <string name="ping_msg_not_null">不能为空</string>
+    <string name="gps_title_tip">提示</string>
+    <string name="gps_msg_gps_not_open">GPS未打开，是否去打开？</string>
+    <string name="gps_btn_yes">是</string>
+    <string name="gps_btn_no">否</string>
+    <string name="bluetooth_title_tip">提示</string>
+    <string name="bluetooth_msg_not_adapter">没有已配对的蓝牙设备，请先去配对。</string>
+    <string name="bluetooth_btn_yes">是</string>
+    <string name="bluetooth_btn_no">否</string>
+    <string name="bluetooth_msg_connection_failed">连接失败，请检查设备是否被占用</string>
+    <string name="lf_title_card_type">标签类型：</string>
+    <string name="lf_msg_scan_fail">读取失败</string>
+    <string name="lf_title_pageid">页ID:</string>
+    <string name="lf_title_data">数据:</string>
+    <string name="lf_title_write">写入</string>
+    <string name="lf_title_read">读取</string>
+    <string name="lf_msg_data_not_null">数据不能为空</string>
+    <string name="lf_msg_data_not_hex4">请输入4字节HEX</string>
+    <string name="lf_msg_write_succ">写入成功</string>
+    <string name="lf_msg_write_fail">写入失败</string>
+    <string name="lf_msg_data_page_id_err_em4305">只能在0,3,5~13,其中一页写入数据</string>
+    <string name="title_activity_lf">RFID_LF</string>
+    <string name="title_activity_volum">音量设置</string>
+    <string name="volum_title_voice_call">通话音量</string>
+    <string name="volum_title_systen">系统音量</string>
+    <string name="volum_title_voice_ring">铃声音量</string>
+    <string name="volum_title_voice_music">音乐音量</string>
+    <string name="volum_title_voice_notification">提示声音音量</string>
+    <string name="volum_title_voice_alarm">闹铃音量</string>
+    <string name="app_msg_init">正在初始化模块...</string>
+    <string name="title_activity_light_and_psensor">传感器</string>
+    <string name="lp_btn_open">打开</string>
+    <string name="lp_btn_auto">自动</string>
+    <string name="lp_btn_stop">停止</string>
+    <string name="lp_btn_close">关闭</string>
+    <string name="lp_title_r">红</string>
+    <string name="lp_title_g">绿</string>
+    <string name="lp_title_b">蓝</string>
+    <string name="lp_title_light">指示灯</string>
+    <string name="lp_title_sensor">传感器</string>
+    <string name="lp_title_brightness">屏幕亮度</string>
+    <string name="lp_title_psensor">距离传感器值：</string>
+    <string name="lp_title_lightsensor">光线传感器值：</string>
+    <string name="led_action_open">打开辅助灯</string>
+    <string name="led_action_close">关闭辅助灯</string>
+    <string name="led_msg_open_fail">打开辅助灯失败</string>
+    <string name="led_msg_close_fail">关闭辅助灯失败</string>
+    <string name="gs_msg_not_one">请选择功能模块</string>
+    <string name="title_activity_bdnav">北斗</string>
+    <string name="bd_msg_Locate_succ">定位成功</string>
+    <string name="bd_msg_Locateing">正在定位...</string>
+    <string name="bd_msg_Locate_stop">定位结束</string>
+    <string name="bd_msg_title_satellite_signal">卫星信号</string>
+    <string name="bd_title_Longitude">经度：</string>
+    <string name="bd_title_Latitude">纬度：</string>
+    <string name="bd_title_SatelliteCount">连接卫星数：</string>
+    <string name="bd_title_Altitude">海拔：</string>
+    <string name="bd_title_bdStatus">状态：</string>
+    <string name="bd_title_Time">定位耗时：</string>
+    <string name="bd_title_gps">GPS</string>
+    <string name="bd_title_bd">BD</string>
+    <string name="bd_title_gb">GPS &#038; BD</string>
+    <string name="bd_title_cold">冷启动</string>
+    <string name="bd_title_warm">温启动</string>
+    <string name="bd_title_hot">热启动</string>
+    <string name="title_activity_iso14443_a4_cpu">14443A CPU</string>
+    <string name="b14443_title_cmd">命令</string>
+    <string name="b14443_title_rev">数据</string>
+    <string name="b14443_title_init">初始化</string>
+    <string name="b14443_title_send">发送</string>
+    <string name="b14443_title_auto">自动</string>
+    <string name="b14443_title_stop">停止</string>
+    <string name="b14443_msg_rats">RATS和PPS出错</string>
+    <string name="b14443_msg_num">CPU卡号</string>
+    <string name="b14443_msg_rev">RATS返回码</string>
+    <string name="b14443_msg_send_err">命令发送出错</string>
+    <string name="b14443_msg_init_err">获取卡号失败</string>
+    <string name="title_activity_iso14443b">14443B</string>
+    <string name="b14443_msg_reset_err">初始化失败</string>
+    <string name="b14443_msg_data">初始化返回数据</string>
+    <string name="b14443_msg_cmd_data">命令返回数据</string>
+    <string name="update_msg_unmount">无法下载安装文件，请检查SD卡是否挂载</string>
+    <string name="update_msg_checking">正在检测，请稍后...</string>
+    <string name="update_msg_diag_title">系统提示</string>
+    <string name="update_msg_curr_new">您当前已经是最新版本</string>
+    <string name="update_msg_version_info_fail">无法获取版本更新信息</string>
+    <string name="update_title_ok">确定</string>
+    <string name="update_title_cancel">取消</string>
+    <string name="update_msg_diag_title_two">软件版本更新</string>
+    <string name="update_title_update_now">立即更新</string>
+    <string name="update_title_update_last">以后再说</string>
+    <string name="update_msg_updateing">正在下载新版本</string>
+    <string name="title_activity_psam">PSAM</string>
+    <string name="psam_title_voltage">电  压</string>
+    <string name="psam_title_parameter">参数</string>
+    <string name="psam_title_baud">波特率</string>
+    <string name="psam_title_cmd">命令</string>
+    <string name="psam_title_data">数据</string>
+    <string name="psam_title_send">发送</string>
+    <string name="psam_title_set">设置</string>
+    <string name="psam_title_get">获取</string>
+    <string name="psam_title_clear">清除</string>
+    <string name="psam_msg_fail">操作失败</string>
+    <string name="title_activity_analog_call">模拟通话</string>
+    <string name="title_activity_camera">相机</string>
+    <string name="camera_alert">设备只有一个摄像头!</string>
+    <string name="switch_cam">切换摄像头</string>
+    <string name="camera_none">设备没有摄像头!</string>
+
+    <!-- zxing start -->
+    <string name="zxing_app_name">相机扫码</string>
+    <string name="app_picker_name">应用</string>
+    <string name="bookmark_picker_name">书签</string>
+    <string name="button_add_calendar">添加事件至日历</string>
+    <string name="button_add_contact">添加联系人</string>
+    <string name="button_back">返回</string>
+    <string name="button_book_search">打开图书搜索</string>
+    <string name="button_cancel">取消</string>
+    <string name="button_custom_product_search">自定义搜索</string>
+    <string name="button_dial">拨号</string>
+    <string name="button_done">完成</string>
+    <string name="button_email">发送email</string>
+    <string name="button_get_directions">获取地址</string>
+    <string name="button_google_shopper">谷歌购物</string>
+    <string name="button_mms">发送彩信</string>
+    <string name="button_ok">确定</string>
+    <string name="button_open_browser">打开浏览器</string>
+    <string name="button_product_search">打开产品搜索</string>
+    <string name="button_search_book_contents">搜索图书内容</string>
+    <string name="button_share_app">共享应用</string>
+    <string name="button_share_bookmark">分享书签</string>
+    <string name="button_share_by_email">通过email分享</string>
+    <string name="button_share_by_sms">通过短信分享</string>
+    <string name="button_share_clipboard">分享剪切板</string>
+    <string name="button_share_contact">分享联系人</string>
+    <string name="button_show_map">显示地图</string>
+    <string name="button_sms">发送短信</string>
+    <string name="button_web_search">网页搜索</string>
+    <string name="button_wifi">连接到网络</string>
+    <string name="contents_contact">联系人信息</string>
+    <string name="contents_email">Email地址</string>
+    <string name="contents_location">地理坐标</string>
+    <string name="contents_phone">电话号码</string>
+    <string name="contents_sms">短信地址</string>
+    <string name="contents_text">纯文本</string>
+    <string name="history_clear_one_history_text">删除</string>
+    <string name="history_clear_text">删除历史</string>
+    <string name="history_email_title">条码扫描器历史</string>
+    <string name="history_empty">空的</string>
+    <string name="history_empty_detail">没有条码扫描已记录</string>
+    <string name="history_send">发送历史</string>
+    <string name="history_title">历史</string>
+    <string name="menu_encode_mecard">使用MECARD</string>
+    <string name="menu_encode_vcard">使用vCard</string>
+    <string name="menu_help">帮助</string>
+    <string name="menu_history">历史</string>
+    <string name="menu_settings">设置</string>
+    <string name="menu_share">分享</string>
+    <string name="msg_bulk_mode_scanned">批量扫描：找到条码，已保存</string>
+    <string name="msg_camera_framework_bug">抱歉，Android相机出现问题。您可能需要重启设备。</string>
+    <string name="msg_default_format">格式</string>
+    <string name="msg_default_meta">元数据</string>
+    <string name="msg_default_mms_subject">Hi</string>
+    <string name="msg_default_status">请将条码置于取景框内扫描。  </string>
+    <string name="msg_default_time">时间</string>
+    <string name="msg_default_type">类型</string>
+    <string name="msg_encode_contents_failed">无法根据已有数据生成条码。   </string>
+    <string name="msg_google_books">谷歌图书</string>
+    <string name="msg_google_product">谷歌购物</string>
+    <string name="msg_google_shopper_missing">谷歌购物未安装</string>
+    <string name="msg_install_google_shopper">谷歌购物是一款将条码扫描和商品比价相结合的应用，谷歌购物不使用浏览器，您想尝试吗？</string>
+    <string name="msg_intent_failed">抱歉，无法打开所需软件。 条码内容可能无效。</string>
+    <string name="msg_redirect">重定向</string>
+    <string name="msg_sbc_book_not_searchable">抱歉，无法找到此图书。</string>
+    <string name="msg_sbc_failed">抱歉，搜索时遇到错误。</string>
+    <string name="msg_sbc_no_page_returned">无页面返回</string>
+    <string name="msg_sbc_page">页面</string>
+    <string name="msg_sbc_results">结果</string>
+    <string name="msg_sbc_searching_book">搜索图书…</string>
+    <string name="msg_sbc_snippet_unavailable">摘录不可用</string>
+    <string name="msg_sbc_unknown_page">未知页面</string>
+    <string name="msg_share_explanation">您可以通过在自己的手机上显示条码，并使用其它手机扫描此条码的方式进行分享</string>
+    <string name="msg_share_subject_line">这是我所扫描条码的内容</string>
+    <string name="msg_share_text">或键入一些文字</string>
+    <string name="msg_sure">你肯定吗？</string>
+    <string name="msg_unmount_usb">抱歉，SD卡不可访问。</string>
+    <string name="preferences_actions_title">找到条码时</string>
+    <string name="preferences_auto_focus_title">使用自动对焦</string>
+    <string name="preferences_bulk_mode_summary">连续扫描并保存多个条形码</string>
+    <string name="preferences_bulk_mode_title">批量扫描模式</string>
+    <string name="preferences_copy_to_clipboard_title">复制到剪切板</string>
+    <string name="preferences_custom_product_search_summary" formatted="false">替换：％s=内容，％f=格式，％t=类型</string>
+    <string name="preferences_custom_product_search_title">自定义搜索网址</string>
+    <string name="preferences_decode_1D_title">扫描 一维条码</string>
+    <string name="preferences_decode_Data_Matrix_title">扫描 DM码</string>
+    <string name="preferences_decode_QR_title">扫描 QR码</string>
+    <string name="preferences_device_bug_workarounds_title">设备问题解决办法</string>
+    <string name="preferences_disable_continuous_focus_summary">只使用标准对焦模式</string>
+    <string name="preferences_disable_continuous_focus_title">没有持续关注</string>
+    <string name="preferences_disable_exposure_title">无曝光</string>
+    <string name="preferences_front_light_summary">前灯可用时，打开前灯</string>
+    <string name="preferences_front_light_title">前灯</string>
+    <string name="preferences_general_title">一般设置</string>
+    <string name="preferences_name">设置</string>
+    <string name="preferences_play_beep_title">提示音</string>
+    <string name="preferences_remember_duplicates_summary">在历史记录中保存重复记录</string>
+    <string name="preferences_remember_duplicates_title">记住重复</string>
+    <string name="preferences_result_title">结果设置</string>
+    <string name="preferences_scanning_title">条码类型选择</string>
+    <string name="preferences_search_country">搜索国家</string>
+    <string name="preferences_supplemental_summary">尝试检索关于条码内容的更多信息</string>
+    <string name="preferences_supplemental_title">检索更多信息</string>
+    <string name="preferences_try_bsplus">尝试条码扫描器+</string>
+    <string name="preferences_try_bsplus_summary">增强新的功能和接口</string>
+    <string name="preferences_vibrate_title">振动</string>
+    <string name="result_address_book">找到联系人信息</string>
+    <string name="result_calendar">找到日历事件</string>
+    <string name="result_email_address">找到email地址</string>
+    <string name="result_geo">找到地理坐标</string>
+    <string name="result_isbn">找到图书</string>
+    <string name="result_product">找到产品</string>
+    <string name="result_sms">找到短信地址</string>
+    <string name="result_tel">找到电话号码</string>
+    <string name="result_text">找到纯文本</string>
+    <string name="result_uri">找到URL</string>
+    <string name="result_wifi">发现网络配置</string>
+    <string name="sbc_name">Google图书搜索</string>
+    <string name="share_name">通过条码分享</string>
+    <string name="wifi_changing_network">请求连接到网络\u2026</string>
+    <string name="wifi_ssid_label">网络SSID</string>
+    <string name="wifi_type_label">类型</string>
+    <string name="no_ble_devices">No LE devices found.</string>
+    <string name="ble_not_supported">Bluetooth Low Energy not supported</string>
+    <!-- zxing end -->
+    <string name="scan">Scan</string>
+    <string name="cancel">Cancel</string>
+    <string name="paired">paired</string>
+    <string name="title_activity_auto_run_network">自动网络测试</string>
+
+    <string name="uhf_title_filter">过滤</string>
+    <string name="button_enable_filter">启用过滤</string>
+
+    <string name="tvLockCode">锁定码：</string>
+    <string name="uhf_title_temp">临时掩码</string>
+    <string name="uhf_title_perm">永久掩码</string>
+    <string name="uhf_title_open">开放</string>
+    <string name="uhf_title_lock">锁</string>
+    <string name="Connect">连接</string>
+    <string name="disConnect">断开连接</string>
+    <string name="disConnectForSecond">断开连接\n(%d秒钟后自动断开)</string>
+    <string name="disConnectForMinute">断开连接\n(%d分钟后自动断开)</string>
+
+    <string name="title_2d_Scan">二维扫描</string>
+    <string name="title_inventory">盘点标签</string>
+    <string name="title_inventory2">盘点(EPC+TID+USER)</string>
+    <string name="title_encryption">加密</string>
+    <string name="title_authentication">认证</string>
+    <string name="title_update">升级</string>
+    <string name="title_search">搜索</string>
+    <string name="title_2Dscan">扫描</string>
+
+    <string name="title_bluetooth">蓝牙通信方式</string>
+    <string name="title_UART">串口</string>
+    <string name="title_format">编码格式</string>
+    <string name="title_buzzer">蜂鸣器设置</string>
+    <string name="title_buzzer_open">打开蜂鸣器</string>
+    <string name="title_buzzer_close">关闭蜂鸣器</string>
+    <string name="title_bt_rename">修改蓝牙名称</string>
+    <string name="title_new_name">新名称</string>
+    <string name="title_R2000">射频模块</string>
+    <string name="title_stm32">主板</string>
+    <string name="title_stm32_version">读取主板版本号</string>
+    <string name="title_stop_read_card">请先停止读卡!</string>
+    <string name="action_uhf_bat">电量</string>
+    <string name="title_about_Temperature">温度</string>
+    <string name="connecting">连接中....</string>
+    <string name="connect_success">连接成功</string>
+    <string name="disconnect">连接已断开</string>
+
+    <string name="GB_tag_lock">国标/国军标 Lock</string>
+    <string name="storageArea">存储区域：</string>
+    <string name="user_area_number">用户区编号：</string>
+    <string name="configure">配置：</string>
+    <string name="action">动作：</string>
+
+    <string name="uhf_msg_filter_addr_must_decimal">过滤的地址必须为十进制数据</string>
+    <string name="uhf_msg_filter_len_must_decimal">过滤的长度必须为十进制数据</string>
+    <string name="uhf_msg_set_filter_fail">设置过滤失败</string>
+    <string name="uhf_msg_set_filter_fail2">设置过滤失败(长度错误)</string>
+    <string name="uhf_msg_set_filter_succ">设置过滤成功</string>
+    <string name="time">时间：</string>
+    <string name="continuous_wave">连续波</string>
+    <string name="support_rssi">支持Rssi</string>
+    <string name="get_succ">获取成功</string>
+    <string name="get_fail">获取失败</string>
+    <string name="open_succ">打开成功</string>
+    <string name="open_fail">打开失败</string>
+    <string name="setting_succ">设置成功</string>
+    <string name="setting_fail">设置失败</string>
+    <string name="msg_disable_succ">禁用成功</string>
+    <string name="msg_disable_fail">禁用失败</string>
+
+    <string name="title_ble">蓝牙固件</string>
+    <string name="start_address">起始地址：</string>
+    <string name="start_len">起始长度：</string>
+    <string name="erase_area">擦除区域：</string>
+    <string name="obtain_electricity">获取电量</string>
+    <string name="module_temperature">模块温度</string>
+    <string name="realTime">实时</string>
+    <string name="offline">脱机</string>
+    <string name="workMode">工作模式</string>
+    <string name="uhf_title_link">链路参数：</string>
+    <string name="tips_open_the_ocation_permission">是否进入设置界面开启定位权限？</string>
+    <string name="get_location_permission">获取定位权限</string>
+    <string name="tips">提示</string>
+    <string name="inventory_epc_tid_user_tips">此功能需配合特定的支持 EPC+TID+USER 模式的STM32主板使用</string>
+
+    <string name="uhf_msg_r2000_tip">此功能仅对R2000模块有效</string>
+    <string name="setup">设置</string>
+    <string name="autoReconnect">自动重连</string>
+    <string name="history_connected_device">历史连接的设备</string>
+    <string name="clear_historical_records">清空历史记录</string>
+    <string name="no_history">无历史记录</string>
+    <string name="invalid_bluetooth_address">无效的蓝牙地址</string>
+    <string name="disconnectTime">连接断开时间</string>
+    <string name="chooseTime">选择时间:</string>
+    <string name="current_settings">当前设置：</string>
+
+    <string name="ledBlink">led 闪烁</string>
+    <string name="ledClose">led 关</string>
+    <string name="ledOpen">led 开</string>
+
+    <string name="tvDuration">发光时间:</string>
+    <string name="tvInterval">间隔时间:</string>
+    <string name="textCount">次数:</string>
+    <string name="location">定位</string>
+    <string name="start_location">开始定位</string>
+    <string name="stop_location">停止定位</string>
+</resources>

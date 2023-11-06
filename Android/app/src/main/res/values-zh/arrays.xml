@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 国标标签 Lock -->
+    <string-array name="storageArea">
+        <item>标签信息区</item>
+        <item>编码区</item>
+        <item>安全区</item>
+        <item>用户区</item>
+    </string-array>
+
+    <string-array name="userAreaNumbers">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </string-array>
+
+    <string-array name="config">
+        <item>存储区属性</item>
+        <item>安全模式</item>
+    </string-array>
+
+    <string-array name="action1">
+        <item>可读可写</item>
+        <item>可读不可写</item>
+        <item>不可读可写</item>
+        <item>不可读不可写</item>
+    </string-array>
+
+    <string-array name="action2">
+        <item>保留</item>
+        <item>不需要鉴别</item>
+        <item>需要鉴别，不需要安全通信</item>
+        <item>需要鉴别，需要安全通信</item>
+    </string-array>
+
+    <string-array name="disconnect_time_array">
+        <item>保持连接</item>
+        <item>1小时后</item>
+        <item>2小时后</item>
+        <item>3小时后</item>
+        <item>4小时后</item>
+        <item>5小时后</item>
+        <item>6小时后</item>
+    </string-array>
+</resources>

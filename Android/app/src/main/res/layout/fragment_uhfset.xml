@@ -1,0 +1,658 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.uhf_bt.fragment.UHFSetFragment">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tvFrequencyBand"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/SpinnerMode"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/arrayMode"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <Button
+                    android:background="@drawable/button_bg3"
+                    android:id="@+id/BtSetFre"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/btSetFre"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:background="@drawable/button_bg3"
+                    android:id="@+id/BtGetFre"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="@string/btGetFre"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/llFreHop"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tvFreHop" />
+
+                <Spinner
+                    android:id="@+id/spFreHop"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/arrayFreHop_us" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:visibility="visible">
+
+                <Button
+                    android:visibility="gone"
+                    android:background="@drawable/button_bg3"
+                    android:id="@+id/btnSetFreHop"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/btSetFreHop" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/uhf_title_power"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/spPower"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/uhf_title_dbm" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <Button
+                    android:background="@drawable/button_bg3"
+                    android:id="@+id/btnSetPower"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/uhf_btn_setpower"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:background="@drawable/button_bg3"
+                    android:id="@+id/btnGetPower"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="@string/uhf_btn_getpower"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tvProtocol"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/spProtocol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@array/arrayProtocol"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <Button
+
+                    android:background="@drawable/button_bg3"
+                    android:id="@+id/btnSetProtocol"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/btSetProtocol" />
+
+                <Button
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/button_bg3"
+                    android:id="@+id/btnGetProtocol"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/btGetProtocol" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@string/title_buzzer"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <Button
+                    android:background="@drawable/button_bg3"
+                    android:id="@+id/btnbeepOpen"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/title_buzzer_open"
+                    android:textSize="16sp" />
+                <Button
+                    android:id="@+id/btnbeepClose"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg3"
+                    android:text="@string/title_buzzer_close"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray1"
+                android:orientation="vertical"
+                android:paddingTop="5dp">
+                <RadioGroup
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RadioButton
+                        android:id="@+id/rbEPC"
+                        android:text="EPC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <RadioButton
+                        android:id="@+id/rbEPCTID"
+                        android:text="EPC+TID"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <RadioButton
+                        android:id="@+id/rbEPCTIDUSER"
+                        android:text="EPC+TID+USER"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <RadioButton
+                        android:id="@+id/rbUnknown"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RadioGroup>
+                <LinearLayout
+                    android:id="@+id/llTidPtr"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Tid Ptr:  "
+                        android:textSize="16sp" />
+                    <EditText
+                        android:inputType="number"
+                        android:hint="0"
+                        android:id="@+id/etTIDPtr"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(work)"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/llTidLen"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tid Len:  "/>
+                    <EditText
+                        android:inputType="number"
+                        android:hint="6"
+                        android:id="@+id/etTIDLen"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(work)"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/llUserPtr"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="User Ptr: "/>
+                    <EditText
+                        android:inputType="number"
+                        android:hint="0"
+                        android:id="@+id/etUserPtr"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(work)"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/llUserLen"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="User Len:"/>
+                    <EditText
+                        android:inputType="number"
+                        android:hint="6"
+                        android:id="@+id/etUserLen"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(work)"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
+
+                    <Button
+                        android:id="@+id/btnSetInventory"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_bg3"
+                        android:text="Set"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:visibility="gone"
+                        android:id="@+id/btnGetInventory"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_bg3"
+                        android:text="Get"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- led -->
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llLED"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:textSize="16sp"
+                        android:id="@+id/rgLedOpen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ledOpen"/>
+                    <RadioButton
+                        android:textSize="16sp"
+                        android:id="@+id/rgLedClose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ledClose"/>
+
+                    <RadioButton
+                        android:textSize="16sp"
+                        android:id="@+id/rgLedBlink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="@string/ledBlink" />
+                </RadioGroup>
+                <LinearLayout
+                    android:padding="5dp"
+                    android:id="@+id/llLedP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="@string/tvDuration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/etDuration"
+                        android:text="1"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text="(unit:100ms  value:1-255)"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:padding="5dp"
+                    android:id="@+id/llLedP1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="@string/tvInterval"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/etInterval"
+                        android:text="1"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="(unit:100ms  value:1-255)"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:padding="5dp"
+                    android:id="@+id/llLedP2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="@string/textCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/etCount"
+                        android:text="1"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="(value:1-255)"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+                <Button
+                    android:layout_margin="5dp"
+                     android:background="@drawable/button_bg3"
+                     android:text="Led Set"
+                     android:id="@+id/btnLedSet"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <!-- 蜂鸣器时长 -->
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:id="@+id/etTime"
+                        android:text="1"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text="(unit:100ms  value:1-255)"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+                <Button
+                    android:layout_margin="5dp"
+                    android:background="@drawable/button_bg3"
+                    android:text="Trigger Beep"
+                    android:id="@+id/btnTriggerBeep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <!--session-->
+            <LinearLayout
+                android:id="@+id/llSession"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="3dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Session ID:" />
+
+                <Spinner
+                    android:id="@+id/spSessionID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/arraySession"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Inventoried Flag:" />
+                <Spinner
+                    android:id="@+id/spInventoried"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/arrayInventoried"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:background="@drawable/button_bg3"
+                    android:id="@+id/btnSetSession"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/set" />
+
+                <Button
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/button_bg3"
+                    android:id="@+id/btnGetSession"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/get" />
+            </LinearLayout>
+            <!-- Link-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="3dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/uhf_title_link"
+                android:textSize="16sp" />
+
+            <Spinner
+                android:id="@+id/splinkParams"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/arrayLink" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btnSetRFlink"
+                android:background="@drawable/button_bg3"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/set_link"/>
+            <Button
+                android:layout_marginLeft="20dp"
+                android:id="@+id/btnGetRFlink"
+                android:background="@drawable/button_bg3"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/get_link"/>
+        </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="@string/workMode"
+                android:textSize="16sp" />
+
+
+
+            <CheckBox
+                android:id="@+id/cbContinuousWave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:showText="true"
+                android:text="@string/continuous_wave"
+                android:visibility="visible" />
+
+            <CheckBox
+                android:id="@+id/cbAutoReconnect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/autoReconnect"
+                android:visibility="visible" />
+
+            <CheckBox
+                android:id="@+id/cbTagFocus"
+                android:text="TagFocus Mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <CheckBox
+                android:id="@+id/cbRssi"
+                android:text="@string/support_rssi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+
+
+
+
+    </ScrollView>
+</FrameLayout>
