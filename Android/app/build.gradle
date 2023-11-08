@@ -67,5 +67,6 @@ dependencies {
     implementation('no.nordicsemi.android:dfu:1.9.0') {
         exclude group: 'com.android.support'
     }
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
 }

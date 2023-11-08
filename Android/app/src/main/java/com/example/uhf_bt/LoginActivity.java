@@ -3,6 +3,7 @@ package com.example.uhf_bt;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -43,7 +44,9 @@ public class LoginActivity extends BaseActivity{
                 model.username = userName.getText().toString();
                 model.password = password.getText().toString();
 
-                String req = "https://api-villedenoumea.scanandgo.nc/api/" + "user/signin";
+                Globals g = (Globals)getApplication();
+
+                String req = g.apiUrl + "user/signin";
 
                 try {
 
@@ -53,9 +56,13 @@ public class LoginActivity extends BaseActivity{
                             req,
                             new Gson().toJson(model)).get();
 
-
                     if (result != null) {
+
+                        g.isLogin = true;
+
                         Log.d("success", "Login Success");
+                        startActivityForResult(new Intent(getApplicationContext(), BoardActivity.class), 0);
+
                     } else {
                         Toast.makeText(getApplicationContext(), "Unknown code", Toast.LENGTH_SHORT).show();
                     }

@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutionException;
 
 public class Globals extends Application {
 
+    public static boolean isLogin = false;
     public static String dns = "";
     public static Boolean dispoAPI= false;
     public static String url = "https://api-villedenoumea.scanandgo.nc/";
