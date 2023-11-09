@@ -3,7 +3,6 @@ package com.example.uhf_bt;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -13,8 +12,6 @@ import com.example.uhf_bt.dto.Login;
 import com.example.uhf_bt.dto.LoginVM;
 import com.example.uhf_bt.json.JsonTaskLogin;
 import com.google.gson.Gson;
-
-import org.w3c.dom.Text;
 
 import java.util.concurrent.ExecutionException;
 
@@ -61,7 +58,7 @@ public class LoginActivity extends BaseActivity{
                         g.isLogin = true;
 
                         Log.d("success", "Login Success");
-                        startActivityForResult(new Intent(getApplicationContext(), BoardActivity.class), 0);
+                        startActivityForResult(new Intent(getApplicationContext(), BoardItemActivity.class), 0);
 
                     } else {
                         Toast.makeText(getApplicationContext(), "Unknown code", Toast.LENGTH_SHORT).show();
