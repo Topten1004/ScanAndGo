@@ -58,7 +58,7 @@ public class LoginActivity extends BaseActivity{
                         g.isLogin = true;
 
                         Log.d("success", "Login Success");
-                        startActivityForResult(new Intent(getApplicationContext(), BoardItemActivity.class), 0);
+                        startActivityForResult(new Intent(getApplicationContext(), BoardCategoryActivity.class), 0);
 
                     } else {
                         Toast.makeText(getApplicationContext(), "Unknown code", Toast.LENGTH_SHORT).show();
