@@ -9,7 +9,7 @@ public class BoardLocationActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_board_item);
+        setContentView(R.layout.activity_board_category);
 
         Globals g = (Globals)getApplication();
 
@@ -30,16 +30,18 @@ public class BoardLocationActivity extends BaseActivity{
 
     public void btnItem(View v)
     {
+        startActivityForResult(new Intent(getApplicationContext(), BoardCategoryActivity.class), 0);
 
     }
 
     public void btnInventory(View v)
     {
+        startActivityForResult(new Intent(getApplicationContext(), BoardInventoryActivity.class), 0);
 
     }
 
     public void btnLocation(View v)
     {
-
+        startActivityForResult(new Intent(getApplicationContext(), BoardLocationActivity.class), 0);
     }
 }
