@@ -5,7 +5,11 @@ import android.os.AsyncTask;
 
 import com.example.uhf_bt.component.Connectivity;
 import com.example.uhf_bt.component.NetworkTask;
+import com.example.uhf_bt.dto.Category;
+import com.example.uhf_bt.dto.Location;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class Globals extends Application {
@@ -15,6 +19,9 @@ public class Globals extends Application {
     public static Boolean dispoAPI= false;
     public static String url = "https://api-villedenoumea.scanandgo.nc/";
 
+    public static List<Category> categoryLists = new ArrayList<>();
+
+    public static List<Location> locationLists = new ArrayList<>();
     public static String apiUrl = url + "api/";
 
     @SuppressWarnings("deprecation")
