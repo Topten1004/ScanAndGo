@@ -39,7 +39,9 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-
+        debug {
+            debuggable true
+        }
         // 自定义apk名称
         android.applicationVariants.all { variant ->
             variant.outputs.all {

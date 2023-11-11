@@ -2,6 +2,7 @@ package com.example.uhf_bt.json;
 
 import android.os.AsyncTask;
 
+import com.example.uhf_bt.dto.Category;
 import com.example.uhf_bt.dto.LoginVM;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -19,6 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class JsonTaskLogin extends AsyncTask<String, String, LoginVM> {
 
@@ -76,6 +78,6 @@ public class JsonTaskLogin extends AsyncTask<String, String, LoginVM> {
 
     @Override
     protected void onPostExecute(LoginVM result) {
-        super.onPostExecute(result);
+        super.onPostExecute((LoginVM) result);
     }
 }
