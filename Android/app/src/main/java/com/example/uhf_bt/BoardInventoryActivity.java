@@ -33,37 +33,6 @@ public class BoardInventoryActivity extends BaseActivity{
         {
             startActivityForResult(new Intent(getApplicationContext(), LoginActivity.class), 0);
         }
-
-        String req = g.apiUrl + "category/read";
-
-        try {
-            List<Category> categories = new ArrayList<>();
-
-            categories = new JsonTaskGetCategoryList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req).get();
-
-            if (categories != null) {
-                g.categoryLists = categories;
-
-                Log.d("count:::", String.valueOf(g.categoryLists.size()));
-
-                for (Category p : categories) {
-
-                    ButtonItem newVM = new ButtonItem(p.getName());
-                    itemList.add(newVM);
-                }
-            }
-        } catch (ExecutionException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        listView = findViewById(R.id.listInventoryItems);
-        ListItemView adapter = new ListItemView(this, itemList);
-
-        // Set the adapter for the ListView
-        listView.setAdapter(adapter);
     }
 
     public  void btnLogOut(View v)

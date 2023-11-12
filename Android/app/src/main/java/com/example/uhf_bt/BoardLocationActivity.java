@@ -7,11 +7,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.uhf_bt.component.ListItemView;
 import com.example.uhf_bt.dto.ButtonItem;
 import com.example.uhf_bt.dto.Location;
+import com.example.uhf_bt.dto.PostItem;
+import com.example.uhf_bt.dto.StatusVM;
 import com.example.uhf_bt.json.JsonTaskGetLocationList;
+import com.example.uhf_bt.json.JsonTaskPostCategory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +26,7 @@ public class BoardLocationActivity extends BaseActivity{
 
     private ListView listView;
 
+    private TextView addInventoryName;
     private List<ButtonItem> itemList = new ArrayList<>();
 
     @SuppressLint("MissingInflatedId")
@@ -31,10 +37,28 @@ public class BoardLocationActivity extends BaseActivity{
 
         Globals g = (Globals)getApplication();
 
+        addInventoryName = (TextView) findViewById(R.id.txtNameLocation);
+
         if (g.isLogin == false)
         {
             startActivityForResult(new Intent(getApplicationContext(), LoginActivity.class), 0);
         }
+
+        reCallAPI();
+    }
+
+    public  void btnLogOut(View v)
+    {
+        Globals g = (Globals) getApplication();
+
+        g.isLogin = false;
+
+        startActivityForResult(new Intent(getApplicationContext(), LoginActivity.class), 0);
+    }
+
+    public void reCallAPI()
+    {
+        Globals g = (Globals) getApplication();
 
         String req = g.apiUrl + "location/read";
 
@@ -68,13 +92,30 @@ public class BoardLocationActivity extends BaseActivity{
         listView.setAdapter(adapter);
     }
 
-    public  void btnLogOut(View v)
+    public void btnAddLocation(View v)
     {
-        Globals g = (Globals) getApplication();
+        if(addInventoryName.length() > 0 )
+        {
+            try {
+                PostItem model = new PostItem(addInventoryName.getText().toString());
+                StatusVM result = new StatusVM();
 
-        g.isLogin = false;
+                String req = Globals.apiUrl + "location/create";
 
-        startActivityForResult(new Intent(getApplicationContext(), LoginActivity.class), 0);
+                result = new JsonTaskPostCategory().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req, model.toJsonString()).get();
+
+                if (result != null) {
+                    reCallAPI();
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Can't save successfully", Toast.LENGTH_SHORT).show();
+                }
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void btnItem(View v)

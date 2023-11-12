@@ -12,13 +12,10 @@ import android.widget.Toast;
 import com.example.uhf_bt.component.ListItemView;
 import com.example.uhf_bt.dto.Category;
 import com.example.uhf_bt.dto.ButtonItem;
-import com.example.uhf_bt.dto.LoginVM;
 import com.example.uhf_bt.dto.PostItem;
 import com.example.uhf_bt.dto.StatusVM;
 import com.example.uhf_bt.json.JsonTaskGetCategoryList;
-import com.example.uhf_bt.json.JsonTaskLogin;
 import com.example.uhf_bt.json.JsonTaskPostCategory;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +43,7 @@ public class BoardCategoryActivity extends BaseActivity{
     }
 
     public void btnAddCategory(View v) throws ExecutionException, InterruptedException {
+
         if(categoryName.length() > 0 )
         {
             try {
@@ -99,7 +97,7 @@ public class BoardCategoryActivity extends BaseActivity{
             throw new RuntimeException(e);
         }
 
-        categoryName = findViewById(R.id.txtNameCategory);
+        categoryName = findViewById(R.id.txtNameLocation);
 
         listView = findViewById(R.id.listCategoryItems);
         ListItemView adapter = new ListItemView(this, itemList);

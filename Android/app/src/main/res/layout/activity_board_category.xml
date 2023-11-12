@@ -26,16 +26,15 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/txtNameCategory"
+            android:id="@+id/txtNameLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:inputType="textPersonName" />
 
         <Button
-            android:id="@+id/addCategory"
+            android:id="@+id/addLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
