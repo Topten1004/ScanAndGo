@@ -68,6 +68,11 @@ public class BoardCategoryActivity extends BaseActivity{
         }
     }
 
+    public void updateCategory(String text)
+    {
+        categoryName.setText(text);
+    }
+
     public void reCallAPI()
     {
         Globals g = (Globals)getApplication();
@@ -86,9 +91,9 @@ public class BoardCategoryActivity extends BaseActivity{
 
                 for (Category p : categories) {
 
-
-                    ButtonItem newVM = new ButtonItem(p.getName());
+                    ButtonItem newVM = new ButtonItem(p.getName(), 1, p.id, p.isUsed);
                     itemList.add(newVM);
+
                 }
             }
         } catch (ExecutionException e) {
@@ -100,7 +105,7 @@ public class BoardCategoryActivity extends BaseActivity{
         categoryName = findViewById(R.id.txtNameLocation);
 
         listView = findViewById(R.id.listCategoryItems);
-        ListItemView adapter = new ListItemView(this, itemList);
+        ListItemView adapter = new ListItemView(this, itemList, this, null  );
 
         // Set the adapter for the ListView
         listView.setAdapter(adapter);

@@ -25,7 +25,6 @@ import java.util.concurrent.ExecutionException;
 public class BoardLocationActivity extends BaseActivity{
 
     private ListView listView;
-
     private TextView addInventoryName;
     private List<ButtonItem> itemList = new ArrayList<>();
 
@@ -47,7 +46,12 @@ public class BoardLocationActivity extends BaseActivity{
         reCallAPI();
     }
 
-    public  void btnLogOut(View v)
+    public void updateLocation(String text)
+    {
+        addInventoryName.setText(text);
+    }
+
+    public void btnLogOut(View v)
     {
         Globals g = (Globals) getApplication();
 
@@ -74,8 +78,9 @@ public class BoardLocationActivity extends BaseActivity{
 
                 for (Location p : locations) {
 
-                    ButtonItem newVM = new ButtonItem(p.name);
+                    ButtonItem newVM = new ButtonItem(p.name, 2, p.id, true);
                     itemList.add(newVM);
+
                 }
             }
         } catch (ExecutionException e) {
@@ -86,7 +91,7 @@ public class BoardLocationActivity extends BaseActivity{
 
 
         listView = findViewById(R.id.listLocationItems);
-        ListItemView adapter = new ListItemView(this, itemList);
+        ListItemView adapter = new ListItemView(this, itemList, null, this );
 
         // Set the adapter for the ListView
         listView.setAdapter(adapter);
@@ -121,7 +126,6 @@ public class BoardLocationActivity extends BaseActivity{
     public void btnItem(View v)
     {
         startActivityForResult(new Intent(getApplicationContext(), BoardCategoryActivity.class), 0);
-
     }
 
     public void btnInventory(View v)
