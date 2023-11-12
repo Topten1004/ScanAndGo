@@ -5,15 +5,15 @@ import com.google.gson.annotations.SerializedName;
 public class Category {
 
     @SerializedName("id")
-    private int id;
+    public int id;
 
     @SerializedName("name")
 
-    private String name;
+    public String name;
 
     @SerializedName("isUsed")
 
-    private boolean isUsed;
+    public boolean isUsed;
 
     public Category()
     {
