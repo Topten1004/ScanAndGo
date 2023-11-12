@@ -1,10 +1,17 @@
 package com.example.uhf_bt.dto;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Category {
 
+    @SerializedName("id")
     private int id;
 
+    @SerializedName("name")
+
     private String name;
+
+    @SerializedName("isUsed")
 
     private boolean isUsed;
 

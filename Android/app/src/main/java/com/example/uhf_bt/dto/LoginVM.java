@@ -1,14 +1,25 @@
 package com.example.uhf_bt.dto;
 
+import com.google.gson.annotations.SerializedName;
+
 public class LoginVM {
 
+    @SerializedName("message")
     public String message;
+
+    @SerializedName("access_token")
 
     public String access_token;
 
+    @SerializedName("refresh_token")
+
     public String refresh_token;
 
+    @SerializedName("status")
+
     public int status;
+
+    @SerializedName("user")
 
     public User user;
 

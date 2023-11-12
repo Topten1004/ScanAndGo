@@ -2,9 +2,15 @@ package com.example.uhf_bt.dto;
 
 import android.util.Log;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Login {
 
+    @SerializedName("username")
+
     public String username;
+
+    @SerializedName("password")
 
     public String password;
 
@@ -16,5 +22,12 @@ public class Login {
     {
         username = _username;
         password = _password;
+    }
+
+    public String toJsonString() {
+        return "{"
+                + "\"username\":\"" + username + "\","
+                + "\"password\":\"" + password + "\""
+                + "}";
     }
 }

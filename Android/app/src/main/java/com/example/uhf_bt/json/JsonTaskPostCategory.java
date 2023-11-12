@@ -1,10 +1,12 @@
 package com.example.uhf_bt.json;
 
 import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
 
-import com.example.uhf_bt.dto.Category;
-import com.example.uhf_bt.dto.LoginVM;
+import androidx.annotation.RequiresApi;
+
+import com.example.uhf_bt.dto.StatusVM;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -21,15 +23,14 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 
-public class JsonTaskLogin extends AsyncTask<String, String, LoginVM> {
+public class JsonTaskPostCategory extends AsyncTask<String, String, StatusVM> {
 
-    public JsonTaskLogin() {
+    public JsonTaskPostCategory() {
         super();
     }
 
-    protected LoginVM doInBackground(String... params) {
+    protected StatusVM doInBackground(String... params) {
 
         HttpURLConnection connection = null;
         BufferedReader reader = null;
@@ -42,6 +43,9 @@ public class JsonTaskLogin extends AsyncTask<String, String, LoginVM> {
             connection.setDoOutput(true);
             connection.setDoInput(true);
             connection.setChunkedStreamingMode(0);
+            connection.setInstanceFollowRedirects(true); // Add this line
+
+            Log.d("status:::", "11111");
 
             OutputStream out = new BufferedOutputStream(connection.getOutputStream());
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
@@ -49,19 +53,38 @@ public class JsonTaskLogin extends AsyncTask<String, String, LoginVM> {
             writer.write(params[1]);
             writer.flush();
 
+            Log.d("status:::", params[0]);
+            Log.d("status:::", params[1]);
+
+            Log.d("status:::", "22222");
+
+
             InputStream stream = connection.getInputStream();
+            Log.d("status:::", stream.toString());
             reader = new BufferedReader(new InputStreamReader(stream));
+            Log.d("status:::", reader.toString());
             StringBuffer buffer = new StringBuffer();
             String line = "";
             while ((line = reader.readLine()) != null) buffer.append(line);
+
+            Log.d("status:::", "33333");
+
 
             boolean authOk = buffer.length() < 15;
             if(!authOk) authOk = !buffer.substring(0, 15).equals("<!DOCTYPE html>");
             if(authOk){
 
-                Type t = new TypeToken<LoginVM>(){}.getType();
-                return new Gson().fromJson(buffer.toString(), t);
+                Log.d("status:::", "44444");
 
+                int responseCode = connection.getResponseCode();
+                String responseMessage = connection.getResponseMessage();
+                Log.d("Response Code:", String.valueOf(responseCode));
+                Log.d("Response Message:", responseMessage);
+
+
+                Log.d("status:::", buffer.toString());
+                Type t = new TypeToken<StatusVM>(){}.getType();
+                return new Gson().fromJson(buffer.toString(), t);
             }
 
         } catch (MalformedURLException e) {
@@ -80,7 +103,7 @@ public class JsonTaskLogin extends AsyncTask<String, String, LoginVM> {
     }
 
     @Override
-    protected void onPostExecute(LoginVM result) {
-        super.onPostExecute((LoginVM) result);
+    protected void onPostExecute(StatusVM result) {
+        super.onPostExecute((StatusVM) result);
     }
 }

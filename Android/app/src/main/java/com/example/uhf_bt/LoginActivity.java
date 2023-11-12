@@ -50,10 +50,9 @@ public class LoginActivity extends BaseActivity{
                     LoginVM result = new LoginVM();
 
                     result = new JsonTaskLogin().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,
-                            req,
-                            new Gson().toJson(model)).get();
+                            req, model.toJsonString()).get();
 
-                    if (result != null) {
+                    if (result.status == 1) {
 
                         g.isLogin = true;
 
