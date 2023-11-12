@@ -6,11 +6,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.uhf_bt.component.ListItemView;
 import com.example.uhf_bt.dto.Category;
 import com.example.uhf_bt.dto.ButtonItem;
+import com.example.uhf_bt.dto.LoginVM;
+import com.example.uhf_bt.dto.PostItem;
+import com.example.uhf_bt.dto.StatusVM;
 import com.example.uhf_bt.json.JsonTaskGetCategoryList;
+import com.example.uhf_bt.json.JsonTaskLogin;
+import com.example.uhf_bt.json.JsonTaskPostCategory;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +29,7 @@ public class BoardCategoryActivity extends BaseActivity{
     private ListView listView;
     private List<ButtonItem> itemList = new ArrayList<>();
 
+    private TextView categoryName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +41,38 @@ public class BoardCategoryActivity extends BaseActivity{
         {
             startActivityForResult(new Intent(getApplicationContext(), LoginActivity.class), 0);
         }
+
+        reCallAPI();
+    }
+
+    public void btnAddCategory(View v) throws ExecutionException, InterruptedException {
+        if(categoryName.length() > 0 )
+        {
+            try {
+                PostItem model = new PostItem(categoryName.getText().toString());
+                StatusVM result = new StatusVM();
+
+                String req = Globals.apiUrl + "category/create";
+
+                result = new JsonTaskPostCategory().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req, new Gson().toJson(model)).get();
+
+                if (result != null) {
+                    reCallAPI();
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Can't save successfully", Toast.LENGTH_SHORT).show();
+                }
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void reCallAPI()
+    {
+        Globals g = (Globals)getApplication();
 
         String req = g.apiUrl + "category/read";
 
@@ -58,6 +99,7 @@ public class BoardCategoryActivity extends BaseActivity{
             throw new RuntimeException(e);
         }
 
+        categoryName = findViewById(R.id.txtNameCategory);
 
         listView = findViewById(R.id.listCategoryItems);
         ListItemView adapter = new ListItemView(this, itemList);
@@ -65,8 +107,7 @@ public class BoardCategoryActivity extends BaseActivity{
         // Set the adapter for the ListView
         listView.setAdapter(adapter);
     }
-
-    public  void btnLogOut(View v)
+    public void btnLogOut(View v)
     {
         Globals g = (Globals) getApplication();
 
