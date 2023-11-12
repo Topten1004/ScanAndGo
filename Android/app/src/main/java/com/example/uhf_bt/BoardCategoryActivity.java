@@ -54,7 +54,7 @@ public class BoardCategoryActivity extends BaseActivity{
 
                 String req = Globals.apiUrl + "category/create";
 
-                result = new JsonTaskPostCategory().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req, new Gson().toJson(model)).get();
+                result = new JsonTaskPostCategory().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req, model.toJsonString()).get();
 
                 if (result != null) {
                     reCallAPI();

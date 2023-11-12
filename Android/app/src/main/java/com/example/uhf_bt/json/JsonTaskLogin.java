@@ -1,6 +1,7 @@
 package com.example.uhf_bt.json;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.uhf_bt.dto.Category;
 import com.example.uhf_bt.dto.LoginVM;
@@ -57,8 +58,10 @@ public class JsonTaskLogin extends AsyncTask<String, String, LoginVM> {
             boolean authOk = buffer.length() < 15;
             if(!authOk) authOk = !buffer.substring(0, 15).equals("<!DOCTYPE html>");
             if(authOk){
+
                 Type t = new TypeToken<LoginVM>(){}.getType();
                 return new Gson().fromJson(buffer.toString(), t);
+
             }
 
         } catch (MalformedURLException e) {

@@ -53,10 +53,16 @@ public class JsonTaskPostCategory extends AsyncTask<String, String, StatusVM> {
             writer.write(params[1]);
             writer.flush();
 
+            Log.d("status:::", params[0]);
+            Log.d("status:::", params[1]);
+
             Log.d("status:::", "22222");
 
+
             InputStream stream = connection.getInputStream();
+            Log.d("status:::", stream.toString());
             reader = new BufferedReader(new InputStreamReader(stream));
+            Log.d("status:::", reader.toString());
             StringBuffer buffer = new StringBuffer();
             String line = "";
             while ((line = reader.readLine()) != null) buffer.append(line);
@@ -67,7 +73,6 @@ public class JsonTaskPostCategory extends AsyncTask<String, String, StatusVM> {
             boolean authOk = buffer.length() < 15;
             if(!authOk) authOk = !buffer.substring(0, 15).equals("<!DOCTYPE html>");
             if(authOk){
-
 
                 Log.d("status:::", "44444");
 
