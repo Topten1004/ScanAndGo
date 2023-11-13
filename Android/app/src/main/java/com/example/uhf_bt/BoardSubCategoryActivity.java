@@ -23,12 +23,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class BoardCategoryActivity extends BaseActivity {
+public class BoardSubCategoryActivity extends BaseActivity {
 
+    public int categoryId = 0;
     private ListView listView;
     private List<ButtonItem> itemList = new ArrayList<>();
     private TextView categoryName;
-
     private Button updateCategory;
     private Button addCategory;
 
@@ -37,7 +37,7 @@ public class BoardCategoryActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_board_category);
+        setContentView(R.layout.activity_board_sub_category);
 
         updateCategory = (Button)findViewById(R.id.updateCategory);
 
@@ -156,7 +156,7 @@ public class BoardCategoryActivity extends BaseActivity {
         }
 
         listView = findViewById(R.id.listCategoryItems);
-        ListItemView adapter = new ListItemView(this, itemList, this, null, null  );
+        ListItemView adapter = new ListItemView(this, itemList, null, null , this );
 
         // Set the adapter for the ListView
         listView.setAdapter(adapter);
@@ -173,7 +173,6 @@ public class BoardCategoryActivity extends BaseActivity {
     public void btnItem(View v)
     {
         startActivityForResult(new Intent(getApplicationContext(), BoardCategoryActivity.class), 0);
-
     }
 
     public void btnInventory(View v)

@@ -1,6 +1,9 @@
 package com.example.uhf_bt.component;
 
+import static androidx.core.app.ActivityCompat.startActivityForResult;
+
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +17,7 @@ import androidx.annotation.Nullable;
 
 import com.example.uhf_bt.BoardCategoryActivity;
 import com.example.uhf_bt.BoardLocationActivity;
+import com.example.uhf_bt.BoardSubCategoryActivity;
 import com.example.uhf_bt.Globals;
 import com.example.uhf_bt.R;
 import com.example.uhf_bt.dto.ButtonItem;
@@ -33,11 +37,15 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
 
     private BoardLocationActivity locationActivity;
 
-    public ListItemView(@NonNull Context context, @NonNull List<ButtonItem> objects, BoardCategoryActivity categoryActivity, BoardLocationActivity locationActivity) {
+    private BoardSubCategoryActivity subCategoryActivity;
+
+    public ListItemView(@NonNull Context context, @NonNull List<ButtonItem> objects, BoardCategoryActivity categoryActivity, BoardLocationActivity locationActivity, BoardSubCategoryActivity subCategoryActivity) {
+
         super(context, 0, objects);
+
         this.categoryActivity = categoryActivity;
         this.locationActivity = locationActivity;
-
+        this.subCategoryActivity = subCategoryActivity;
     }
 
     @NonNull
@@ -63,6 +71,21 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
         type = item.type;
 
         // Set click listeners for buttons if needed
+        mainButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (type == 1)
+                {
+
+                } else if (type == 2)
+                {
+
+                }
+            }
+        });
+
+        // Set click listeners for buttons if needed
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,16 +108,12 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
 
                 if (type == 1)
                 {
-                    Log.d("category trash button Clicked", "trash button clicked" + String.valueOf(item.id));
-
                     String req = Globals.apiUrl + "category/delete?" + String.valueOf(item.id);
                     new JsonTaskDeleteItem().execute(req);
 
                     categoryActivity.reCallAPI();
 
                 } else {
-                    Log.d("location trash button Clicked", "trash button clicked" + String.valueOf(item.id));
-
                     String req = Globals.apiUrl + "location/delete?" + String.valueOf(item.id);
                     new JsonTaskDeleteItem().execute(req);
 
