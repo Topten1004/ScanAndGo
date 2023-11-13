@@ -2,7 +2,7 @@ package com.example.uhf_bt.dto;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Category {
+public class Category implements  Comparable<Category> {
 
     @SerializedName("id")
     public int id;
@@ -15,7 +15,14 @@ public class Category {
 
     public boolean isUsed;
 
+    @Override
+    public int compareTo(Category otherCategory) {
+        // Compare by id
+        return Integer.compare(this.id, otherCategory.id);
+    }
+
     public Category()
+
     {
 
     }

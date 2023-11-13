@@ -34,6 +34,14 @@
             android:inputType="textPersonName" />
 
         <Button
+            android:id="@+id/updateLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="btnUpdateLocation"
+            android:text="Update" />
+
+        <Button
             android:id="@+id/addLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,7 +54,7 @@
     <ListView
         android:id="@+id/listLocationItems"
         android:layout_width="wrap_content"
-        android:layout_height="409dp" />
+        android:layout_height="350dp" />
 
     <LinearLayout
         android:layout_width="match_parent"

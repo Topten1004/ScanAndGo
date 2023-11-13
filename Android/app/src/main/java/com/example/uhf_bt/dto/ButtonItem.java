@@ -15,6 +15,7 @@ public class ButtonItem {
         this.type = type;
         this.id = id;
         this.isUsed = isUsed;
+
     }
 
     public String getMainButtonText() {

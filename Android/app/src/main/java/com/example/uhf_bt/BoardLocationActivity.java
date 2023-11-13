@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +17,8 @@ import com.example.uhf_bt.dto.Location;
 import com.example.uhf_bt.dto.PostItem;
 import com.example.uhf_bt.dto.StatusVM;
 import com.example.uhf_bt.json.JsonTaskGetLocationList;
-import com.example.uhf_bt.json.JsonTaskPostCategory;
+import com.example.uhf_bt.json.JsonTaskPostItem;
+import com.example.uhf_bt.json.JsonTaskUpdateItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +27,14 @@ import java.util.concurrent.ExecutionException;
 public class BoardLocationActivity extends BaseActivity{
 
     private ListView listView;
-    private TextView addInventoryName;
+    private TextView addLocationName;
     private List<ButtonItem> itemList = new ArrayList<>();
+
+    private Button addLocation;
+
+    private Button updateLocation;
+
+    public int updateLocationId = 0;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -36,7 +44,12 @@ public class BoardLocationActivity extends BaseActivity{
 
         Globals g = (Globals)getApplication();
 
-        addInventoryName = (TextView) findViewById(R.id.txtNameLocation);
+        addLocationName = (TextView) findViewById(R.id.txtNameLocation);
+
+        addLocation = (Button) findViewById(R.id.addLocation);
+
+        updateLocation = (Button) findViewById(R.id.updateLocation);
+        updateLocation.setVisibility(View.GONE);
 
         if (g.isLogin == false)
         {
@@ -46,9 +59,34 @@ public class BoardLocationActivity extends BaseActivity{
         reCallAPI();
     }
 
-    public void updateLocation(String text)
+    public void updateLocation(String text, int id)
     {
-        addInventoryName.setText(text);
+        addLocationName.setText(text);
+        updateLocation.setVisibility(View.VISIBLE);
+        addLocation.setText("Cancel");
+
+        updateLocationId = id;
+    }
+
+    public void btnUpdateLocation(View v)
+    {
+        if ( updateLocationId > 0 && addLocationName.length() > 0)
+        {
+            String req = Globals.apiUrl +  "location/update?id=" + updateLocationId;
+
+            PostItem model = new PostItem();
+
+            model.name = addLocationName.getText().toString();
+
+            new JsonTaskUpdateItem().execute(req, model.toJsonString());
+
+            updateLocationId = 0;
+
+            updateLocation.setVisibility(View.GONE);
+            addLocationName.setText("");
+
+            reCallAPI();
+        }
     }
 
     public void btnLogOut(View v)
@@ -72,15 +110,14 @@ public class BoardLocationActivity extends BaseActivity{
             locations = new JsonTaskGetLocationList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req).get();
 
             if (locations != null) {
-                g.locationLists = locations;
 
-                Log.d("count:::", String.valueOf(g.locationLists.size()));
+                itemList.clear();
+                g.locationLists = locations;
 
                 for (Location p : locations) {
 
                     ButtonItem newVM = new ButtonItem(p.name, 2, p.id, true);
                     itemList.add(newVM);
-
                 }
             }
         } catch (ExecutionException e) {
@@ -88,7 +125,6 @@ public class BoardLocationActivity extends BaseActivity{
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
 
         listView = findViewById(R.id.listLocationItems);
         ListItemView adapter = new ListItemView(this, itemList, null, this );
@@ -99,27 +135,36 @@ public class BoardLocationActivity extends BaseActivity{
 
     public void btnAddLocation(View v)
     {
-        if(addInventoryName.length() > 0 )
+        if (addLocation.getText() == "Add")
         {
-            try {
-                PostItem model = new PostItem(addInventoryName.getText().toString());
-                StatusVM result = new StatusVM();
+            if(addLocationName.length() > 0 )
+            {
+                try {
+                    PostItem model = new PostItem(addLocationName.getText().toString());
+                    StatusVM result = new StatusVM();
 
-                String req = Globals.apiUrl + "location/create";
+                    String req = Globals.apiUrl + "location/create";
 
-                result = new JsonTaskPostCategory().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req, model.toJsonString()).get();
+                    result = new JsonTaskPostItem().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req, model.toJsonString()).get();
 
-                if (result != null) {
-                    reCallAPI();
+                    if (result != null) {
+                        reCallAPI();
 
-                } else {
-                    Toast.makeText(getApplicationContext(), "Can't save successfully", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Can't save successfully", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
+        } else {
+
+            addLocation.setText("Add");
+            updateLocation.setVisibility(View.GONE);
+            updateLocationId = 0;
+
         }
     }
 
