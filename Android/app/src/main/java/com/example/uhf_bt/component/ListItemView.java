@@ -1,7 +1,6 @@
 package com.example.uhf_bt.component;
 
 import android.content.Context;
-import android.media.audiofx.Visualizer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +14,10 @@ import androidx.annotation.Nullable;
 
 import com.example.uhf_bt.BoardCategoryActivity;
 import com.example.uhf_bt.BoardLocationActivity;
+import com.example.uhf_bt.Globals;
 import com.example.uhf_bt.R;
 import com.example.uhf_bt.dto.ButtonItem;
+import com.example.uhf_bt.json.JsonTaskDeleteItem;
 
 import java.util.List;
 
@@ -33,12 +34,10 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
     private BoardLocationActivity locationActivity;
 
     public ListItemView(@NonNull Context context, @NonNull List<ButtonItem> objects, BoardCategoryActivity categoryActivity, BoardLocationActivity locationActivity) {
-
         super(context, 0, objects);
-
         this.categoryActivity = categoryActivity;
-
         this.locationActivity = locationActivity;
+
     }
 
     @NonNull
@@ -68,14 +67,13 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
             @Override
             public void onClick(View v) {
                 // Handle edit button click
-
-                Log.d("edit button Clicked", "edit button clicked" + String.valueOf(id));
-
                 if (type == 1)
                 {
-                    categoryActivity.updateCategory(item.getMainButtonText());
+                    categoryActivity.updateCategory(item.getMainButtonText(), item.id);
+
                 } else {
-                    locationActivity.updateLocation(item.getMainButtonText());
+
+                    locationActivity.updateLocation(item.getMainButtonText(), item.id);
                 }
             }
         });
@@ -84,7 +82,24 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
             @Override
             public void onClick(View v) {
                 // Handle trash button click
-                Log.d("trash button Clicked", "trash button clicked" + String.valueOf(id));
+
+                if (type == 1)
+                {
+                    Log.d("category trash button Clicked", "trash button clicked" + String.valueOf(item.id));
+
+                    String req = Globals.apiUrl + "category/delete?" + String.valueOf(item.id);
+                    new JsonTaskDeleteItem().execute(req);
+
+                    categoryActivity.reCallAPI();
+
+                } else {
+                    Log.d("location trash button Clicked", "trash button clicked" + String.valueOf(item.id));
+
+                    String req = Globals.apiUrl + "location/delete?" + String.valueOf(item.id);
+                    new JsonTaskDeleteItem().execute(req);
+
+                    locationActivity.reCallAPI();
+                }
             }
         });
 
