@@ -7,6 +7,8 @@ import com.example.uhf_bt.component.Connectivity;
 import com.example.uhf_bt.component.NetworkTask;
 import com.example.uhf_bt.dto.Category;
 import com.example.uhf_bt.dto.Location;
+import com.example.uhf_bt.dto.SubCategory;
+import com.example.uhf_bt.dto.SubLocation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +19,18 @@ public class Globals extends Application {
     public static boolean isLogin = false;
     public static String dns = "";
     public static Boolean dispoAPI= false;
+
     public static String url = "https://api-villedenoumea.scanandgo.nc/";
-
     public static List<Category> categoryLists = new ArrayList<>();
-
     public static List<Location> locationLists = new ArrayList<>();
+
+    public static List<SubCategory> subCategoryLists = new ArrayList<>();
+
+    public static List<SubLocation> subLocationLists = new ArrayList<>();
+
     public static String apiUrl = url + "api/";
+    public static int categoryId = 0;
+    public static int locationId = 0;
 
     @SuppressWarnings("deprecation")
     public boolean isNetworkConnected() {

@@ -127,7 +127,7 @@ public class BoardLocationActivity extends BaseActivity{
         }
 
         listView = findViewById(R.id.listLocationItems);
-        ListItemView adapter = new ListItemView(this, itemList, null, this );
+        ListItemView adapter = new ListItemView(this, itemList, null, this, null, null);
 
         // Set the adapter for the ListView
         listView.setAdapter(adapter);

@@ -41,6 +41,9 @@
             android:name=".BoardCategoryActivity" />
 
         <activity
+            android:name=".BoardSubCategoryActivity" />
+
+        <activity
             android:name=".BoardLocationActivity" />
 
         <activity
