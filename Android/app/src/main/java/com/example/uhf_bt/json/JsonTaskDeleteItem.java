@@ -57,7 +57,6 @@ public class JsonTaskDeleteItem extends AsyncTask<String, String, MessageVM> {
                 Type t = new TypeToken<MessageVM>() {}.getType();
                 return new Gson().fromJson(buffer.toString(), t);
 
-
             } else {
                 // Handle the error response if needed
                 Log.e("JsonTaskDeleteCategory", "HTTP Error Code: " + responseCode + ", Message: " + responseMessage);

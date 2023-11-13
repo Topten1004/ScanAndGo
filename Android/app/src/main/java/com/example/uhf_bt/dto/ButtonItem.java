@@ -2,7 +2,7 @@ package com.example.uhf_bt.dto;
 
 public class ButtonItem {
 
-    public int type;
+    public int type; // 1: Category, 2: Location, 3: Sub Category, 4: Sub Location
 
     public int id;
 
