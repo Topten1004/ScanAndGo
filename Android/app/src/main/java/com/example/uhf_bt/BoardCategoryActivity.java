@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.example.uhf_bt.component.ListItemView;
 import com.example.uhf_bt.dto.Category;
 import com.example.uhf_bt.dto.ButtonItem;
-import com.example.uhf_bt.dto.PostItem;
+import com.example.uhf_bt.dto.PostCategory;
 import com.example.uhf_bt.dto.StatusVM;
 import com.example.uhf_bt.json.JsonTaskGetCategoryList;
 import com.example.uhf_bt.json.JsonTaskPostItem;
@@ -64,7 +64,7 @@ public class BoardCategoryActivity extends BaseActivity {
             if(categoryName.length() > 0 )
             {
                 try {
-                    PostItem model = new PostItem(categoryName.getText().toString());
+                    PostCategory model = new PostCategory(categoryName.getText().toString());
                     StatusVM result = new StatusVM();
 
                     String req = Globals.apiUrl + "category/create";
@@ -108,7 +108,7 @@ public class BoardCategoryActivity extends BaseActivity {
             String req = Globals.apiUrl +  "category/update?id=" + updateCategoryId;
             String updateData = "{\"name\": \"Del_Dest\"}";
 
-            PostItem model = new PostItem();
+            PostCategory model = new PostCategory();
 
             model.name = categoryName.getText().toString();
 
@@ -156,7 +156,7 @@ public class BoardCategoryActivity extends BaseActivity {
         }
 
         listView = findViewById(R.id.listCategoryItems);
-        ListItemView adapter = new ListItemView(this, itemList, this, null, null , null  );
+        ListItemView adapter = new ListItemView(this, itemList, this, null, null , null, null);
 
         // Set the adapter for the ListView
         listView.setAdapter(adapter);

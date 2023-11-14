@@ -53,6 +53,9 @@
             android:name=".BoardInventoryActivity" />
 
         <activity
+            android:name=".BoardItemActivity" />
+
+        <activity
             android:name=".LoginActivity" >
 
             <intent-filter>

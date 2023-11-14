@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.uhf_bt.BoardCategoryActivity;
+import com.example.uhf_bt.BoardItemActivity;
 import com.example.uhf_bt.BoardLocationActivity;
 import com.example.uhf_bt.BoardSubCategoryActivity;
 import com.example.uhf_bt.BoardSubLocationActivity;
@@ -41,7 +42,9 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
     private BoardSubCategoryActivity subCategoryActivity;
 
     private BoardSubLocationActivity subLocationActivity;
-    public ListItemView(@NonNull Context context, @NonNull List<ButtonItem> objects, BoardCategoryActivity categoryActivity, BoardLocationActivity locationActivity, BoardSubCategoryActivity subCategoryActivity, BoardSubLocationActivity subLocationActivity) {
+
+    private BoardItemActivity itemActivity;
+    public ListItemView(@NonNull Context context, @NonNull List<ButtonItem> objects, BoardCategoryActivity categoryActivity, BoardLocationActivity locationActivity, BoardSubCategoryActivity subCategoryActivity, BoardSubLocationActivity subLocationActivity, BoardItemActivity itemActivity) {
 
         super(context, 0, objects);
 
@@ -49,6 +52,7 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
         this.locationActivity = locationActivity;
         this.subCategoryActivity = subCategoryActivity;
         this.subLocationActivity = subLocationActivity;
+        this.itemActivity = itemActivity;
     }
 
     @NonNull
@@ -80,14 +84,29 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
 
                 if (type == 1)
                 {
+                    Globals.categoryId = item.id;
+
                     Intent intent = new Intent(getContext(), BoardSubCategoryActivity.class);
                     intent.putExtra("categoryId", item.id);
                     getContext().startActivity(intent);
+
                 } else if (type == 2)
                 {
+                    Globals.locationId = item.id;
 
                     Intent intent = new Intent(getContext(), BoardSubLocationActivity.class);
                     intent.putExtra("locationId", item.id);
+                    getContext().startActivity(intent);
+
+                } else if (type == 3)
+                {
+                    Globals.subCategoryId = item.id;
+
+                    Intent intent = new Intent(getContext(), BoardItemActivity.class);
+
+                    intent.putExtra("categoryId", Globals.categoryId);
+                    intent.putExtra("subCategoryId", Globals.subCategoryId);
+
                     getContext().startActivity(intent);
                 }
             }
@@ -111,7 +130,10 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
                         subCategoryActivity.updateCategory(item.getMainButtonText(), item.id);
                         break;
                     case 4:
-                        subCategoryActivity.updateCategory(item.getMainButtonText(), item.id);
+                        subLocationActivity.updateSubLocation(item.getMainButtonText(), item.id);
+                        break;
+                    case 5:
+                        itemActivity.updateItem(item.getMainButtonText(), item.id);
                         break;
                 }
 
@@ -139,10 +161,20 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
                     String req = Globals.apiUrl + "subcategory/delete?id=" + String.valueOf(item.id);
                     new JsonTaskDeleteItem().execute(req);
 
-                    Log.e("subCategoryId:::", String.valueOf(item.id));
+                    Log.e("subCategory:::", String.valueOf(item.id));
                     subCategoryActivity.reCallAPI();
                 } else if (type == 4) {
+                    String req = Globals.apiUrl + "sublocation/delete?id=" + String.valueOf(item.id);
+                    new JsonTaskDeleteItem().execute(req);
 
+                    Log.e("subLocation:::", String.valueOf(item.id));
+                    subLocationActivity.reCallAPI();
+                } else if (type == 5) {
+                    String req = Globals.apiUrl + "item/delete?id=" + String.valueOf(item.id);
+                    new JsonTaskDeleteItem().execute(req);
+
+                    Log.e("item:::", String.valueOf(item.id));
+                    itemActivity.reCallAPI();
                 }
             }
         });

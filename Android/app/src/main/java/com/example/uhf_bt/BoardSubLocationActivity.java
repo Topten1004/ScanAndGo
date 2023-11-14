@@ -8,22 +8,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.uhf_bt.component.ListItemView;
-import com.example.uhf_bt.dto.Category;
 import com.example.uhf_bt.dto.ButtonItem;
-import com.example.uhf_bt.dto.PostItem;
+import com.example.uhf_bt.dto.PostCategory;
 import com.example.uhf_bt.dto.PostSubCategory;
 import com.example.uhf_bt.dto.StatusVM;
-import com.example.uhf_bt.dto.SubCategory;
 import com.example.uhf_bt.dto.SubLocation;
-import com.example.uhf_bt.json.JsonTaskGetCategoryList;
-import com.example.uhf_bt.json.JsonTaskGetSubCategoryList;
 import com.example.uhf_bt.json.JsonTaskGetSubLocationList;
 import com.example.uhf_bt.json.JsonTaskPostItem;
 import com.example.uhf_bt.json.JsonTaskUpdateItem;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -120,7 +114,7 @@ public class BoardSubLocationActivity extends BaseActivity {
         {
             String req = Globals.apiUrl +  "sublocation/update?id=" + updateSubLocationId;
 
-            PostItem model = new PostItem();
+            PostCategory model = new PostCategory();
 
             model.name = subLocationName.getText().toString();
 
@@ -171,7 +165,7 @@ public class BoardSubLocationActivity extends BaseActivity {
         }
 
         listView = findViewById(R.id.listSubLocationItems);
-        ListItemView adapter = new ListItemView(this, itemList, null, null , null, this );
+        ListItemView adapter = new ListItemView(this, itemList, null, null , null, this, null);
 
         // Set the adapter for the ListView
         listView.setAdapter(adapter);
