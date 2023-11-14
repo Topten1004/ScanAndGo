@@ -32,6 +32,10 @@ public class Globals extends Application {
     public static int categoryId = 0;
     public static int locationId = 0;
 
+    public static int subCategoryId = 0;
+
+    public static int subLocationId = 0;
+
     @SuppressWarnings("deprecation")
     public boolean isNetworkConnected() {
         if(Connectivity.isConnected(getApplicationContext())){

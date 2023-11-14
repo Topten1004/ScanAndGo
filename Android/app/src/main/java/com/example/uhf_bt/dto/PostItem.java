@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class PostItem {
 
+    @SerializedName("subCategoryId")
+    public int subCategoryId;
+
     @SerializedName("name")
     public String name;
 
@@ -11,13 +14,16 @@ public class PostItem {
 
     }
 
-    public PostItem(String name)
-    {
-        this.name = name;
-    }
-
     public String toJsonString() {
         return "{"
-                + "\"name\":\"" + name + "\"" + "}";
+                + "\"name\":\"" + this.name + "\","
+                + "\"subCategoryId\":\"" + this.subCategoryId + "\""
+                + "}";
+    }
+
+    public PostItem(String name, int subCategoryId)
+    {
+        this.subCategoryId = subCategoryId;
+        this.name = name;
     }
 }

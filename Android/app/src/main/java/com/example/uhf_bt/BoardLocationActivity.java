@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -14,7 +13,7 @@ import android.widget.Toast;
 import com.example.uhf_bt.component.ListItemView;
 import com.example.uhf_bt.dto.ButtonItem;
 import com.example.uhf_bt.dto.Location;
-import com.example.uhf_bt.dto.PostItem;
+import com.example.uhf_bt.dto.PostCategory;
 import com.example.uhf_bt.dto.StatusVM;
 import com.example.uhf_bt.json.JsonTaskGetLocationList;
 import com.example.uhf_bt.json.JsonTaskPostItem;
@@ -74,7 +73,7 @@ public class BoardLocationActivity extends BaseActivity{
         {
             String req = Globals.apiUrl +  "location/update?id=" + updateLocationId;
 
-            PostItem model = new PostItem();
+            PostCategory model = new PostCategory();
 
             model.name = addLocationName.getText().toString();
 
@@ -127,7 +126,7 @@ public class BoardLocationActivity extends BaseActivity{
         }
 
         listView = findViewById(R.id.listLocationItems);
-        ListItemView adapter = new ListItemView(this, itemList, null, this, null, null);
+        ListItemView adapter = new ListItemView(this, itemList, null, this, null, null, null);
 
         // Set the adapter for the ListView
         listView.setAdapter(adapter);
@@ -140,7 +139,7 @@ public class BoardLocationActivity extends BaseActivity{
             if(addLocationName.length() > 0 )
             {
                 try {
-                    PostItem model = new PostItem(addLocationName.getText().toString());
+                    PostCategory model = new PostCategory(addLocationName.getText().toString());
                     StatusVM result = new StatusVM();
 
                     String req = Globals.apiUrl + "location/create";
