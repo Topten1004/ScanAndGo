@@ -47,6 +47,9 @@
             android:name=".BoardLocationActivity" />
 
         <activity
+            android:name=".BoardSubLocationActivity" />
+
+        <activity
             android:name=".BoardInventoryActivity" />
 
         <activity

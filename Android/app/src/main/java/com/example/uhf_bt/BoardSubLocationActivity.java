@@ -44,7 +44,7 @@ public class BoardSubLocationActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_board_sub_category);
+        setContentView(R.layout.activity_board_sub_location);
 
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("locationId")) {
@@ -57,13 +57,13 @@ public class BoardSubLocationActivity extends BaseActivity {
 
         }
 
-        updateSubLocation = (Button)findViewById(R.id.updateSubCategory);
+        updateSubLocation = (Button)findViewById(R.id.updateSubLocation);
 
-        addSubLocation = (Button)findViewById(R.id.addSubCategory);
+        addSubLocation = (Button)findViewById(R.id.addSubLocation);
 
         updateSubLocation.setVisibility(View.GONE);
 
-        subLocationName = (TextView)findViewById(R.id.txtNameSubCategory);
+        subLocationName = (TextView)findViewById(R.id.txtNameSubLocation);
 
         Globals g = (Globals)getApplication();
 
@@ -137,7 +137,7 @@ public class BoardSubLocationActivity extends BaseActivity {
 
     public void reCallAPI()
     {
-        Log.d("Sub Category:::", String.valueOf(locationId) + " ReCall API");
+        Log.d("Sub Location:::", String.valueOf(locationId) + " ReCall API");
 
         Globals g = (Globals)getApplication();
 

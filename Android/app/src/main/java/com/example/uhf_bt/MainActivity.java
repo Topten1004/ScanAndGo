@@ -68,7 +68,6 @@ import androidx.fragment.app.FragmentTabHost;
 import no.nordicsemi.android.dfu.BuildConfig;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
-
     public boolean isScanning = false;
     public String remoteBTName = "";
     public String remoteBTAdd = "";
@@ -95,11 +94,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public static final String TAG_LEN = "tagLen";
     public static final String TAG_COUNT = "tagCount";
     public static final String TAG_RSSI = "tagRssi";
-
     private boolean mIsActiveDisconnect = true; // 是否主动断开连接
     private static final int RECONNECT_NUM = Integer.MAX_VALUE; // 重连次数
     private int mReConnectCount = RECONNECT_NUM; // 重新连接次数
-
     private Timer mDisconnectTimer = new Timer();
     private DisconnectTimerTask timerTask;
     private long timeCountCur; // 断开时间选择

@@ -83,14 +83,11 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
                     Intent intent = new Intent(getContext(), BoardSubCategoryActivity.class);
                     intent.putExtra("categoryId", item.id);
                     getContext().startActivity(intent);
-
-                    Log.e("categoryId::", String.valueOf(item.id));
-
                 } else if (type == 2)
                 {
 
-                    Intent intent = new Intent(getContext(), BoardSubCategoryActivity.class);
-                    intent.putExtra("categoryId", item.id);
+                    Intent intent = new Intent(getContext(), BoardSubLocationActivity.class);
+                    intent.putExtra("locationId", item.id);
                     getContext().startActivity(intent);
                 }
             }
