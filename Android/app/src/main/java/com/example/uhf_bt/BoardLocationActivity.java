@@ -125,7 +125,7 @@ public class BoardLocationActivity extends BaseActivity{
             throw new RuntimeException(e);
         }
 
-        listView = findViewById(R.id.listLocationItems);
+        listView = findViewById(R.id.listLocations);
         ListItemView adapter = new ListItemView(this, itemList, null, this, null, null, null);
 
         // Set the adapter for the ListView

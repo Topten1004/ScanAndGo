@@ -52,7 +52,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/listLocationItems"
+        android:id="@+id/listLocations"
         android:layout_width="wrap_content"
         android:layout_height="350dp" />
 

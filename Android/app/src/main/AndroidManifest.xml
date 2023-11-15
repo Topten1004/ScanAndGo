@@ -53,7 +53,13 @@
             android:name=".BoardInventoryActivity" />
 
         <activity
-            android:name=".BoardItemActivity" />
+            android:name=".BoardCategoryItemActivity" />
+
+        <activity
+            android:name=".BoardLocationItemActivity" />
+
+        <activity
+            android:name=".BoardRegisterLocationItemActivity" />
 
         <activity
             android:name=".LoginActivity" >
