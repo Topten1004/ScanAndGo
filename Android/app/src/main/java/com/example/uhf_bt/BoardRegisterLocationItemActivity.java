@@ -15,24 +15,31 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.uhf_bt.component.ListAddItemView;
+import com.example.uhf_bt.dto.AddItem;
+import com.example.uhf_bt.dto.LocationItem;
 import com.example.uhf_bt.fragment.BarcodeFragment;
+import com.example.uhf_bt.json.JsonTaskGetLocationItemList;
 import com.rscja.deviceapi.RFIDWithUHFBLE;
 import com.rscja.deviceapi.interfaces.ConnectionStatus;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutionException;
 
 public class BoardRegisterLocationItemActivity extends BaseActivity {
 
-    ScrollView scrBarcode;
+    private ListView listView;
 
+    private List<AddItem> itemList = new ArrayList<>();
+    ScrollView scrBarcode;
     Spinner spingCodingFormat;
     TextView tvData;
     public boolean isRunning = false;
     public boolean isScanning = false;
     public String nowBarCode;
-    private ListView listView;
     public int locationId = 0;
     public int subLocationId = 0;
 
@@ -90,8 +97,37 @@ public class BoardRegisterLocationItemActivity extends BaseActivity {
     {
         Globals g = (Globals)getApplication();
 
-        String req = g.apiUrl + "category/read";
+        String req = g.apiUrl + "item/readall";
 
+        try {
+            itemList.clear();
+
+            List<LocationItem> locationItems = new ArrayList<>();
+
+            locationItems = new JsonTaskGetLocationItemList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req).get();
+
+            Collections.sort(locationItems);
+
+            if (locationItems != null) {
+
+                for (LocationItem p : locationItems) {
+
+                    AddItem newVM = new AddItem(p.id, 1, p.item_name, p.reg_date, p.barcode, false  );
+
+                    itemList.add(newVM);
+                }
+            }
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        listView = findViewById(R.id.listAssignLocationItems);
+        ListAddItemView adapter = new ListAddItemView(this, itemList, null, this);
+
+        // Set the adapter for the ListView
+        listView.setAdapter(adapter);
     }
 
     private Handler mHandler = new Handler() {
