@@ -69,35 +69,28 @@
     <ListView
         android:id="@+id/listAssignLocationItems"
         android:layout_width="wrap_content"
-        android:layout_height="360dp" />
+        android:layout_height="303dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="41dp"
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnItem"
+            android:id="@+id/btnAddItemTo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="btnItem"
-            android:text="Category" />
+            android:onClick="onAddItemTo"
+            android:text="Add" />
 
         <Button
-            android:id="@+id/btnLocation"
+            android:id="@+id/btnAssign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="btnLocation"
-            android:text="Location" />
+            android:onClick="onAssign"
+            android:text="Assign" />
 
-        <Button
-            android:id="@+id/btnInventory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="btnInventory"
-            android:text="Inventory" />
     </LinearLayout>
 </LinearLayout>

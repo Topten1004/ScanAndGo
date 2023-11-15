@@ -33,6 +33,9 @@ public class Globals extends Application {
     public static int locationId = 0;
     public static int subCategoryId = 0;
     public static int subLocationId = 0;
+    public static int checkedItem = 0;
+
+    public static String nowBarCode;
 
     @SuppressWarnings("deprecation")
     public boolean isNetworkConnected() {

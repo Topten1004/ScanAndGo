@@ -17,12 +17,18 @@ import android.widget.TextView;
 
 import com.example.uhf_bt.component.ListAddItemView;
 import com.example.uhf_bt.dto.AddItem;
+import com.example.uhf_bt.dto.AssignBarCode;
 import com.example.uhf_bt.dto.LocationItem;
+import com.example.uhf_bt.dto.PostCategory;
+import com.example.uhf_bt.dto.ReadAllItem;
 import com.example.uhf_bt.fragment.BarcodeFragment;
+import com.example.uhf_bt.json.JsonTaskGetAllItemList;
 import com.example.uhf_bt.json.JsonTaskGetLocationItemList;
+import com.example.uhf_bt.json.JsonTaskUpdateItem;
 import com.rscja.deviceapi.RFIDWithUHFBLE;
 import com.rscja.deviceapi.interfaces.ConnectionStatus;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,9 +40,6 @@ public class BoardRegisterLocationItemActivity extends BaseActivity {
     private ListView listView;
 
     private List<AddItem> itemList = new ArrayList<>();
-    ScrollView scrBarcode;
-    Spinner spingCodingFormat;
-    TextView tvData;
     public boolean isRunning = false;
     public boolean isScanning = false;
     public String nowBarCode;
@@ -60,6 +63,7 @@ public class BoardRegisterLocationItemActivity extends BaseActivity {
 
     public RFIDWithUHFBLE uhf = RFIDWithUHFBLE.getInstance();
 
+    public TextView txtNowBarCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,24 +79,11 @@ public class BoardRegisterLocationItemActivity extends BaseActivity {
             startActivityForResult(new Intent(getApplicationContext(), LoginActivity.class), 0);
         }
 
+        txtNowBarCode = (TextView)findViewById(R.id.txtNowBarCode);
+
         reCallAPI();
     }
 
-    Handler handler=new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            if(msg.obj.toString()!=null) {
-                if(tvData.getText().length()>1000){
-                    tvData.setText(msg.obj.toString() + "\r\n");
-                }else {
-                    tvData.setText(tvData.getText() + msg.obj.toString() + "\r\n");
-                }
-
-                scroll2Bottom(scrBarcode, tvData);
-                Utils.playSound(1);
-            }
-        }
-    };
     public void reCallAPI()
     {
         Globals g = (Globals)getApplication();
@@ -102,17 +93,18 @@ public class BoardRegisterLocationItemActivity extends BaseActivity {
         try {
             itemList.clear();
 
-            List<LocationItem> locationItems = new ArrayList<>();
+            List<ReadAllItem> locationItems = new ArrayList<>();
 
-            locationItems = new JsonTaskGetLocationItemList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req).get();
+            locationItems = new JsonTaskGetAllItemList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req).get();
 
             Collections.sort(locationItems);
 
             if (locationItems != null) {
 
-                for (LocationItem p : locationItems) {
+                for (ReadAllItem p : locationItems) {
 
-                    AddItem newVM = new AddItem(p.id, 1, p.item_name, p.reg_date, p.barcode, false  );
+                    Log.d("aaaaa  aaaaaaa", p.name);
+                    AddItem newVM = new AddItem(p.id, 2, p.name, null, p.barcode, false  );
 
                     itemList.add(newVM);
                 }
@@ -129,6 +121,28 @@ public class BoardRegisterLocationItemActivity extends BaseActivity {
         // Set the adapter for the ListView
         listView.setAdapter(adapter);
     }
+
+    public void onAssign(View v)
+    {
+        String req = Globals.apiUrl +  "item/assign-barcode?id=" + String.valueOf(Globals.checkedItem);
+
+        AssignBarCode model = new AssignBarCode();
+
+        model.barcode = Globals.nowBarCode;
+
+        new JsonTaskUpdateItem().execute(req, model.toJsonString());
+
+        Globals.nowBarCode = "";
+        Globals.checkedItem = 0;
+
+        reCallAPI();
+    }
+
+    public void onAddItemTo(View v)
+    {
+        startActivityForResult(new Intent(getApplicationContext(), BoardCategoryActivity.class), 0);
+    }
+
 
     private Handler mHandler = new Handler() {
         @Override
@@ -166,6 +180,36 @@ public class BoardRegisterLocationItemActivity extends BaseActivity {
         }
     }
 
+    public void OnConnectDevice(View view) {
+        if (isScanning) {
+            showToast(R.string.title_stop_read_card);
+        } else if (uhf.getConnectStatus() == ConnectionStatus.CONNECTING) {
+            showToast(R.string.connecting);
+        } else if (uhf.getConnectStatus() == ConnectionStatus.CONNECTED) {
+            disconnect(true);
+        } else {
+            showBluetoothDevice(true);
+        }
+    }
+
+    private void showBluetoothDevice(boolean isHistory) {
+
+        if (mBtAdapter == null) {
+            showToast("Bluetooth is not available");
+            return;
+        }
+        if (!mBtAdapter.isEnabled()) {
+            Log.i(TAG, "onClick - BT not enabled yet");
+            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+        } else {
+            Intent newIntent = new Intent(BoardRegisterLocationItemActivity.this, DeviceListActivity.class);
+            newIntent.putExtra(SHOW_HISTORY_CONNECTED_LIST, isHistory);
+            startActivityForResult(newIntent, REQUEST_SELECT_DEVICE);
+            cancelDisconnectTimer();
+        }
+    }
+
     private class DisconnectTimerTask extends TimerTask {
 
         @Override
@@ -182,57 +226,84 @@ public class BoardRegisterLocationItemActivity extends BaseActivity {
         }
     }
 
+    public void disconnect(boolean isActiveDisconnect) {
+        cancelDisconnectTimer();
+        mIsActiveDisconnect = isActiveDisconnect; // 主动断开为true
+        uhf.disconnect();
+    }
+
+    public void cancelDisconnectTimer() {
+        timeCountCur = 0;
+        if (timerTask != null) {
+            timerTask.cancel();
+            timerTask = null;
+        }
+    }
     public void OnScanBarCode(View v){
 
         Log.e("Scan button clicked::", "button clicked");
 
         if(!isRunning){
             isRunning=true;
-            String str= etTime.getText().toString();
 
-            if(str==null || str.isEmpty()){
-                new ScanThread( false, Integer.parseInt(etTime.getHint().toString())).start();
-            }else{
-                new ScanThread(false, Integer.parseInt(str)).start();
-            }
+//            if(str==null || str.isEmpty()){
+//                new ScanThread( false, Integer.parseInt(etTime.getHint().toString())).start();
+//            }else{
+//                new ScanThread(false, Integer.parseInt(str)).start();
+//            }
+
+            new ScanThread(false, 0).start();
+
         }
     }
 
 
     class   ScanThread  extends Thread{
         boolean isContinuous = false;
-        int  time;
+        int time;
         public ScanThread(boolean isContinuous,int time){
-            this.isContinuous=isContinuous;
-            this.time=time;
+            this.isContinuous = isContinuous;
+            this.time = time;
         }
 
-        public void run(){
+        public void run() {
             while (isRunning) {
+
                 String data = null;
                 byte[] temp = uhf.scanBarcodeToBytes();
                 if (temp != null && temp.length>0) {
-                    if (spingCodingFormat.getSelectedItemPosition() == 1) {
-                        try {
-                            data = new String(temp, "utf8");
-                        } catch (Exception ex) {
-                        }
-                    } else if (spingCodingFormat.getSelectedItemPosition() == 2) {
-                        try {
-                            data = new String(temp, "gb2312");
-                        } catch (Exception ex) {
-                        }
-                    } else {
-                        data = new String(temp);
+
+                    try {
+                        data = new String(temp, "utf8");
+                    } catch (UnsupportedEncodingException e) {
+                        throw new RuntimeException(e);
                     }
-                    Message msg = Message.obtain();
-                    msg.obj = data;
-                    handler.sendMessage(msg);
-                }else {
-                    Message msg = Message.obtain();
-                    msg.obj = "扫描失败";
-                    handler.sendMessage(msg);
-                }
+
+                    txtNowBarCode.setText(data);
+
+//                    if (spingCodingFormat.getSelectedItemPosition() == 1) {
+//                        try {
+//                            data = new String(temp, "utf8");
+//                        } catch (Exception ex) {
+//                        }
+//                    } else if (spingCodingFormat.getSelectedItemPosition() == 2) {
+//                        try {
+//                            data = new String(temp, "gb2312");
+//                        } catch (Exception ex) {
+//                        }
+//                    } else {
+//                        data = new String(temp);
+//                    }
+
+
+//                    Message msg = Message.obtain();
+//                    msg.obj = data;
+//                    handler.sendMessage(msg);
+//                } else {
+//                    Message msg = Message.obtain();
+//                    msg.obj = "扫描失败";
+//                    handler.sendMessage(msg);
+//                }
 
                 if(!isContinuous) {
                     isRunning = false;
@@ -244,7 +315,6 @@ public class BoardRegisterLocationItemActivity extends BaseActivity {
                         e.printStackTrace();
                     }
                 }
-
             }
         }
     }
@@ -262,57 +332,6 @@ public class BoardRegisterLocationItemActivity extends BaseActivity {
             timerTask.cancel();
             timerTask = null;
         }
-    }
-    public void OnConnectDevice(View v)
-    {
-        if (isScanning) {
-            showToast(R.string.title_stop_read_card);
-        } else if (uhf.getConnectStatus() == ConnectionStatus.CONNECTING) {
-            showToast(R.string.connecting);
-        } else if (uhf.getConnectStatus() == ConnectionStatus.CONNECTED) {
-            disconnect(true);
-        } else {
-            showBluetoothDevice(true);
-        }
-    }
-
-    private void showBluetoothDevice(boolean isHistory) {
-        if (mBtAdapter == null) {
-            showToast("Bluetooth is not available");
-            return;
-        }
-        if (!mBtAdapter.isEnabled()) {
-            Log.i(TAG, "onClick - BT not enabled yet");
-            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-        } else {
-            Intent newIntent = new Intent(BoardRegisterLocationItemActivity.this, DeviceListActivity.class);
-            newIntent.putExtra(SHOW_HISTORY_CONNECTED_LIST, isHistory);
-            startActivityForResult(newIntent, REQUEST_SELECT_DEVICE);
-            cancelDisconnectTimer();
-        }
-    }
-
-    public static void scroll2Bottom(final ScrollView scroll, final View inner) {
-        Handler handler = new Handler();
-        handler.post(new Runnable() {
-
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                if (scroll == null || inner == null) {
-                    return;
-                }
-                // 内层高度超过外层
-                int offset = inner.getMeasuredHeight()
-                        - scroll.getMeasuredHeight();
-                if (offset < 0) {
-                    offset = 0;
-                }
-                scroll.scrollTo(0, offset);
-            }
-        });
-
     }
 
     public void btnLogOut(View v)
@@ -339,5 +358,5 @@ public class BoardRegisterLocationItemActivity extends BaseActivity {
     public void btnLocation(View v)
     {
         startActivityForResult(new Intent(getApplicationContext(), BoardLocationActivity.class), 0);
-    }
-}
+    }}}
+

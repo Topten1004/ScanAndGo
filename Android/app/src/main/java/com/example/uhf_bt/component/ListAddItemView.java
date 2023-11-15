@@ -76,6 +76,15 @@ public class ListAddItemView extends ArrayAdapter<AddItem> {
         isCheck = item.isCheck;
         type = item.type;
 
+        if (type == 1)
+        {
+            checkBox.setVisibility(View.GONE);
+        }
+        if (type == 2)
+        {
+            date.setVisibility(View.GONE);
+        }
+
         // Set click listeners for buttons if needed
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
