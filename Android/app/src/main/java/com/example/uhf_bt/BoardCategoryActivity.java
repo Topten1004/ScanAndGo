@@ -41,7 +41,7 @@ public class BoardCategoryActivity extends BaseActivity {
 
         updateCategory = (Button)findViewById(R.id.updateCategory);
 
-        addCategory = (Button)findViewById(R.id.addCategory);
+        addCategory = (Button)findViewById(R.id.btnSearchDevice);
 
         updateCategory.setVisibility(View.GONE);
 
@@ -106,7 +106,6 @@ public class BoardCategoryActivity extends BaseActivity {
         if (updateCategoryId > 0 && categoryName.length() > 0)
         {
             String req = Globals.apiUrl +  "category/update?id=" + updateCategoryId;
-            String updateData = "{\"name\": \"Del_Dest\"}";
 
             PostCategory model = new PostCategory();
 

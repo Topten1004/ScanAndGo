@@ -1,7 +1,5 @@
 package com.example.uhf_bt.component;
 
-import static androidx.core.app.ActivityCompat.startActivityForResult;
-
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -16,8 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.uhf_bt.BoardCategoryActivity;
-import com.example.uhf_bt.BoardItemActivity;
+import com.example.uhf_bt.BoardCategoryItemActivity;
 import com.example.uhf_bt.BoardLocationActivity;
+import com.example.uhf_bt.BoardLocationItemActivity;
 import com.example.uhf_bt.BoardSubCategoryActivity;
 import com.example.uhf_bt.BoardSubLocationActivity;
 import com.example.uhf_bt.Globals;
@@ -43,8 +42,8 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
 
     private BoardSubLocationActivity subLocationActivity;
 
-    private BoardItemActivity itemActivity;
-    public ListItemView(@NonNull Context context, @NonNull List<ButtonItem> objects, BoardCategoryActivity categoryActivity, BoardLocationActivity locationActivity, BoardSubCategoryActivity subCategoryActivity, BoardSubLocationActivity subLocationActivity, BoardItemActivity itemActivity) {
+    private BoardCategoryItemActivity itemActivity;
+    public ListItemView(@NonNull Context context, @NonNull List<ButtonItem> objects, BoardCategoryActivity categoryActivity, BoardLocationActivity locationActivity, BoardSubCategoryActivity subCategoryActivity, BoardSubLocationActivity subLocationActivity, BoardCategoryItemActivity itemActivity) {
 
         super(context, 0, objects);
 
@@ -102,10 +101,20 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
                 {
                     Globals.subCategoryId = item.id;
 
-                    Intent intent = new Intent(getContext(), BoardItemActivity.class);
+                    Intent intent = new Intent(getContext(), BoardCategoryItemActivity.class);
 
                     intent.putExtra("categoryId", Globals.categoryId);
                     intent.putExtra("subCategoryId", Globals.subCategoryId);
+
+                    getContext().startActivity(intent);
+                } else if (type == 4)
+                {
+                    Globals.subLocationId = item.id;
+
+                    Intent intent = new Intent(getContext(), BoardLocationItemActivity.class);
+
+                    intent.putExtra("locationId", Globals.locationId);
+                    intent.putExtra("subLocationId", Globals.subLocationId);
 
                     getContext().startActivity(intent);
                 }

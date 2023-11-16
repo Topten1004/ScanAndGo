@@ -1,10 +1,11 @@
 package com.example.uhf_bt.fragment;
 
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.DebugUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,13 +13,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.uhf_bt.BoardCategoryActivity;
+import com.example.uhf_bt.Globals;
 import com.example.uhf_bt.MainActivity;
 import com.example.uhf_bt.R;
 import com.example.uhf_bt.Utils;
+import com.example.uhf_bt.component.ListAddItemView;
+import com.example.uhf_bt.dto.AddItem;
+import com.example.uhf_bt.dto.AssignBarCode;
+import com.example.uhf_bt.dto.ReadAllItem;
+import com.example.uhf_bt.json.JsonTaskGetAllItemList;
+import com.example.uhf_bt.json.JsonTaskUpdateItem;
 import com.rscja.deviceapi.interfaces.ConnectionStatus;
 import com.rscja.deviceapi.interfaces.KeyEventCallback;
 
@@ -26,30 +36,33 @@ import com.rscja.deviceapi.interfaces.KeyEventCallback;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
 public class BarcodeFragment extends Fragment implements View.OnClickListener{
-
-
     static boolean isExit_=false;
     MainActivity mContext;
-    ScrollView scrBarcode;
-    TextView tvData;
+
+    private List<AddItem> itemList = new ArrayList<>();
+    TextView nowBarcode;
     Button btnScan,btClear;
     Object lock=new Object();
     Spinner spingCodingFormat;
     CheckBox  cbContinuous;
     EditText etTime;
 
+    ListView listView;
+
     Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            if(msg.obj.toString()!=null) {
-                if(tvData.getText().length()>1000){
-                    tvData.setText(msg.obj.toString() + "\r\n");
-                }else {
-                    tvData.setText(tvData.getText() + msg.obj.toString() + "\r\n");
-                }
 
-                scroll2Bottom(scrBarcode, tvData);
+            if(msg.obj.toString()!=null) {
+
+                Globals.nowBarCode = msg.obj.toString();
+                nowBarcode.setText(msg.obj.toString());
                 Utils.playSound(1);
             }
         }
@@ -63,18 +76,21 @@ public class BarcodeFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
          isExit_=false;
+         nowBarcode = (TextView)getActivity().findViewById(R.id.nowBarcode);
          cbContinuous=(CheckBox)getActivity().findViewById(R.id.cbContinuous);
          etTime=(EditText)getActivity().findViewById(R.id.etTime);
-         scrBarcode=(ScrollView)getActivity().findViewById(R.id.scrBarcode);
-         tvData=(TextView)getActivity().findViewById(R.id.tvData);
+
          btnScan=(Button)getActivity().findViewById(R.id.btnScan);
          btClear=(Button)getActivity().findViewById(R.id.btClear);
          btnScan.setOnClickListener(this);
          btClear.setOnClickListener(this);
          spingCodingFormat=(Spinner)getActivity().findViewById(R.id.spingCodingFormat);
          mContext=(MainActivity) getActivity();
-         mContext.uhf.setKeyEventCallback(new KeyEventCallback() {
+         listView = (ListView) getActivity().findViewById(R.id.listAllItem);
+
+        mContext.uhf.setKeyEventCallback(new KeyEventCallback() {
              @Override
              public void onKeyDown(int keycode) {
                  Log.d("DeviceAPI_setKeyEvent","  keycode ="+keycode +"   ,isExit_="+isExit_);
@@ -87,6 +103,7 @@ public class BarcodeFragment extends Fragment implements View.OnClickListener{
 
              }
          });
+        cbContinuous.setOnClickListener(this);
         cbContinuous.setOnClickListener(this);
     }
 
@@ -104,7 +121,7 @@ public class BarcodeFragment extends Fragment implements View.OnClickListener{
                 scan();
                 break;
             case R.id.btClear:
-                tvData.setText("");
+                nowBarcode.setText("");
                 break;
             case R.id.cbContinuous:
                 if(!cbContinuous.isChecked()){
@@ -158,7 +175,7 @@ public class BarcodeFragment extends Fragment implements View.OnClickListener{
                    handler.sendMessage(msg);
                }else {
                    Message msg = Message.obtain();
-                   msg.obj = "扫描失败";
+                   msg.obj = "Scan failed";
                    handler.sendMessage(msg);
                }
 
@@ -177,25 +194,4 @@ public class BarcodeFragment extends Fragment implements View.OnClickListener{
        }
    }
 
-    public static void scroll2Bottom(final ScrollView scroll, final View inner) {
-        Handler handler = new Handler();
-        handler.post(new Runnable() {
-
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                if (scroll == null || inner == null) {
-                    return;
-                }
-                // 内层高度超过外层
-                int offset = inner.getMeasuredHeight()
-                        - scroll.getMeasuredHeight();
-                if (offset < 0) {
-                    offset = 0;
-                }
-                scroll.scrollTo(0, offset);
-            }
-        });
-
-    }
 }

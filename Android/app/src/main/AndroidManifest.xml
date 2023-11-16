@@ -32,6 +32,7 @@
             android:configChanges="orientation|screenSize"
             android:label="@string/app_name"
             android:launchMode="singleTask">
+
         </activity>
 
         <activity
@@ -53,7 +54,10 @@
             android:name=".BoardInventoryActivity" />
 
         <activity
-            android:name=".BoardItemActivity" />
+            android:name=".BoardCategoryItemActivity" />
+
+        <activity
+            android:name=".BoardLocationItemActivity" />
 
         <activity
             android:name=".LoginActivity" >

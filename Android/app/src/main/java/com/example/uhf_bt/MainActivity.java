@@ -27,10 +27,16 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.uhf_bt.component.ListAddItemView;
+import com.example.uhf_bt.dto.AddItem;
+import com.example.uhf_bt.dto.AssignBarCode;
+import com.example.uhf_bt.dto.PostCategory;
+import com.example.uhf_bt.dto.ReadAllItem;
 import com.example.uhf_bt.fragment.BTRenameFragment;
 import com.example.uhf_bt.fragment.BarcodeFragment;
 import com.example.uhf_bt.fragment.UHFEraseFragment;
@@ -42,6 +48,8 @@ import com.example.uhf_bt.fragment.UHFReadTagFragment;
 import com.example.uhf_bt.fragment.UHFSetFragment;
 import com.example.uhf_bt.fragment.UHFUpdataFragment;
 import com.example.uhf_bt.fragment.UHFWriteFragment;
+import com.example.uhf_bt.json.JsonTaskGetAllItemList;
+import com.example.uhf_bt.json.JsonTaskUpdateItem;
 import com.example.uhf_bt.tool.CwLog;
 import com.example.uhf_bt.tool.ExcelUtils;
 import com.rscja.deviceapi.RFIDWithUHFBLE;
@@ -56,11 +64,13 @@ import java.io.FileWriter;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutionException;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTabHost;
@@ -74,6 +84,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private final static String TAG = "MainActivity";
     private static final int REQUEST_ENABLE_BT = 2;
     private static final int REQUEST_SELECT_DEVICE = 1;
+
+    ListView listView;
+    private List<AddItem> itemList = new ArrayList<>();
     public ArrayList<HashMap<String, String>> tagList;
     public String selectEPC=null;
     public boolean isSupportRssi=false;
@@ -132,6 +145,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         uhf.init(getApplicationContext());
         Utils.initSound(getApplicationContext());
         LogUtility_qcom.setDebug(true);
+
+        reCallAPI();
     }
 
     @Override
@@ -157,6 +172,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 } else {
                     showBluetoothDevice(true);
                 }
+
                 break;
             case R.id.btn_search:
                 if (isScanning) {
@@ -443,10 +459,73 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         list.add(0, strArr);
         FileUtils.saveXmlList(list);
     }
+    public void reCallAPI()
+    {
+        Globals g = (Globals)getApplication();
+
+        String req = g.apiUrl + "item/readall";
+
+        try {
+            itemList.clear();
+
+            List<ReadAllItem> locationItems = new ArrayList<>();
+
+            locationItems = new JsonTaskGetAllItemList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req).get();
+
+            Collections.sort(locationItems);
+
+            if (locationItems != null) {
+
+                for (ReadAllItem p : locationItems) {
+
+                    AddItem newVM = new AddItem(p.id, 2, p.name, null, p.barcode, false  );
+                    itemList.add(newVM);
+                }
+            }
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        ListAddItemView adapter = new ListAddItemView(this, itemList);
+
+        // Set the adapter for the ListView
+        listView.setAdapter(adapter);
+    }
+
+    public void onAddItemTo(View v)
+    {
+        startActivityForResult(new Intent(getApplicationContext(), BoardCategoryActivity.class), 0);
+    }
+
+    public void onAssign(View v) {
+        if (Globals.checkedItem > 0 && Globals.nowBarCode.length() > 0) {
+            String req = Globals.apiUrl + "item/assign-barcode?id=" + String.valueOf(Globals.checkedItem);
+
+            AssignBarCode model = new AssignBarCode();
+            model.barcode = Globals.nowBarCode;
+
+            // Execute AsyncTask to update the item
+            new JsonTaskUpdateItem(new JsonTaskUpdateItem.OnUpdateCompleteListener() {
+                @Override
+                public void onUpdateComplete() {
+                    // This method is called when the AsyncTask completes
+                    Globals.nowBarCode = "";
+                    Globals.checkedItem = 0;
+
+                    // Refresh the API call
+                    reCallAPI();
+                }
+            }).execute(req, model.toJsonString());
+        }
+    }
+
 
     protected void initUI() {
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
 
+        listView = (ListView)findViewById(R.id.listAllItem);
         tvAddress = (TextView) findViewById(R.id.tvAddress);
         btn_connect = (Button) findViewById(R.id.btn_connect);
         btn_connect.setOnClickListener(this);
@@ -457,28 +536,28 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup(this, fm, R.id.realtabcontent);
 
-        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.title_inventory)).setIndicator(getString(R.string.title_inventory)), UHFReadTagFragment.class, null);
-       // mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.title_inventory2)).setIndicator(getString(R.string.title_inventory2)), UHFNewReadTagFragment.class, null);
+//       mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.title_inventory)).setIndicator(getString(R.string.title_inventory)), UHFReadTagFragment.class, null);
+//      mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.title_inventory2)).setIndicator(getString(R.string.title_inventory2)), UHFNewReadTagFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.title_2d_Scan)).setIndicator(getString(R.string.title_2d_Scan)), BarcodeFragment.class, null);
 
-        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_set)).setIndicator(getString(R.string.uhf_msg_tab_set)), UHFSetFragment.class, null);
-
-        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.location)).setIndicator(getString(R.string.location)),
-                UHFLocationFragment.class, null);
-
-        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_read)).setIndicator(getString(R.string.uhf_msg_tab_read)), UHFReadFragment.class, null);
-
-        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_write)).setIndicator(getString(R.string.uhf_msg_tab_write)), UHFWriteFragment.class, null);
-
-        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_lock)).setIndicator(getString(R.string.uhf_msg_tab_lock)), UHFLockFragment.class, null);
-
-        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_kill)).setIndicator(getString(R.string.uhf_msg_tab_kill)), UHFKillFragment.class, null);
-
-        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_erase)).setIndicator(getString(R.string.uhf_msg_tab_erase)), UHFEraseFragment.class, null);
-
-        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.title_update)).setIndicator(getString(R.string.title_update)), UHFUpdataFragment.class, null);
-
-        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.title_bt_rename)).setIndicator(getString(R.string.title_bt_rename)), BTRenameFragment.class, null);
+//        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_set)).setIndicator(getString(R.string.uhf_msg_tab_set)), UHFSetFragment.class, null);
+//
+//        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.location)).setIndicator(getString(R.string.location)),
+//                UHFLocationFragment.class, null);
+//
+//        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_read)).setIndicator(getString(R.string.uhf_msg_tab_read)), UHFReadFragment.class, null);
+//
+//        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_write)).setIndicator(getString(R.string.uhf_msg_tab_write)), UHFWriteFragment.class, null);
+//
+//        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_lock)).setIndicator(getString(R.string.uhf_msg_tab_lock)), UHFLockFragment.class, null);
+//
+//        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_kill)).setIndicator(getString(R.string.uhf_msg_tab_kill)), UHFKillFragment.class, null);
+//
+//        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_erase)).setIndicator(getString(R.string.uhf_msg_tab_erase)), UHFEraseFragment.class, null);
+//
+//        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.title_update)).setIndicator(getString(R.string.title_update)), UHFUpdataFragment.class, null);
+//
+//        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.title_bt_rename)).setIndicator(getString(R.string.title_bt_rename)), BTRenameFragment.class, null);
     }
 
     public void updateConnectMessage(String oldName, String newName) {
