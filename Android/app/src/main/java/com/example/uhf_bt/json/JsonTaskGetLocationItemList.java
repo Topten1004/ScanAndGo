@@ -1,39 +1,18 @@
 package com.example.uhf_bt.json;
 
 import android.os.AsyncTask;
-import android.os.Build;
-import android.util.Log;
-
-import androidx.annotation.RequiresApi;
-
-import com.example.uhf_bt.dto.Category;
-import com.example.uhf_bt.dto.Item;
 import com.example.uhf_bt.dto.LocationItem;
-import com.example.uhf_bt.dto.LoginVM;
-import com.example.uhf_bt.dto.SubCategory;
-import com.example.uhf_bt.dto.SubLocation;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class JsonTaskGetLocationItemList extends AsyncTask<String, String, List<LocationItem>> {

@@ -43,8 +43,6 @@ public class BoardLocationItemActivity extends BaseActivity {
         setContentView(R.layout.activity_board_location_item);
 
 
-        Log.d("eeeeeeeee", "eeeeeeeeeeeeee");
-
         Globals g = (Globals)getApplication();
 
         if (g.isLogin == false)
@@ -86,7 +84,7 @@ public class BoardLocationItemActivity extends BaseActivity {
         }
 
         listView = findViewById(R.id.listLocationItems);
-        ListAddItemView adapter = new ListAddItemView(this, itemList, this, null);
+        ListAddItemView adapter = new ListAddItemView(this, itemList);
 
         // Set the adapter for the ListView
         listView.setAdapter(adapter);
@@ -94,7 +92,7 @@ public class BoardLocationItemActivity extends BaseActivity {
 
     public void btnScanItem(View v)
     {
-        startActivityForResult(new Intent(getApplicationContext(), BoardRegisterLocationItemActivity.class), 0);
+        startActivityForResult(new Intent(getApplicationContext(), MainActivity.class), 0);
     }
 
     public void btnLogOut(View v)

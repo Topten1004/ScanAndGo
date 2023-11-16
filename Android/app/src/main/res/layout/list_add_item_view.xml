@@ -29,6 +29,7 @@
         android:id="@+id/checkAssign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:checked="false"
         android:layout_weight="1" />
 
 </LinearLayout>

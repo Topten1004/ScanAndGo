@@ -41,7 +41,7 @@ public class BoardCategoryActivity extends BaseActivity {
 
         updateCategory = (Button)findViewById(R.id.updateCategory);
 
-        addCategory = (Button)findViewById(R.id.btnScanBarcode);
+        addCategory = (Button)findViewById(R.id.btnSearchDevice);
 
         updateCategory.setVisibility(View.GONE);
 

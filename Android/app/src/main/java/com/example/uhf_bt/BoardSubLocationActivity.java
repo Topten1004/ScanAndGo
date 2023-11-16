@@ -69,6 +69,7 @@ public class BoardSubLocationActivity extends BaseActivity {
         reCallAPI();
     }
 
+
     public void btnAddSubLocation(View v) {
 
         if(addSubLocation.getText() == "Add")

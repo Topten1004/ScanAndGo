@@ -86,5 +86,19 @@ public class JsonTaskUpdateItem extends AsyncTask<String, String, MessageVM> {
     protected void onPostExecute(MessageVM result) {
         super.onPostExecute(result);
         // Handle the result as needed
+        if (listener != null) {
+            listener.onUpdateComplete();
+        }
     }
+
+    public interface OnUpdateCompleteListener {
+        void onUpdateComplete();
+    }
+
+    private OnUpdateCompleteListener listener;
+
+    public JsonTaskUpdateItem(OnUpdateCompleteListener listener) {
+        this.listener = listener;
+    }
+
 }

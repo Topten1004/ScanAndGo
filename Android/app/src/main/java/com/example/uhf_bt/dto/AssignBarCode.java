@@ -19,7 +19,6 @@ public class AssignBarCode {
 
     public String toJsonString() {
         return "{"
-                + "\"barcode\":\"" + this.barcode +
-                "}";
+                + "\"barcode\":\"" + this.barcode + "\"" + "}";
     }
 }

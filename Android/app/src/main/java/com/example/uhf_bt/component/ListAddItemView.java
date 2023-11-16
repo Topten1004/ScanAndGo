@@ -19,7 +19,6 @@ import com.example.uhf_bt.BoardCategoryActivity;
 import com.example.uhf_bt.BoardCategoryItemActivity;
 import com.example.uhf_bt.BoardLocationActivity;
 import com.example.uhf_bt.BoardLocationItemActivity;
-import com.example.uhf_bt.BoardRegisterLocationItemActivity;
 import com.example.uhf_bt.BoardSubCategoryActivity;
 import com.example.uhf_bt.BoardSubLocationActivity;
 import com.example.uhf_bt.Globals;
@@ -41,16 +40,10 @@ public class ListAddItemView extends ArrayAdapter<AddItem> {
     public String barCode;
 
     public boolean isCheck;
-    private BoardLocationItemActivity locationItemActivity;
 
-    private BoardRegisterLocationItemActivity registerActivity;
-
-    public ListAddItemView(@NonNull Context context, @NonNull List<AddItem> objects, BoardLocationItemActivity locationItemActivity, BoardRegisterLocationItemActivity registerActivity) {
+    public ListAddItemView(@NonNull Context context, @NonNull List<AddItem> objects) {
 
         super(context, 0, objects);
-
-        this.locationItemActivity = locationItemActivity;
-        this.registerActivity = registerActivity;
     }
 
     @NonNull
@@ -76,12 +69,13 @@ public class ListAddItemView extends ArrayAdapter<AddItem> {
         isCheck = item.isCheck;
         type = item.type;
 
-        if (type == 1)
-        {
+        // Explicitly set the state of the checkbox
+        checkBox.setChecked(isCheck);
+
+        if (type == 1) {
             checkBox.setVisibility(View.GONE);
         }
-        if (type == 2)
-        {
+        if (type == 2) {
             date.setVisibility(View.GONE);
         }
 
@@ -89,8 +83,9 @@ public class ListAddItemView extends ArrayAdapter<AddItem> {
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+                // Update the state of the item when the checkbox is clicked
+                item.isCheck = checkBox.isChecked();
+                Globals.checkedItem = item.id;
             }
         });
 
