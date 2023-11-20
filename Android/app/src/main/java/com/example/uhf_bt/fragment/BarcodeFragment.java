@@ -44,8 +44,6 @@ import java.util.concurrent.ExecutionException;
 public class BarcodeFragment extends Fragment implements View.OnClickListener{
     static boolean isExit_=false;
     MainActivity mContext;
-
-    private List<AddItem> itemList = new ArrayList<>();
     TextView nowBarcode;
     Button btnScan,btClear;
     Object lock=new Object();
@@ -59,6 +57,7 @@ public class BarcodeFragment extends Fragment implements View.OnClickListener{
         @Override
         public void handleMessage(Message msg) {
 
+            nowBarcode.setText("handleMessage");
             if(msg.obj.toString()!=null) {
 
                 Globals.nowBarCode = msg.obj.toString();
@@ -88,7 +87,6 @@ public class BarcodeFragment extends Fragment implements View.OnClickListener{
          btClear.setOnClickListener(this);
          spingCodingFormat=(Spinner)getActivity().findViewById(R.id.spingCodingFormat);
          mContext=(MainActivity) getActivity();
-         listView = (ListView) getActivity().findViewById(R.id.listAllItem);
 
         mContext.uhf.setKeyEventCallback(new KeyEventCallback() {
              @Override
@@ -103,7 +101,7 @@ public class BarcodeFragment extends Fragment implements View.OnClickListener{
 
              }
          });
-        cbContinuous.setOnClickListener(this);
+
         cbContinuous.setOnClickListener(this);
     }
 
@@ -174,9 +172,11 @@ public class BarcodeFragment extends Fragment implements View.OnClickListener{
                    msg.obj = data;
                    handler.sendMessage(msg);
                }else {
+
                    Message msg = Message.obtain();
                    msg.obj = "Scan failed";
                    handler.sendMessage(msg);
+
                }
 
                if(!isContinuous) {

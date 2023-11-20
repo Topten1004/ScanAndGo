@@ -8,8 +8,8 @@ android {
         applicationId "com.example.uhf_bt"
         minSdkVersion 18
         targetSdkVersion 30
-        versionCode 4
-        versionName "1.7"
+        versionCode 1
+        versionName "1.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
