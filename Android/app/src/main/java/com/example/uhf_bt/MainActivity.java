@@ -500,24 +500,31 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     public void onAssign(View v) {
-        if (Globals.checkedItem > 0 && Globals.nowBarCode.length() > 0) {
+
+        String barCodeData = "";
+        BarcodeFragment barcodeFragment = (BarcodeFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.title_2d_Scan));
+
+        if (barcodeFragment != null) {
+            barCodeData = barcodeFragment.getBarcodeData();
+        }
+
+        if (Globals.checkedItem > 0 && barCodeData.length() > 0) {
+
             String req = Globals.apiUrl + "item/assign-barcode?id=" + String.valueOf(Globals.checkedItem);
 
+            Log.d("barCodeData::::", barCodeData + " " + Globals.checkedItem + " " + req);
+
             AssignBarCode model = new AssignBarCode();
-            model.barcode = Globals.nowBarCode;
+            model.barcode = barCodeData;
 
-            // Execute AsyncTask to update the item
-            new JsonTaskUpdateItem(new JsonTaskUpdateItem.OnUpdateCompleteListener() {
-                @Override
-                public void onUpdateComplete() {
-                    // This method is called when the AsyncTask completes
-                    Globals.nowBarCode = "";
-                    Globals.checkedItem = 0;
+            new JsonTaskUpdateItem().execute(req, model.toJsonString());
 
-                    // Refresh the API call
-                    reCallAPI();
-                }
-            }).execute(req, model.toJsonString());
+            // This method is called when the AsyncTask completes
+            Globals.nowBarCode = "";
+            Globals.checkedItem = 0;
+
+            barcodeFragment.setEmptyText();
+            reCallAPI();
         }
     }
 
@@ -536,13 +543,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup(this, fm, R.id.realtabcontent);
 
-       mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.title_inventory)).setIndicator(getString(R.string.title_inventory)), UHFReadTagFragment.class, null);
+//      mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.title_inventory)).setIndicator(getString(R.string.title_inventory)), UHFReadTagFragment.class, null);
 //      mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.title_inventory2)).setIndicator(getString(R.string.title_inventory2)), UHFNewReadTagFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.title_2d_Scan)).setIndicator(getString(R.string.title_2d_Scan)), BarcodeFragment.class, null);
 
-        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_set)).setIndicator(getString(R.string.uhf_msg_tab_set)), UHFSetFragment.class, null);
-
-        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.location)).setIndicator(getString(R.string.location)), UHFLocationFragment.class, null);
+//        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_set)).setIndicator(getString(R.string.uhf_msg_tab_set)), UHFSetFragment.class, null);
+//
+//        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.location)).setIndicator(getString(R.string.location)), UHFLocationFragment.class, null);
 //
 //        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_read)).setIndicator(getString(R.string.uhf_msg_tab_read)), UHFReadFragment.class, null);
 //

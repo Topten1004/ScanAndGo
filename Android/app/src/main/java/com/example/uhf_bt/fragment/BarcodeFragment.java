@@ -66,6 +66,13 @@ public class BarcodeFragment extends Fragment implements View.OnClickListener{
             }
         }
     };
+
+    public String getBarcodeData()
+    {
+        String result = nowBarcode.getText().toString();
+        return result;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -143,6 +150,11 @@ public class BarcodeFragment extends Fragment implements View.OnClickListener{
     }
 
     boolean isRuning=false;
+
+    public void setEmptyText() {
+        nowBarcode.setText("");
+    }
+
     class   ScanThread  extends Thread{
         boolean isContinuous=false;
         int  time;

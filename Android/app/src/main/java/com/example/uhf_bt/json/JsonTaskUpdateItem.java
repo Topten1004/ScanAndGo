@@ -33,6 +33,7 @@ public class JsonTaskUpdateItem extends AsyncTask<String, String, MessageVM> {
         BufferedReader reader = null;
 
         try {
+            Log.e("UpdateItem:::", params[0] + " " + params[1]);
             URL url = new URL(params[0]);
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("Content-Type", "application/json");
@@ -58,11 +59,8 @@ public class JsonTaskUpdateItem extends AsyncTask<String, String, MessageVM> {
                     buffer.append(line);
                 }
 
-                Log.e("error", buffer.toString());
-
                 Type t = new TypeToken<MessageVM>() {}.getType();
                 return new Gson().fromJson(buffer.toString(), t);
-
             } else {
                 // Handle the error response if needed
                 Log.e("JsonTaskUpdateCategory", "HTTP Error Code: " + responseCode + ", Message: " + responseMessage);
