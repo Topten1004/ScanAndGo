@@ -8,6 +8,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.uhf_bt.DeviceListActivity2">
+    tools:context="com.example.ScanAndGo.DeviceListActivity2">
 
 </RelativeLayout>
