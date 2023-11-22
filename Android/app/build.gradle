@@ -45,7 +45,7 @@ android {
         // 自定义apk名称
         android.applicationVariants.all { variant ->
             variant.outputs.all {
-                outputFileName = "UHF-ble_v${defaultConfig.versionName}.apk"
+                outputFileName = "ScanAndGo_v${defaultConfig.versionName}.apk"
             }
         }
     }
