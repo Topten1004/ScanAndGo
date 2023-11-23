@@ -20,9 +20,14 @@
         android:onClick="btnLogOut"
         android:text="Log Out" />
 
+    <ImageView
+        android:id="@+id/imgSubLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:orientation="horizontal">
 
         <EditText
@@ -49,12 +54,28 @@
             android:onClick="btnAddSubLocation"
             android:text="Add" />
 
+        <Button
+            android:id="@+id/addPicSubLocation"
+            android:layout_width="79dp"
+            android:layout_height="75dp"
+            android:layout_weight="1"
+            android:background="@drawable/camera"
+            android:onClick="OnAddPictureToSubLocation" />
+
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="174dp"
+        app:srcCompat="@drawable/logo" />
 
     <ListView
         android:id="@+id/listSubLocationItems"
         android:layout_width="wrap_content"
-        android:layout_height="360dp" />
+        android:layout_height="360dp" >
+
+    </ListView>
 
     <LinearLayout
         android:layout_width="match_parent"
