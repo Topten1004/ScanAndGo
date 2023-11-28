@@ -1,8 +1,10 @@
 from flask import request
 from models.user import UserModel
+from models.log import LogModel
 from flask_restful import Resource, reqparse
 from datetime import timedelta
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, get_jwt_identity)
+import datetime
 
 parser = reqparse.RequestParser()
 parser.add_argument('username')
@@ -44,6 +46,15 @@ class UserLogin(Resource):
                 'username': current_user.username,
                 'role': current_user.role
             }
+
+            new_log = LogModel(
+                user_id = current_user.id,
+                user_name = current_user.username,
+                login_date = datetime.datetime.now().date()
+            )
+            
+            new_log.save_to_db()
+
             return {
                 'message': 'Logged in as {}'.format(current_user.username),
                 'access_token': f'{access_token}',
@@ -51,6 +62,7 @@ class UserLogin(Resource):
                 'status': 1,
                 'user': user_json
             }
+        
         else:
             return {'message': 'Wrong Password', 'status': 0}
 

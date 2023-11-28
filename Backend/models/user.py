@@ -1,5 +1,6 @@
 from start import db
 from passlib.hash import pbkdf2_sha256 as sha256
+from models.log import LogModel
 
 class UserModel(db.Model):
     __tablename__ = 'users'
@@ -9,6 +10,8 @@ class UserModel(db.Model):
     password = db.Column(db.String(120), nullable = False)
     role = db.Column(db.Integer, default = 0)
 
+    logs = db.relationship('LogModel', back_populates='user')
+    
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()

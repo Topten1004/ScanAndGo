@@ -1,29 +1,22 @@
 from models.inventory import InventoryModel
 from models.category import CategoryModel
-from models.subcategory import SubCategoryModel
 from models.item import ItemModel
-from models.location import LocationModel
-from models.sublocation import SubLocationModel
+from models.building import BuildingModel
+from models.detailLocation import DetailLocationModel
 from flask_restful import Resource, reqparse
 from flask import request
 import datetime
 
 parser = reqparse.RequestParser()
 parser.add_argument('id')
-parser.add_argument('category')
 parser.add_argument('category_id')
-parser.add_argument('subcategory')
-parser.add_argument('subcategory_id')
-parser.add_argument('item')
 parser.add_argument('item_id')
-parser.add_argument('location')
-parser.add_argument('location_id')
-parser.add_argument('sublocation')
-parser.add_argument('sublocation_id')
-parser.add_argument('purchaseDate')
-parser.add_argument('lastDate')
-parser.add_argument('refClient')
-parser.add_argument('regDate')
+parser.add_argument('building_id')
+parser.add_argument('area_id')
+parser.add_argument('floor_id')
+parser.add_argument('detail_location_id')
+parser.add_argument('photo')
+parser.add_argument('status')
 
 class CreateInventory(Resource):
     def post(self):
@@ -39,44 +32,22 @@ class CreateInventory(Resource):
                 )
                 new_category.save_to_db()
                 category_id = new_category.id
-                
-            subcategory = SubCategoryModel.find_by_id_name(category_id, data['subcategory'])
-            if (subcategory):
-                subcategory_id = subcategory.id
-            else:
-                new_subcategory = SubCategoryModel(
-                    category_id = category_id,
-                    name = data['subcategory']
-                )
-                new_subcategory.save_to_db()
-                subcategory_id = new_subcategory.id
-                
-            item = ItemModel.find_by_id_name(subcategory_id, data['item'])
-            if (item):
-                item_id = item.id
-            else:
-                new_item = ItemModel(
-                    subcategory_id = subcategory_id,
-                    name = data['item']
-                )
-                new_item.save_to_db()
-                item_id = new_item.id
-            
-            location = LocationModel.find_by_name(data['location'])
+                            
+            location = BuildingModel.find_by_name(data['location'])
             if (location):
                 location_id = location.id
             else:
-                new_location = LocationModel(
+                new_location = BuildingModel(
                     name = data['location']
                 )
                 new_location.save_to_db()
                 location_id = new_location.id
             
-            sublocation = SubLocationModel.find_by_id_name(location_id, data['sublocation'])
+            sublocation = DetailLocationModel.find_by_id_name(location_id, data['sublocation'])
             if (sublocation):
                 sublocation_id = sublocation.id
             else:
-                new_sublocation = SubLocationModel(
+                new_sublocation = DetailLocationModel(
                     location_id = location_id,
                     name = data['sublocation']
                 )
@@ -85,7 +56,6 @@ class CreateInventory(Resource):
                 
             new_inventory = InventoryModel(
                 category_id = category_id,
-                subcategory_id = subcategory_id,
                 item_id = item_id,
                 location_id = location_id,
                 sublocation_id = sublocation_id,
@@ -118,14 +88,16 @@ class CreateNewInventory(Resource):
         data = parser.parse_args()
         
         item = ItemModel.find_by_id(data['item_id'])
-        subcategory = SubCategoryModel.find_by_id(item.subcategory_id)
         
         new_inventory = InventoryModel(
-            category_id = subcategory.category_id,
-            subcategory_id = item.subcategory_id,
+
+            category_id = item.category_id,
             item_id = data['item_id'],
-            location_id = data['location_id'],
-            sublocation_id = data['sublocation_id'],
+            building_id = data['location_id'],
+            area_id = data['area_id'],
+            floor_id = data['floor_id'],
+            detail_location_id = data['detail_location_id'],
+
             reg_date = datetime.datetime.now().date()
         )
         try:

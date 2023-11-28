@@ -4,7 +4,7 @@ from flask import request
 
 parser = reqparse.RequestParser()
 parser.add_argument('id')
-parser.add_argument('subCategoryId')
+parser.add_argument('categoryId')
 parser.add_argument('name')
 parser.add_argument('barcode')
 
@@ -13,9 +13,11 @@ class CreateItem(Resource):
         data = parser.parse_args()
         
         new_item = ItemModel(
-            subcategory_id = data['subCategoryId'],
-            name = data['name']
+            category_id = data['categoryId'],
+            name = data['name'],
+            barcode = data['barcode']   
         )
+        
         try:
             new_item.save_to_db()
             return { 'message': 'created!' }, 200

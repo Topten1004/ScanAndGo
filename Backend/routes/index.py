@@ -1,18 +1,20 @@
 from routes.user import userRouteIndex
 from routes.category import categoryRouteIndex
-from routes.subcategory import subcategoryRouteIndex
 from routes.item import itemRouteIndex
 from routes.role import roleRouteIndex
-from routes.location import locationRouteIndex
-from routes.sublocation import sublocationRouteIndex
+from routes.building import buildingRouteIndex
+from routes.detailLocation import detailLocationRouteIndex
 from routes.inventory import inventoryRouteIndex
+from routes.floor import floorRouteIndex
+from routes.area import areaRouteIndex
 
 def Route_index(app):
     userRouteIndex(app)
     categoryRouteIndex(app)
-    subcategoryRouteIndex(app)
     itemRouteIndex(app)
     roleRouteIndex(app)
-    locationRouteIndex(app)
-    sublocationRouteIndex(app)
+    buildingRouteIndex(app)
+    detailLocationRouteIndex(app)
     inventoryRouteIndex(app)
+    floorRouteIndex(app)
+    areaRouteIndex(app)

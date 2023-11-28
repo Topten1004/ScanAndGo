@@ -1,15 +1,13 @@
 from start import db
-from sqlalchemy.orm import relationship
+from sqlalchemy import TEXT
 
-class ItemModel(db.Model):
-    __tablename__ = 'items'
+class DetailLocationModel(db.Model):
+    __tablename__ = 'detail_locations'
         
     id = db.Column(db.Integer, primary_key = True)
-    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
+    floorId = db.Column(db.Integer, db.ForeignKey('floors.id'))
     name = db.Column(db.String(120), nullable = False)
-    barcode = db.Column(db.String(120))
-
-    inventory_item_entries = relationship('InventoryModel', back_populates='item')
+    img_data = db.Column(TEXT)
     
     def save_to_db(self):
         db.session.add(self)
@@ -17,45 +15,40 @@ class ItemModel(db.Model):
         
     @classmethod
     def find_by_id_name(cls, id, name):
-        return ItemModel.query.filter_by(category_id = id, name = name).first()
-    
-    @classmethod
-    def find_by_id(cls, id):
-        return ItemModel.query.filter_by(id = id).first()
+        return cls.query.filter_by(id = id, name = name).first()
         
     @classmethod
     def return_all_by_id(cls, id):
         def to_json(x):
             return {
                 'id': x.id,
-                'categoryId': x.category_id,
+                'floorId': x.floorId,
                 'name': x.name,
-                'isUsed': bool(x.inventory_item_entries)
+                'imgData': x.img_data
             }
         return list(map(
             lambda x: to_json(x), 
-            ItemModel.query
-            .filter(ItemModel.category_id == id)
-            .order_by(ItemModel.id)
+            DetailLocationModel.query
+            .filter(DetailLocationModel.floorId == id)
+            .order_by(DetailLocationModel.id)
             .all()
         ))
-
+    
     @classmethod
     def return_all(cls):
         def to_json(x):
             return {
                 'id': x.id,
-                'categoryId': x.category_id,
+                'floorId': x.floorId,
                 'name': x.name,
-                'barcode': x.barcode
+                'imgData': x.img_data
             }
         return list(map(
             lambda x: to_json(x), 
-            ItemModel.query
-            .order_by(ItemModel.id)
+            DetailLocationModel.query
+            .order_by(DetailLocationModel.id)
             .all()
         ))
-
 
     @classmethod
     def delete_one(cls, id):
@@ -72,15 +65,5 @@ class ItemModel(db.Model):
             record = cls.query.get(id)
             record.name = name
             db.session.commit()
-        except:
-            return {'message': 'error'}
-        
-    @classmethod
-    def assign_barcode(cls, id, barcode):
-        try:
-            record = cls.query.get(id)
-            record.barcode = barcode
-            db.session.commit()
-            return {'message': 'success'}
         except:
             return {'message': 'error'}
