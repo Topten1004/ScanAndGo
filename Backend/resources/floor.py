@@ -4,7 +4,7 @@ from flask import request
 
 parser = reqparse.RequestParser()
 parser.add_argument('id')
-parser.add_argument('areaId')
+parser.add_argument('area_id')
 parser.add_argument('name')
 
 class CreateFloor(Resource):
@@ -12,12 +12,12 @@ class CreateFloor(Resource):
         data = parser.parse_args()
         
         new_item = FloorModel(
-            areaId = data['areaId'],
+            area_id = data['area_id'],
             name = data['name']
         )
         try:
             new_item.save_to_db()
-            return { 'message': 'created!' }, 200
+            return { 'message': 'success!' }, 200
         except Exception as e:
             return {'message': str(e)}, 400
 
@@ -32,7 +32,7 @@ class DeleteFloor(Resource):
 class UpdateFloor(Resource):
     def put(self):
         data = parser.parse_args()
-        return FloorModel.update_one(request.args.get('id'), data['name'])
+        return FloorModel.update_one(request.args.get('id'), data['name'], data['area_id'])
     
 class ReadAllFloor(Resource):
     def get(self):

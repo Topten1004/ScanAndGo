@@ -28,7 +28,7 @@ class ItemModel(db.Model):
         def to_json(x):
             return {
                 'id': x.id,
-                'categoryId': x.category_id,
+                'category_id': x.category_id,
                 'name': x.name,
                 'isUsed': bool(x.inventory_item_entries)
             }
@@ -45,7 +45,7 @@ class ItemModel(db.Model):
         def to_json(x):
             return {
                 'id': x.id,
-                'categoryId': x.category_id,
+                'category_id': x.category_id,
                 'name': x.name,
                 'barcode': x.barcode
             }
@@ -63,15 +63,21 @@ class ItemModel(db.Model):
             row_deleted = cls.query.filter_by(id=id).first()
             db.session.delete(row_deleted)
             db.session.commit()
+
+            return {'message': 'success'}
         except:
             return {'message': 'error'}
     
     @classmethod
-    def update_one(cls, id, name):
+    def update_one(cls, id, name, category_id, barcode):
         try:
             record = cls.query.get(id)
             record.name = name
+            record.category_id = category_id
+            record.barcode = barcode
             db.session.commit()
+
+            return {'message': 'success'}
         except:
             return {'message': 'error'}
         

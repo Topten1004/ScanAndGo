@@ -5,7 +5,7 @@ class DetailLocationModel(db.Model):
     __tablename__ = 'detail_locations'
         
     id = db.Column(db.Integer, primary_key = True)
-    floorId = db.Column(db.Integer, db.ForeignKey('floors.id'))
+    floor_id = db.Column(db.Integer, db.ForeignKey('floors.id'))
     name = db.Column(db.String(120), nullable = False)
     img_data = db.Column(TEXT)
     
@@ -22,14 +22,14 @@ class DetailLocationModel(db.Model):
         def to_json(x):
             return {
                 'id': x.id,
-                'floorId': x.floorId,
+                'floor_id': x.floor_id,
                 'name': x.name,
                 'imgData': x.img_data
             }
         return list(map(
             lambda x: to_json(x), 
             DetailLocationModel.query
-            .filter(DetailLocationModel.floorId == id)
+            .filter(DetailLocationModel.floor_id == id)
             .order_by(DetailLocationModel.id)
             .all()
         ))
@@ -39,7 +39,7 @@ class DetailLocationModel(db.Model):
         def to_json(x):
             return {
                 'id': x.id,
-                'floorId': x.floorId,
+                'floor_id': x.floor_id,
                 'name': x.name,
                 'imgData': x.img_data
             }
@@ -56,14 +56,26 @@ class DetailLocationModel(db.Model):
             row_deleted = cls.query.filter_by(id=id).first()
             db.session.delete(row_deleted)
             db.session.commit()
+
+            return {'message': 'success!'}
+        
         except:
             return {'message': 'error'}
     
     @classmethod
-    def update_one(cls, id, name):
+    def update_one(cls, id, name, img_data):   
         try:
             record = cls.query.get(id)
-            record.name = name
-            db.session.commit()
-        except:
-            return {'message': 'error'}
+            # Ensure the record is found before accessing its attributes
+            if record:
+                record.name = name
+                record.img_data = img_data
+                db.session.commit()
+
+                return {'message': 'success!'}
+
+            else:
+                return {'message': 'Record not found'}
+        except Exception as e:
+            print(e)
+            return {'message': 'Error updating detail location'}

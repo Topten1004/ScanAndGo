@@ -15,7 +15,7 @@ class CreateBuilding(Resource):
         )
         try:
             new_item.save_to_db()
-            return { 'message': 'created!' }, 200
+            return { 'message': 'success!' }, 200
         except:
             return {'message': 'Not created!'}, 400
 

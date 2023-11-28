@@ -4,7 +4,7 @@ from flask import request
 
 parser = reqparse.RequestParser()
 parser.add_argument('id')
-parser.add_argument('categoryId')
+parser.add_argument('category_id')
 parser.add_argument('name')
 parser.add_argument('barcode')
 
@@ -13,14 +13,14 @@ class CreateItem(Resource):
         data = parser.parse_args()
         
         new_item = ItemModel(
-            category_id = data['categoryId'],
+            category_id = data['category_id'],
             name = data['name'],
             barcode = data['barcode']   
         )
         
         try:
             new_item.save_to_db()
-            return { 'message': 'created!' }, 200
+            return { 'message': 'success!' }, 200
         except:
             return {'message': 'Not created!'}, 400
 
@@ -35,7 +35,7 @@ class DeleteItem(Resource):
 class UpdateItem(Resource):
     def put(self):
         data = parser.parse_args()
-        return ItemModel.update_one(request.args.get('id'), data['name']) 
+        return ItemModel.update_one(request.args.get('id'), data['name'], data['category_id'], data['barcode'])
     
 class ReadAllItem(Resource):
     def get(self):

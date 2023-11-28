@@ -29,6 +29,9 @@ class BuildingModel(db.Model):
             row_deleted = cls.query.filter_by(id=id).first()
             db.session.delete(row_deleted)
             db.session.commit()
+
+            return {'message': 'success'}
+
         except:
             return {'message': 'error'}
     
@@ -38,5 +41,7 @@ class BuildingModel(db.Model):
             record = cls.query.get(id)
             record.name = name
             db.session.commit()
+
+            return {'message': 'success'}
         except:
             return {'message': 'error'}

@@ -4,7 +4,7 @@ class FloorModel(db.Model):
     __tablename__ = 'floors'
         
     id = db.Column(db.Integer, primary_key = True)
-    areaId = db.Column(db.Integer, db.ForeignKey('areas.id'))
+    area_id = db.Column(db.Integer, db.ForeignKey('areas.id'))
     name = db.Column(db.String(120), nullable = False)
     
     def save_to_db(self):
@@ -20,13 +20,13 @@ class FloorModel(db.Model):
         def to_json(x):
             return {
                 'id': x.id,
-                'areaId': x.areaId,
+                'area_id': x.area_id,
                 'name': x.name
             }
         return list(map(
             lambda x: to_json(x), 
             FloorModel.query
-            .filter(FloorModel.areaId == id)
+            .filter(FloorModel.area_id == id)
             .order_by(FloorModel.id)
             .all()
         ))
@@ -36,7 +36,7 @@ class FloorModel(db.Model):
         def to_json(x):
             return {
                 'id': x.id,
-                'areaId': x.areaId,
+                'area_id': x.area_id,
                 'name': x.name
             }
         return list(map(lambda x: to_json(x), FloorModel.query.order_by(FloorModel.id).all()))
@@ -47,14 +47,21 @@ class FloorModel(db.Model):
             row_deleted = cls.query.filter_by(id=id).first()
             db.session.delete(row_deleted)
             db.session.commit()
+
+            return {'message': 'success!'}
+        
         except:
             return {'message': 'error'}
     
     @classmethod
-    def update_one(cls, id, name):
+    def update_one(cls, id, name, area_id):
         try:
             record = cls.query.get(id)
             record.name = name
+            record.area_id = area_id
             db.session.commit()
+
+            return {'message': 'success!'}
+
         except:
             return {'message': 'error'}

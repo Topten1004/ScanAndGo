@@ -108,6 +108,6 @@ class CreateNewInventory(Resource):
         )
         try:
             new_inventory.save_to_db()
-            return { 'message': 'created!' }, 200
+            return { 'message': 'success!' }, 200
         except:
             return { 'message': 'error!' }, 400

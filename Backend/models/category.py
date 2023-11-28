@@ -33,14 +33,23 @@ class CategoryModel(db.Model):
             row_deleted = cls.query.filter_by(id=id).first()
             db.session.delete(row_deleted)
             db.session.commit()
+
+            return {'message': 'deleted'}
         except:
-            return {'message': 'error'}
+            return {'message': 'Error deleteing category'}
     
     @classmethod
     def update_one(cls, id, name):
         try:
             record = cls.query.get(id)
-            record.name = name
-            db.session.commit()
-        except:
-            return {'message': 'error'}
+            # Ensure the record is found before accessing its attributes
+            if record:
+                record.name = name
+                db.session.commit()
+
+                return {'message': 'updated'}
+            else:
+                return {'message': 'Record not found'}
+        except Exception as e:
+            print(e)
+            return {'message': 'Error updating category'}
