@@ -37,6 +37,7 @@ public class ListAddItemView extends ArrayAdapter<AddItem> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_add_item_view, parent, false);
         }
@@ -70,7 +71,8 @@ public class ListAddItemView extends ArrayAdapter<AddItem> {
         // Set click listeners for buttons if needed
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 // Update the state of the item when the checkbox is clicked
                 item.isCheck = checkBox.isChecked();
                 Globals.checkedItem = item.id;

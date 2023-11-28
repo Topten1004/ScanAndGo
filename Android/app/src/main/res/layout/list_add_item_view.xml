@@ -9,19 +9,19 @@
 
     <TextView
         android:id="@+id/txtDate"
-        android:layout_width="80px"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
     <TextView
         android:id="@+id/txtBarCode"
-        android:layout_width="150px"
+        android:layout_width="220px"
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
     <TextView
         android:id="@+id/txtName"
-        android:layout_width="100px"
+        android:layout_width="140px"
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
