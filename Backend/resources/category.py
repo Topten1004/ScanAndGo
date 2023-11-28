@@ -24,6 +24,10 @@ class CreateCategory(Resource):
 
 class ReadCategory(Resource):
     def get(self):
+        return CategoryModel.return_all_by_id(request.args.get('id'))
+
+class ReadAllCategory(Resource):
+    def get(self):
         return CategoryModel.return_all()
     
 class DeleteCategory(Resource):

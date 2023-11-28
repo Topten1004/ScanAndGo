@@ -2,7 +2,7 @@ from models.inventory import InventoryModel
 from models.category import CategoryModel
 from models.item import ItemModel
 from models.building import BuildingModel
-from models.detailLocation import DetailLocationModel
+from models.detaillocation import DetailLocationModel
 from flask_restful import Resource, reqparse
 from flask import request
 import datetime
@@ -15,8 +15,9 @@ parser.add_argument('building_id')
 parser.add_argument('area_id')
 parser.add_argument('floor_id')
 parser.add_argument('detail_location_id')
-parser.add_argument('photo')
+parser.add_argument('barcode')
 parser.add_argument('status')
+parser.add_argument('photo')
 
 class CreateInventory(Resource):
     def post(self):
@@ -56,7 +57,7 @@ class CreateInventory(Resource):
                 
             new_inventory = InventoryModel(
                 category_id = category_id,
-                item_id = item_id,
+                item_id = data['item_id'],
                 location_id = location_id,
                 sublocation_id = sublocation_id,
                 purchase_date = data['purchaseDate'],
@@ -76,12 +77,17 @@ class ReadInventory(Resource):
         except:
             return {'status': -1}, 200
         
-class ReadBySubLocation(Resource):
+class ReadByDetailLocation(Resource):
     def get(self):
         try:
-            return InventoryModel.return_all_by_sublocation(request.args.get('id'))
+            return InventoryModel.return_all_by_detaillocation(request.args.get('id'))
         except: 
             return {'status': -1}, 200
+
+class UpdateInventory(Resource):
+    def put(self):
+        data = parser.parse_args()
+        return InventoryModel.updateInventory(request.args.get('id'), data['barcode'], data['status'], data['photo'])
 
 class CreateNewInventory(Resource):
     def post(self):

@@ -314,7 +314,7 @@ UpgradeLog*.htm
 ServiceFabricBackup/
 *.rptproj.bak
 .idea/
-.next
+.next/
 
 # SQL Server files
 *.mdf

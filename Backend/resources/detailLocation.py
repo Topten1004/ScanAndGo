@@ -1,4 +1,4 @@
-from models.detailLocation import DetailLocationModel
+from models.detaillocation import DetailLocationModel
 from flask_restful import Resource, reqparse
 from flask import request
 

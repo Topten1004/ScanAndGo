@@ -39,7 +39,8 @@ class FloorModel(db.Model):
                 'areaId': x.areaId,
                 'name': x.name
             }
-
+        return list(map(lambda x: to_json(x), FloorModel.query.order_by(FloorModel.id).all()))
+    
     @classmethod
     def delete_one(cls, id):
         try:

@@ -1,5 +1,5 @@
 from flask_restful import Api
-import resources.detailLocation as DetailLocationResource
+import resources.detaillocation as DetailLocationResource
 
 def detailLocationRouteIndex(app):
     api = Api(app)
