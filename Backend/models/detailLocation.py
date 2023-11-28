@@ -24,7 +24,7 @@ class DetailLocationModel(db.Model):
                 'id': x.id,
                 'floor_id': x.floor_id,
                 'name': x.name,
-                'imgData': x.img_data
+                'img_data': x.img_data
             }
         return list(map(
             lambda x: to_json(x), 
@@ -41,7 +41,7 @@ class DetailLocationModel(db.Model):
                 'id': x.id,
                 'floor_id': x.floor_id,
                 'name': x.name,
-                'imgData': x.img_data
+                'img_data': x.img_data
             }
         return list(map(
             lambda x: to_json(x), 
