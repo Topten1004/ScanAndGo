@@ -25,7 +25,9 @@ class CreateInventory(Resource):
         data = parser.parse_args()
         
         try:
+
             new_inventory = InventoryModel(
+
                 category_id = data['category_id'],
                 item_id = data['item_id'],
                 building_id = data['building_id'],
@@ -41,7 +43,8 @@ class CreateInventory(Resource):
             new_inventory.save_to_db()
             return { 'message': 'success!' }, 200
         
-        except:
+        except Exception as e:
+            print(e)
             return {'status': -1}, 200
         
 class ReadInventory(Resource):

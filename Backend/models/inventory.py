@@ -27,6 +27,7 @@ class InventoryModel(db.Model):
     reg_date = db.Column(db.String(120), default = datetime.datetime.now().date())
     comment = db.Column(db.String(120));
     rfid = db.Column(db.String(120));
+    barcode = db.Column(db.String(120));
 
     item = relationship('ItemModel', back_populates='inventory_item_entries')
     category = relationship('CategoryModel', back_populates='inventory_category_entries')
