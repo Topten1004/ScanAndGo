@@ -1,0 +1,70 @@
+[
+  {
+    "id": 1,
+    "name": "CTM"
+  },
+  {
+    "id": 2,
+    "name": "EM-KAMERE"
+  },
+  {
+    "id": 3,
+    "name": "EM-MAGENTA"
+  },
+  {
+    "id": 4,
+    "name": "EM-MTRAVEL"
+  },
+  {
+    "id": 5,
+    "name": "EM-PENSEES"
+  },
+  {
+    "id": 6,
+    "name": "EM-RS"
+  },
+  {
+    "id": 7,
+    "name": "EM-TINDU"
+  },
+  {
+    "id": 8,
+    "name": "EM-TUBAND"
+  },
+  {
+    "id": 9,
+    "name": "FERRY"
+  },
+  {
+    "id": 10,
+    "name": "GALLIENIE"
+  },
+  {
+    "id": 11,
+    "name": "HDV"
+  },
+  {
+    "id": 12,
+    "name": "MDA-AERODROME"
+  },
+  {
+    "id": 13,
+    "name": "MDA-ORPHELINA"
+  },
+  {
+    "id": 14,
+    "name": "MEDIATHEQUE-KAMERE"
+  },
+  {
+    "id": 15,
+    "name": "PEPINIERE"
+  },
+  {
+    "id": 16,
+    "name": "POLICE"
+  },
+  {
+    "id": 17,
+    "name": "R-S"
+  }
+]

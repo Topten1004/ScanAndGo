@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "buildingId": 1,
+    "name": "ACCUEIL-SEEEP"
+  },
+  {
+    "id": 2,
+    "buildingId": 1,
+    "name": "DCPR-SGMT"
+  },
+  {
+    "id": 3,
+    "buildingId": 1,
+    "name": "DM-REFECTOIRE-1"
+  },
+  {
+    "id": 4,
+    "buildingId": 1,
+    "name": "DM-REFECTOIRE-2"
+  },
+  {
+    "id": 5,
+    "buildingId": 1,
+    "name": "DM-ACHAT"
+  },
+  {
+    "id": 6,
+    "buildingId": 1,
+    "name": "DM-SAC-DIRECTION"
+  },
+  {
+    "id": 7,
+    "buildingId": 1,
+    "name": "DM-BATIMENT"
+  },
+  {
+    "id": 8,
+    "buildingId": 1,
+    "name": "DM-LOGISTIQUE"
+  },
+  {
+    "id": 9,
+    "buildingId": 1,
+    "name": "DM-MECANIQUE"
+  },
+  {
+    "id": 10,
+    "buildingId": 1,
+    "name": "DM-STOCKAGE"
+  }
+]
