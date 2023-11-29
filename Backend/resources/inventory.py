@@ -18,6 +18,7 @@ parser.add_argument('detail_location_id')
 parser.add_argument('barcode')
 parser.add_argument('status')
 parser.add_argument('photo')
+parser.add_argument('comment')
 
 class CreateInventory(Resource):
     def post(self):
@@ -33,7 +34,8 @@ class CreateInventory(Resource):
                 detail_location_id = data['detail_location_id'],
                 barcode = data['barcode'],
                 photo = data['photo'],
-                status = data['status']
+                status = data['status'],
+                comment = data['comment']
             )
                 
             new_inventory.save_to_db()
