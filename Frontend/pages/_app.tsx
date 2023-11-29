@@ -16,7 +16,6 @@ const { PersistGate } = require('redux-persist/integration/react');
 
 import cookie from 'cookie';
 import type { IncomingMessage } from 'http';
-import { SSRKeycloakProvider, SSRCookies } from '@react-keycloak/ssr';
 import { AppContext } from 'next/app';
 
 const keycloakCfg = {

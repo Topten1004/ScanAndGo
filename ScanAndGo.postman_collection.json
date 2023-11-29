@@ -1,0 +1,1937 @@
+{
+	"info": {
+		"_postman_id": "0f4b9cff-7716-4b63-bfeb-9e28a8a7b15c",
+		"name": "ScanAndGo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26044673"
+	},
+	"item": [
+		{
+			"name": "Local",
+			"item": [
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "CategoryLists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/category/read",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"category",
+										"read"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createCategory",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test Category\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/category/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"category",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateCategory",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Update Category\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/category/update?id=8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"category",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "8"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteCategory",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/category/delete?id=19",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"category",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "19"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Item",
+					"item": [
+						{
+							"name": "ItemLists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/item/readall",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"item",
+										"readall"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ItemListsByCategory",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/item/read?id=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"item",
+										"read"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createItem",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"categoryId\": 1,\r\n    \"name\": \"Test Item\",\r\n    \"barcode\": \"99999\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/item/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"item",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateItem",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Update Item\",\r\n    \"category_id\" : 2,\r\n    \"barcode\" : \"000000\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/item/update?id=33",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"item",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "33"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteItem",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/item/delete?id=33",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"item",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "33"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Building",
+					"item": [
+						{
+							"name": "BuildingLists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/building/read",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"building",
+										"read"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createBuilding",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test Building\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/building/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"building",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateBuilding",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Del_Dest\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/category/update?id=19",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"category",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "19"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteBuilding",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/category/delete?id=19",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"category",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "19"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Area",
+					"item": [
+						{
+							"name": "areaLists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/area/readall",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"area",
+										"readall"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "areaListsByBuildingId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/area/read?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"area",
+										"read"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createArea",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"buildingId\":1,\r\n    \"name\": \"Test Area\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/area/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"area",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateBuilding",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Update Area\",\r\n    \"buildingId\": 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/area/update?id=69",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"area",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "69"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteBuilding",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/area/delete?id=69",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"area",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "69"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Floor",
+					"item": [
+						{
+							"name": "floorLists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/floor/readall",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"floor",
+										"readall"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "floorListsByAreaId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/floor/read?id=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"floor",
+										"read"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createFloor",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Created Floor\",\r\n    \"areaId\": 3   \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/floor/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"floor",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateFloor",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Update Floor\",\r\n    \"areaId\": 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/floor/update?id=124",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"floor",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "124"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteFloor",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/floor/delete?id=124",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"floor",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "124"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DetailLocation",
+					"item": [
+						{
+							"name": "detailLocationLists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/detaillocation/readall",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"detaillocation",
+										"readall"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "detailLocationListsByAreaId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/detaillocation/read?id=64",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"detaillocation",
+										"read"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "64"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createDetailLocation",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Detail Location\",\r\n    \"img_data\": \"123456\",\r\n    \"floorId\": 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/detaillocation/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"detaillocation",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateDetailLocation",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Update Detail Location\",\r\n    \"imgData\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/detaillocation/update?id=61",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"detaillocation",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "61"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteDetailLocation",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/detaillocation/delete?id=61",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"detaillocation",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "61"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "inventoryPart",
+					"item": [
+						{
+							"name": "getInventoriesByDetailLocation",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/inventory/detaillocation/read?id=6",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"inventory",
+										"detaillocation",
+										"read"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "InventoryLists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/inventory/readall",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"inventory",
+										"readall"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateInventory",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"barcode\": \"000000\",\r\n    \"status\": \"1\",\r\n    \"photo\":\"aaaaa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/inventory/update?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"inventory",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Server",
+			"item": [
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "CategoryLists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/category/read",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"category",
+										"read"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createCategory",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test Category\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/category/create",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"category",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateCategory",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Update Category\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/category/update?id=8",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"category",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "8"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteCategory",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/category/delete?id=19",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"category",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "19"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Item",
+					"item": [
+						{
+							"name": "ItemLists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/item/readall",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"item",
+										"readall"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ItemListsByCategory",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/item/read?id=2",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"item",
+										"read"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createItem",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"categoryId\": 1,\r\n    \"name\": \"Test Item\",\r\n    \"barcode\": \"99999\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/item/create",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"item",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateItem",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Update Item\",\r\n    \"category_id\" : 2,\r\n    \"barcode\" : \"000000\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/item/update?id=33",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"item",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "33"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteItem",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/item/delete?id=33",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"item",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "33"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Building",
+					"item": [
+						{
+							"name": "BuildingLists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/building/read",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"building",
+										"read"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createBuilding",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test Building\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/building/create",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"building",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateBuilding",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Del_Dest\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/category/update?id=19",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"category",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "19"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteBuilding",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/category/delete?id=19",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"category",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "19"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Area",
+					"item": [
+						{
+							"name": "areaLists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/area/readall",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"area",
+										"readall"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "areaListsByBuildingId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/area/read?id=1",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"area",
+										"read"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createArea",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"buildingId\":1,\r\n    \"name\": \"Test Area\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/area/create",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"area",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateBuilding",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Update Area\",\r\n    \"buildingId\": 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/area/update?id=69",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"area",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "69"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteBuilding",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/area/delete?id=69",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"area",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "69"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Floor",
+					"item": [
+						{
+							"name": "floorLists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/floor/readall",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"floor",
+										"readall"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "floorListsByAreaId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/floor/read?id=2",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"floor",
+										"read"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createFloor",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Created Floor\",\r\n    \"areaId\": 3   \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/floor/create",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"floor",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateFloor",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Update Floor\",\r\n    \"areaId\": 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/floor/update?id=124",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"floor",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "124"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteFloor",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/floor/delete?id=124",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"floor",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "124"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DetailLocation",
+					"item": [
+						{
+							"name": "detailLocationLists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/detaillocation/readall",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"detaillocation",
+										"readall"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "detailLocationListsByAreaId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/detaillocation/read?id=64",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"detaillocation",
+										"read"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "64"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createDetailLocation",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Detail Location\",\r\n    \"img_data\": \"123456\",\r\n    \"floorId\": 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/detaillocation/create",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"detaillocation",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateDetailLocation",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Update Detail Location\",\r\n    \"imgData\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/detaillocation/update?id=61",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"detaillocation",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "61"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteDetailLocation",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/detaillocation/delete?id=61",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"detaillocation",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "61"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "inventoryPart",
+					"item": [
+						{
+							"name": "getInventoriesByDetailLocation",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/inventory/detaillocation/read?id=6",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"inventory",
+										"detaillocation",
+										"read"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "InventoryLists",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/inventory/readall",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"inventory",
+										"readall"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateInventory",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"barcode\": \"000000\",\r\n    \"status\": \"1\",\r\n    \"photo\":\"aaaaa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/inventory/update?id=1",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"inventory",
+										"update"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/user/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"user",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@react-keycloak/ssr": "^3.3.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/cookie": "^0.5.4",
     "@types/node": "20.2.0",
