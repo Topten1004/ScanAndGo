@@ -22,12 +22,11 @@ class InventoryModel(db.Model):
     purchase_date = db.Column(db.String(120))
     last_date = db.Column(db.String(120))
     ref_client = db.Column(db.String(120))
-    quantity = db.Column(db.Integer);
-    quantity_go = db.Column(db.Integer);
     status = db.Column(db.Integer);
     photo = db.Column(db.TEXT)
     reg_date = db.Column(db.String(120), default = datetime.datetime.now().date())
     comment = db.Column(db.String(120));
+    rfid = db.Column(db.String(120));
 
     item = relationship('ItemModel', back_populates='inventory_item_entries')
     category = relationship('CategoryModel', back_populates='inventory_category_entries')

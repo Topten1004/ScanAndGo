@@ -24,49 +24,21 @@ class CreateInventory(Resource):
         data = parser.parse_args()
         
         try:
-            category = CategoryModel.find_by_name(data['category'])
-            if (category):
-                category_id = category.id
-            else:
-                new_category = CategoryModel(
-                    name = data['category']
-                )
-                new_category.save_to_db()
-                category_id = new_category.id
-                            
-            location = BuildingModel.find_by_name(data['location'])
-            if (location):
-                location_id = location.id
-            else:
-                new_location = BuildingModel(
-                    name = data['location']
-                )
-                new_location.save_to_db()
-                location_id = new_location.id
-            
-            sublocation = DetailLocationModel.find_by_id_name(location_id, data['sublocation'])
-            if (sublocation):
-                sublocation_id = sublocation.id
-            else:
-                new_sublocation = DetailLocationModel(
-                    location_id = location_id,
-                    name = data['sublocation']
-                )
-                new_sublocation.save_to_db()
-                sublocation_id = new_sublocation.id
-                
             new_inventory = InventoryModel(
-                category_id = category_id,
+                category_id = data['category_id'],
                 item_id = data['item_id'],
-                location_id = location_id,
-                sublocation_id = sublocation_id,
-                purchase_date = data['purchaseDate'],
-                last_date = data['lastDate'],
-                ref_client = data['refClient']
+                building_id = data['building_id'],
+                area_id = data['area_id'],
+                floor_id = data['floor_id'],
+                detail_location_id = data['detail_location_id'],
+                barcode = data['barcode'],
+                photo = data['photo'],
+                status = data['status']
             )
                 
             new_inventory.save_to_db()
-            return { 'status': 1 }, 200
+            return { 'message': 'success!' }, 200
+        
         except:
             return {'status': -1}, 200
         
