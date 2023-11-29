@@ -7,7 +7,7 @@ class DetailLocationModel(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     floor_id = db.Column(db.Integer, db.ForeignKey('floors.id'))
     name = db.Column(db.String(120), nullable = False)
-    img_data = db.Column(TEXT)
+    img_data = db.Column(db.String)
     
     def save_to_db(self):
         db.session.add(self)
