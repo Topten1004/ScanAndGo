@@ -14,8 +14,17 @@ class DetailLocationModel(db.Model):
         db.session.commit()
         
     @classmethod
-    def find_by_id_name(cls, id, name):
-        return cls.query.filter_by(id = id, name = name).first()
+    def return_find_by_id(cls, id):
+        def to_json(x):
+            return {
+                'id': x.id,
+                'floor_id': x.floor_id,
+                'name': x.name,
+                'img_data': x.img_data
+            }
+
+        result = cls.query.filter_by(id=id).first()
+        return to_json(result) if result else None
         
     @classmethod
     def return_all_by_id(cls, id):

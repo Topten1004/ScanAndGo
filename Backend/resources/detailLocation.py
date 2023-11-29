@@ -23,10 +23,14 @@ class CreateDetailLocation(Resource):
         except Exception as e:
             return {'message': str(e)}, 400
 
-class ReadDetailLocation(Resource):
+class ReadDetailLocationByFloor(Resource):
     def get(self):
         return DetailLocationModel.return_all_by_id(request.args.get('id'))
-    
+
+class ReadDetailLocationById(Resource):
+    def get(self):
+        return DetailLocationModel.return_find_by_id(request.args.get('id'))
+
 class DeleteDetailLocation(Resource):
     def delete(self):
         return DetailLocationModel.delete_one(request.args.get('id'))
