@@ -1,5 +1,8 @@
 from start import db
 from sqlalchemy import TEXT
+import base64
+
+from base64 import b64encode
 
 class DetailLocationModel(db.Model):
     __tablename__ = 'detail_locations'
@@ -20,12 +23,12 @@ class DetailLocationModel(db.Model):
                 'id': x.id,
                 'floor_id': x.floor_id,
                 'name': x.name,
-                'img_data': x.img_data
+                'img_data': b64encode(x.img_data.encode("utf-8")).decode("utf-8") if isinstance(x.img_data, str) else b64encode(x.img_data).decode("utf-8")
             }
 
         result = cls.query.filter_by(id=id).first()
         return to_json(result) if result else None
-        
+
     @classmethod
     def return_all_by_id(cls, id):
         def to_json(x):
@@ -33,7 +36,7 @@ class DetailLocationModel(db.Model):
                 'id': x.id,
                 'floor_id': x.floor_id,
                 'name': x.name,
-                'img_data': x.img_data
+                'img_data': b64encode(x.img_data.encode("utf-8")).decode("utf-8") if isinstance(x.img_data, str) else b64encode(x.img_data).decode("utf-8")
             }
         return list(map(
             lambda x: to_json(x), 

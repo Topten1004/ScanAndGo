@@ -45,14 +45,14 @@ class CreateInventory(Resource):
         
         except Exception as e:
             print(e)
-            return {'status': -1}, 200
+            return {'status': -1}, 500
         
 class ReadInventory(Resource):
     def get(self):
         try:
             return InventoryModel.return_all()
         except:
-            return {'status': -1}, 200
+            return {'status': -1}, 500
         
 class ReadByDetailLocation(Resource):
     def get(self):
