@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="12dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:text="@string/chooseTime" />
+
+    <Spinner
+        android:id="@+id/spDisconnectTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/disconnect_time_array" />
+</LinearLayout>
