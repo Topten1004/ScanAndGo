@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- GB label Lock -->
+    <string-array name="storageArea">
+        <item>Label information area</item>
+        <item>Coding region</item>
+        <item>Safety</item>
+        <item>User</item>
+    </string-array>
+
+    <string-array name="userAreaNumbers">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </string-array>
+
+    <string-array name="config">
+        <item>Storage area attr</item>
+        <item>Safe mode</item>
+    </string-array>
+
+    <string-array name="action1">
+        <item>Read-write</item>
+        <item>Readable but not Writable</item>
+        <item>Unreadable and Writable</item>
+        <item>Unreadable and not Writable</item>
+    </string-array>
+
+    <string-array name="action2">
+        <item>Retain</item>
+        <item>No identification is required</item>
+        <item>Need authentication, no need for secure communication</item>
+        <item>Need identification, need secure communication</item>
+    </string-array>
+
+    <!-- 协议 -->
+    <string-array name="arrayProtocol" translatable="false">
+        <item>ISO 18000-6C</item>
+        <item>GB/T 29768</item>
+        <item>GJB 7377.1</item>
+    </string-array>
+
+    <string-array name="arrayPower3" translatable="false">
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+    </string-array>
+
+    <string-array name="erase_area_array">
+        <item>RESERVED</item>
+        <item>EPC</item>
+        <item>TID</item>
+        <item>USER</item>
+    </string-array>
+
+    <string-array name="disconnect_time_array">
+        <item>Keep-alive</item>
+        <item>1 hour later</item>
+        <item>2 hours later</item>
+        <item>3 hours later</item>
+        <item>4 hours later</item>
+        <item>5 hours later</item>
+        <item>6 hours later</item>
+    </string-array>
+
+    <string-array name="arraySession">
+        <item>S0</item>
+        <item>S1</item>
+        <item>S2</item>
+        <item>S3</item>
+    </string-array>
+    <string-array name="arrayInventoried">
+        <item>A</item>
+        <item>B</item>
+        <item>AB</item>
+    </string-array>
+</resources>
