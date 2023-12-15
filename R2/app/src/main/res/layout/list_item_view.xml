@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="4dp"
+    android:gravity="center">
+
+    <!-- Main Button with 70% width -->
+    <Button
+        android:id="@+id/mainButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="7"
+        android:width="360px"
+        android:text="Main Button"
+        android:textSize="18sp" />
+
+    <!-- Trash Button with 15% width -->
+    <ImageButton
+        android:id="@+id/trashButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:background="@drawable/actionbar_back"
+        android:contentDescription="Trash Button"
+        android:src="@drawable/trash" />
+
+    <!-- Edit Button with 15% width -->
+    <ImageButton
+        android:id="@+id/editButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:background="@drawable/actionbar_back"
+        android:contentDescription="Edit Button"
+        android:src="@drawable/edit" />
+
+
+</LinearLayout>
