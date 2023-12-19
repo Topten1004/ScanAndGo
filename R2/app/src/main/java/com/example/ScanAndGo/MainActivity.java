@@ -36,7 +36,18 @@ import com.example.ScanAndGo.component.ListAddItemView;
 import com.example.ScanAndGo.dto.AddItem;
 import com.example.ScanAndGo.dto.AssignBarCode;
 import com.example.ScanAndGo.dto.ReadAllItem;
+import com.example.ScanAndGo.fragment.BTRenameFragment;
 import com.example.ScanAndGo.fragment.BarcodeFragment;
+import com.example.ScanAndGo.fragment.UHFEraseFragment;
+import com.example.ScanAndGo.fragment.UHFKillFragment;
+import com.example.ScanAndGo.fragment.UHFLocationFragment;
+import com.example.ScanAndGo.fragment.UHFLockFragment;
+import com.example.ScanAndGo.fragment.UHFNewReadTagFragment;
+import com.example.ScanAndGo.fragment.UHFReadFragment;
+import com.example.ScanAndGo.fragment.UHFReadTagFragment;
+import com.example.ScanAndGo.fragment.UHFSetFragment;
+import com.example.ScanAndGo.fragment.UHFUpdataFragment;
+import com.example.ScanAndGo.fragment.UHFWriteFragment;
 import com.example.ScanAndGo.json.JsonTaskGetAllItemList;
 import com.example.ScanAndGo.json.JsonTaskUpdateItem;
 import com.example.ScanAndGo.tool.ExcelUtils;
@@ -481,12 +492,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         // Set the adapter for the ListView
         listView.setAdapter(adapter);
     }
-
-    public void onAddItemTo(View v)
-    {
-        startActivityForResult(new Intent(getApplicationContext(), BoardCategoryActivity.class), 0);
-    }
-
     public void onAssign(View v) {
 
         String barCodeData = "";
@@ -531,16 +536,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup(this, fm, R.id.realtabcontent);
 
-//      mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.title_inventory)).setIndicator(getString(R.string.title_inventory)), UHFReadTagFragment.class, null);
+      mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.title_inventory)).setIndicator(getString(R.string.title_inventory)), UHFReadTagFragment.class, null);
 //      mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.title_inventory2)).setIndicator(getString(R.string.title_inventory2)), UHFNewReadTagFragment.class, null);
-        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.title_2d_Scan)).setIndicator(getString(R.string.title_2d_Scan)), BarcodeFragment.class, null);
+//      mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.title_2d_Scan)).setIndicator(getString(R.string.title_2d_Scan)), BarcodeFragment.class, null);
 
-//        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_set)).setIndicator(getString(R.string.uhf_msg_tab_set)), UHFSetFragment.class, null);
-//
-//        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.location)).setIndicator(getString(R.string.location)), UHFLocationFragment.class, null);
-//
+        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_set)).setIndicator(getString(R.string.uhf_msg_tab_set)), UHFSetFragment.class, null);
+
+        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.location)).setIndicator(getString(R.string.location)), UHFLocationFragment.class, null);
+
 //        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_read)).setIndicator(getString(R.string.uhf_msg_tab_read)), UHFReadFragment.class, null);
-//
+
 //        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_write)).setIndicator(getString(R.string.uhf_msg_tab_write)), UHFWriteFragment.class, null);
 //
 //        mTabHost.addTab(mTabHost.newTabSpec(getString(R.string.uhf_msg_tab_lock)).setIndicator(getString(R.string.uhf_msg_tab_lock)), UHFLockFragment.class, null);
