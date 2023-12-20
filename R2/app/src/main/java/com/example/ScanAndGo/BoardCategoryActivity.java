@@ -28,12 +28,9 @@ public class BoardCategoryActivity extends BaseActivity {
     private ListView listView;
     private List<ButtonItem> itemList = new ArrayList<>();
     private TextView categoryName;
-
     private Button updateCategory;
     private Button addCategory;
-
     public int updateCategoryId = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

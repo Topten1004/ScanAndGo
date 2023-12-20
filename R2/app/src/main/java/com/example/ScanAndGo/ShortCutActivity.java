@@ -8,10 +8,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class ShortCutActivity extends BaseActivity{
-
     TextView title;
     EditText shortcut;
-
     Button btnGo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +19,13 @@ public class ShortCutActivity extends BaseActivity{
         title = (TextView) findViewById(R.id.shortCutName);
         shortcut = (EditText) findViewById(R.id.shortCut);
         btnGo = (Button) findViewById(R.id.goShortCut);
+
+        shortcut.requestFocus();
     }
 
 
     public void onGoShortCut(View view) {
-        startActivityForResult(new Intent(getApplicationContext(), MainActivity.class), 0);
 
+        startActivityForResult(new Intent(getApplicationContext(), MainActivity.class), 0);
     }
 }

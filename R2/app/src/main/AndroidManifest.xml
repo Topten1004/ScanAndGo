@@ -39,6 +39,9 @@
             android:name="com.example.ScanAndGo.StartActivity" />
 
         <activity
+            android:name="com.example.ScanAndGo.ShortCutActivity" />
+
+        <activity
             android:name="com.example.ScanAndGo.BoardCategoryActivity" />
 
         <activity

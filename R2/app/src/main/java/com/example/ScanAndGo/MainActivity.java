@@ -83,8 +83,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private final static String TAG = "MainActivity";
     private static final int REQUEST_ENABLE_BT = 2;
     private static final int REQUEST_SELECT_DEVICE = 1;
-
-    ListView listView;
     private List<AddItem> itemList = new ArrayList<>();
     public ArrayList<HashMap<String, String>> tagList;
     public String selectEPC=null;
@@ -145,7 +143,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Utils.initSound(getApplicationContext());
         LogUtility_qcom.setDebug(true);
 
-        reCallAPI();
     }
 
     @Override
@@ -458,74 +455,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         list.add(0, strArr);
         FileUtils.saveXmlList(list);
     }
-    public void reCallAPI()
-    {
-        Globals g = (Globals)getApplication();
-
-        String req = g.apiUrl + "item/readall";
-
-        try {
-            itemList.clear();
-
-            List<ReadAllItem> locationItems = new ArrayList<>();
-
-            locationItems = new JsonTaskGetAllItemList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req).get();
-
-            Collections.sort(locationItems);
-
-            if (locationItems != null) {
-
-                for (ReadAllItem p : locationItems) {
-
-                    AddItem newVM = new AddItem(p.id, 2, p.name, null, p.barcode, false  );
-                    itemList.add(newVM);
-                }
-            }
-        } catch (ExecutionException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        ListAddItemView adapter = new ListAddItemView(this, itemList);
-
-        // Set the adapter for the ListView
-        listView.setAdapter(adapter);
-    }
-    public void onAssign(View v) {
-
-        String barCodeData = "";
-        BarcodeFragment barcodeFragment = (BarcodeFragment) getSupportFragmentManager().findFragmentByTag(getString(R.string.title_2d_Scan));
-
-        if (barcodeFragment != null) {
-            barCodeData = barcodeFragment.getBarcodeData();
-        }
-
-        if (Globals.checkedItem > 0 && barCodeData.length() > 0) {
-
-            String req = Globals.apiUrl + "item/assign-barcode?id=" + String.valueOf(Globals.checkedItem);
-
-            Log.d("barCodeData::::", barCodeData + " " + Globals.checkedItem + " " + req);
-
-            AssignBarCode model = new AssignBarCode();
-            model.barcode = barCodeData;
-
-            new JsonTaskUpdateItem().execute(req, model.toJsonString());
-
-            // This method is called when the AsyncTask completes
-            Globals.nowBarCode = "";
-            Globals.checkedItem = 0;
-
-            barcodeFragment.setEmptyText();
-            reCallAPI();
-        }
-    }
-
 
     protected void initUI() {
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        listView = (ListView)findViewById(R.id.listAllItem);
         tvAddress = (TextView) findViewById(R.id.tvAddress);
         btn_connect = (Button) findViewById(R.id.btn_connect);
         btn_connect.setOnClickListener(this);
