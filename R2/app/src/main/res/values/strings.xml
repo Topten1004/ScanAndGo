@@ -116,6 +116,7 @@
     <string name="tvTagLen">Length</string>
     <string name="tvTagCount">Count</string>
     <string name="btClear">Clear</string>
+    <string name="btCheck">Check</string>
     <string name="second">s</string>
     <string name="workTime">WorkTime</string>
     <string-array name="arrayAntiQ">

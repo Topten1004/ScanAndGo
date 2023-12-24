@@ -67,6 +67,13 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
         ImageButton editButton = convertView.findViewById(R.id.editButton);
         ImageButton trashButton = convertView.findViewById(R.id.trashButton);
 
+        if(item.type == 6)
+        {
+            editButton.setVisibility(View.GONE);
+            trashButton.setVisibility(View.GONE);
+            mainButton.setBackgroundResource(android.R.color.transparent);
+        }
+
         // Set the data for each view
         mainButton.setText(item.getMainButtonText());
 
@@ -117,6 +124,9 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
                     intent.putExtra("subLocationId", Globals.subLocationId);
 
                     getContext().startActivity(intent);
+                } else if (type == 6)           // when user click the check tag part
+                {
+
                 }
             }
         });

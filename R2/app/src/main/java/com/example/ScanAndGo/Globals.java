@@ -23,10 +23,9 @@ public class Globals extends Application {
     public static String url = "https://api-villedenoumea.scanandgo.nc/";
     public static List<Category> categoryLists = new ArrayList<>();
     public static List<Location> locationLists = new ArrayList<>();
-
     public static List<SubCategory> subCategoryLists = new ArrayList<>();
-
     public static List<SubLocation> subLocationLists = new ArrayList<>();
+    public static List<String> tagsList = new ArrayList<>();
 
     public static String apiUrl = url + "api/";
     public static int categoryId = 0;
@@ -34,8 +33,12 @@ public class Globals extends Application {
     public static int subCategoryId = 0;
     public static int subLocationId = 0;
     public static int checkedItem = 0;
-
+    public static int buildingId = 0;
+    public static int areaId = 0;
+    public static int floorId = 0;
+    public static int detailLocationId = 0;
     public static String nowBarCode;
+    public static String shortCutName = "";
 
     @SuppressWarnings("deprecation")
     public boolean isNetworkConnected() {

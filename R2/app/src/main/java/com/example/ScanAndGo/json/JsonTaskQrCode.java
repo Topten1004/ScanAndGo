@@ -1,8 +1,12 @@
 package com.example.ScanAndGo.json;
 
 import android.os.AsyncTask;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.ScanAndGo.dto.LoginVM;
+import com.example.ScanAndGo.dto.QrReturn;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -20,13 +24,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-public class JsonTaskLogin extends AsyncTask<String, String, LoginVM> {
+public class JsonTaskQrCode extends AsyncTask<String, String, QrReturn> {
 
-    public JsonTaskLogin() {
+    public JsonTaskQrCode() {
         super();
     }
 
-    protected LoginVM doInBackground(String... params) {
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    protected QrReturn doInBackground(String... params) {
 
         HttpURLConnection connection = null;
         BufferedReader reader = null;
@@ -56,7 +61,7 @@ public class JsonTaskLogin extends AsyncTask<String, String, LoginVM> {
             if(!authOk) authOk = !buffer.substring(0, 15).equals("<!DOCTYPE html>");
             if(authOk){
 
-                Type t = new TypeToken<LoginVM>(){}.getType();
+                Type t = new TypeToken<QrReturn>(){}.getType();
                 return new Gson().fromJson(buffer.toString(), t);
             }
 
@@ -76,7 +81,7 @@ public class JsonTaskLogin extends AsyncTask<String, String, LoginVM> {
     }
 
     @Override
-    protected void onPostExecute(LoginVM result) {
-        super.onPostExecute((LoginVM) result);
+    protected void onPostExecute(QrReturn result) {
+        super.onPostExecute((QrReturn) result);
     }
 }

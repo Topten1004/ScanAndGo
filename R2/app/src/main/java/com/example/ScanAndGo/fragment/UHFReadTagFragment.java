@@ -1,6 +1,7 @@
 package com.example.ScanAndGo.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
@@ -24,11 +25,14 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ScanAndGo.CheckActivity;
 import com.example.ScanAndGo.DateUtils;
 import com.example.ScanAndGo.FileUtils;
+import com.example.ScanAndGo.Globals;
 import com.example.ScanAndGo.MainActivity;
 import com.example.ScanAndGo.NumberTool;
 import com.example.ScanAndGo.R;
+import com.example.ScanAndGo.ShortCutActivity;
 import com.example.ScanAndGo.Utils;
 import com.example.ScanAndGo.tool.CheckUtils;
 import com.rscja.deviceapi.RFIDWithUHFBLE;
@@ -54,6 +58,7 @@ public class UHFReadTagFragment extends Fragment implements View.OnClickListener
     private Button InventoryLoop, btInventory, btStop;//
     private Button btInventoryPerMinute;
     private Button btClear;
+    private Button btCheck;
     private TextView tv_count, tv_total, tv_time;
     private boolean isExit = false;
     private long total = 0;
@@ -154,10 +159,20 @@ public class UHFReadTagFragment extends Fragment implements View.OnClickListener
         mContext.removeConnectStatusNotice(mConnectStatus);
     }
 
+    public void onCheck()
+    {
+        Log.d("error", "OnCheck");
+        startActivityForResult(new Intent(mContext.getApplicationContext(), CheckActivity.class), 0);
+    }
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.btCheck:
+                Log.d("error", "OnCheck");
+                onCheck();
+                break;
             case R.id.btClear:
+                Log.d("error", "clearData");
                 clearData();
                 break;
             case R.id.btInventoryPerMinute:
@@ -184,6 +199,8 @@ public class UHFReadTagFragment extends Fragment implements View.OnClickListener
         btStop = (Button) mContext.findViewById(R.id.btStop);
         btStop.setEnabled(false);
         btClear = (Button) mContext.findViewById(R.id.btClear);
+        btCheck = (Button) mContext.findViewById(R.id.btCheck);
+
         tv_count = (TextView) mContext.findViewById(R.id.tv_count);
         tv_total = (TextView) mContext.findViewById(R.id.tv_total);
         tv_time = (TextView) mContext.findViewById(R.id.tv_time);
@@ -193,6 +210,7 @@ public class UHFReadTagFragment extends Fragment implements View.OnClickListener
         btInventory.setOnClickListener(this);
         btClear.setOnClickListener(this);
         btStop.setOnClickListener(this);
+        btCheck.setOnClickListener(this);
 
         btInventoryPerMinute = mContext.findViewById(R.id.btInventoryPerMinute);
         btInventoryPerMinute.setOnClickListener(this);
@@ -429,6 +447,7 @@ public class UHFReadTagFragment extends Fragment implements View.OnClickListener
             } else if (connectionStatus == ConnectionStatus.DISCONNECTED) {
                 stop();
                 btClear.setEnabled(true);
+                btCheck.setEnabled(true);
                 btStop.setEnabled(false);
                 InventoryLoop.setEnabled(false);
                 btInventory.setEnabled(false);
@@ -541,6 +560,13 @@ public class UHFReadTagFragment extends Fragment implements View.OnClickListener
             tagMap.put(MainActivity.TAG_COUNT, String.valueOf(1));
             tempDatas.add(index,info);
             tagList.add(index, tagMap);
+
+            // add tag if Global value not contains
+            if( !Globals.tagsList.contains(info.getEPC()))
+            {
+                Globals.tagsList.add(info.getEPC());
+            }
+
             tv_count.setText(String.valueOf(tagList.size()));
         }
         tagMap.put(MainActivity.TAG_USER, info.getUser());
@@ -663,9 +689,5 @@ public class UHFReadTagFragment extends Fragment implements View.OnClickListener
             }
             return convertView;
         }
-
     }
-
-
-
 }

@@ -58,7 +58,6 @@ public class JsonTaskUpdateItem extends AsyncTask<String, String, MessageVM> {
                 while ((line = reader.readLine()) != null) {
                     buffer.append(line);
                 }
-
                 Type t = new TypeToken<MessageVM>() {}.getType();
                 return new Gson().fromJson(buffer.toString(), t);
             } else {

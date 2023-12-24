@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -26,7 +27,6 @@ public class ListAddItemView extends ArrayAdapter<AddItem> {
 
     public String name;
     public String barCode;
-
     public boolean isCheck;
 
     public ListAddItemView(@NonNull Context context, @NonNull List<AddItem> objects) {
@@ -48,6 +48,9 @@ public class ListAddItemView extends ArrayAdapter<AddItem> {
         TextView date = convertView.findViewById(R.id.txtDate);
         TextView barCode = convertView.findViewById(R.id.txtBarCode);
         TextView name = convertView.findViewById(R.id.txtName);
+        Button trash = convertView.findViewById(R.id.trashButton);
+        Button edit = convertView.findViewById(R.id.editButton);
+        Button main = convertView.findViewById(R.id.mainButton);
 
         // Set the data for each view
         name.setText(item.getName());
@@ -66,6 +69,12 @@ public class ListAddItemView extends ArrayAdapter<AddItem> {
         }
         if (type == 2) {
             date.setVisibility(View.GONE);
+        }
+
+        if (type == 6)
+        {
+            edit.setVisibility(View.GONE);
+            trash.setVisibility(View.GONE);
         }
 
         // Set click listeners for buttons if needed

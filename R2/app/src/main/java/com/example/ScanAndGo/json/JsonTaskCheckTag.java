@@ -2,7 +2,8 @@ package com.example.ScanAndGo.json;
 
 import android.os.AsyncTask;
 
-import com.example.ScanAndGo.dto.LoginVM;
+import com.example.ScanAndGo.dto.CheckTagResponse;
+import com.example.ScanAndGo.dto.StatusVM;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -20,13 +21,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-public class JsonTaskLogin extends AsyncTask<String, String, LoginVM> {
+public class JsonTaskCheckTag extends AsyncTask<String, String, CheckTagResponse> {
 
-    public JsonTaskLogin() {
+    public JsonTaskCheckTag() {
         super();
     }
 
-    protected LoginVM doInBackground(String... params) {
+    protected CheckTagResponse doInBackground(String... params) {
 
         HttpURLConnection connection = null;
         BufferedReader reader = null;
@@ -39,6 +40,7 @@ public class JsonTaskLogin extends AsyncTask<String, String, LoginVM> {
             connection.setDoOutput(true);
             connection.setDoInput(true);
             connection.setChunkedStreamingMode(0);
+            connection.setInstanceFollowRedirects(true); // Add this line
 
             OutputStream out = new BufferedOutputStream(connection.getOutputStream());
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
@@ -46,17 +48,19 @@ public class JsonTaskLogin extends AsyncTask<String, String, LoginVM> {
             writer.write(params[1]);
             writer.flush();
 
+
             InputStream stream = connection.getInputStream();
             reader = new BufferedReader(new InputStreamReader(stream));
             StringBuffer buffer = new StringBuffer();
             String line = "";
             while ((line = reader.readLine()) != null) buffer.append(line);
 
+
             boolean authOk = buffer.length() < 15;
             if(!authOk) authOk = !buffer.substring(0, 15).equals("<!DOCTYPE html>");
             if(authOk){
 
-                Type t = new TypeToken<LoginVM>(){}.getType();
+                Type t = new TypeToken<CheckTagResponse>(){}.getType();
                 return new Gson().fromJson(buffer.toString(), t);
             }
 
@@ -76,7 +80,7 @@ public class JsonTaskLogin extends AsyncTask<String, String, LoginVM> {
     }
 
     @Override
-    protected void onPostExecute(LoginVM result) {
-        super.onPostExecute((LoginVM) result);
+    protected void onPostExecute(CheckTagResponse result) {
+        super.onPostExecute((CheckTagResponse) result);
     }
 }
