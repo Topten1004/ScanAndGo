@@ -2,6 +2,7 @@ package com.example.ScanAndGo.json;
 
 import android.os.AsyncTask;
 
+import com.example.ScanAndGo.dto.ResponseCheckItems;
 import com.example.ScanAndGo.dto.ResponseCheckTag;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -20,13 +21,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-public class JsonTaskCheckTag extends AsyncTask<String, String, ResponseCheckTag> {
+public class JsonTaskCheckItems extends AsyncTask<String, String, ResponseCheckItems> {
 
-    public JsonTaskCheckTag() {
+    public JsonTaskCheckItems() {
         super();
     }
 
-    protected ResponseCheckTag doInBackground(String... params) {
+    protected ResponseCheckItems doInBackground(String... params) {
 
         HttpURLConnection connection = null;
         BufferedReader reader = null;
@@ -42,11 +43,13 @@ public class JsonTaskCheckTag extends AsyncTask<String, String, ResponseCheckTag
             connection.setInstanceFollowRedirects(true); // Add this line
 
             OutputStream out = new BufferedOutputStream(connection.getOutputStream());
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-                    out, StandardCharsets.UTF_8));
+            BufferedWriter writer = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+                writer = new BufferedWriter(new OutputStreamWriter(
+                        out, StandardCharsets.UTF_8));
+            }
             writer.write(params[1]);
             writer.flush();
-
 
             InputStream stream = connection.getInputStream();
             reader = new BufferedReader(new InputStreamReader(stream));
@@ -54,12 +57,11 @@ public class JsonTaskCheckTag extends AsyncTask<String, String, ResponseCheckTag
             String line = "";
             while ((line = reader.readLine()) != null) buffer.append(line);
 
-
             boolean authOk = buffer.length() < 15;
             if(!authOk) authOk = !buffer.substring(0, 15).equals("<!DOCTYPE html>");
             if(authOk){
 
-                Type t = new TypeToken<ResponseCheckTag>(){}.getType();
+                Type t = new TypeToken<ResponseCheckItems>(){}.getType();
                 return new Gson().fromJson(buffer.toString(), t);
             }
 
@@ -79,7 +81,7 @@ public class JsonTaskCheckTag extends AsyncTask<String, String, ResponseCheckTag
     }
 
     @Override
-    protected void onPostExecute(ResponseCheckTag result) {
-        super.onPostExecute((ResponseCheckTag) result);
+    protected void onPostExecute(ResponseCheckItems result) {
+        super.onPostExecute((ResponseCheckItems) result);
     }
 }

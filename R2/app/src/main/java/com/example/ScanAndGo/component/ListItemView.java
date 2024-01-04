@@ -68,7 +68,7 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
         ImageButton editButton = convertView.findViewById(R.id.editButton);
         ImageButton trashButton = convertView.findViewById(R.id.trashButton);
 
-        if(item.type == 6)
+        if(item.type >= 6)
         {
             editButton.setVisibility(View.GONE);
             trashButton.setVisibility(View.GONE);

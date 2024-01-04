@@ -3,30 +3,17 @@ package com.example.ScanAndGo;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.telecom.Call;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.ScanAndGo.component.ListItemView;
-import com.example.ScanAndGo.dto.ButtonItem;
-import com.example.ScanAndGo.dto.CheckTagResponse;
-import com.example.ScanAndGo.dto.Location;
-import com.example.ScanAndGo.dto.LoginVM;
-import com.example.ScanAndGo.dto.PostCheckTags;
-import com.example.ScanAndGo.dto.PostQRCode;
+import com.example.ScanAndGo.dto.ResponseCheckItems;
+import com.example.ScanAndGo.dto.ResponseCheckTag;
+import com.example.ScanAndGo.dto.PostCheckItem;
+import com.example.ScanAndGo.json.JsonTaskCheckItems;
 import com.example.ScanAndGo.json.JsonTaskCheckTag;
-import com.example.ScanAndGo.json.JsonTaskGetLocationList;
-import com.example.ScanAndGo.json.JsonTaskLogin;
-import com.google.gson.Gson;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class CheckItemActivity extends BaseActivity{
@@ -64,21 +51,22 @@ public class CheckItemActivity extends BaseActivity{
     {
         Globals g = (Globals) getApplication();
 
-        String req = g.apiUrl + "inventory/detect/barcode";
+        String req = g.apiUrl + "inventory/barcodelist";
 
         try {
-            PostCheckTags model = new PostCheckTags();
+            PostCheckItem model = new PostCheckItem();
 
-            model.floor_id = Globals.floorId;
-            model.barcodes = Globals.tagsList;
+            model.barcodes = Arrays.asList(barcode);
 
-            CheckTagResponse response = new CheckTagResponse();
+            ResponseCheckItems response = new ResponseCheckItems();
 
-            response = new JsonTaskCheckTag().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req, model.toJsonString()).get();
+            response = new JsonTaskCheckItems().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req, model.toJsonString()).get();
 
             if (response != null) {
 
+                Log.d("hhhhhhhh", response.data.toString());
             }
+
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {

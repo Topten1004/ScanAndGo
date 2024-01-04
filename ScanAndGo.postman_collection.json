@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "0f4b9cff-7716-4b63-bfeb-9e28a8a7b15c",
+		"_postman_id": "70b10509-fe2f-4e84-8662-bdd907eace45",
 		"name": "ScanAndGo",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26044673"
+		"_exporter_id": "26796119"
 	},
 	"item": [
 		{
@@ -920,6 +920,36 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "createInventory",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"barcode\": \"000000\",\r\n    \"status\": \"1\",\r\n    \"photo\":\"aaaaa\",\r\n    \"comment\":\"this is new item\",\r\n    \"category_id\":1,\r\n    \"item_id\":11,\r\n    \"building_id\":1,\r\n    \"area_id\":2,\r\n    \"floor_id\":4,\r\n    \"detail_location_id\":4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/inventory/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"inventory",
+										"create"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -1350,6 +1380,38 @@
 										}
 									]
 								}
+							},
+							"response": []
+						},
+						{
+							"name": "detectShortCut",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"CTM#DM-ACHAT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/building/detect-qrcode",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"building",
+										"detect-qrcode"
+									]
+								},
+								"description": "detect shortcut"
 							},
 							"response": []
 						}
@@ -1812,6 +1874,37 @@
 					"name": "inventoryPart",
 					"item": [
 						{
+							"name": "createInventory",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"barcode\": \"000000\",\r\n    \"status\": \"1\",\r\n    \"photo\":\"aaaaa\",\r\n    \"comment\":\"this is new item\",\r\n    \"category_id\":1,\r\n    \"item_id\":11,\r\n    \"building_id\":1,\r\n    \"area_id\":2,\r\n    \"floor_id\":4,\r\n    \"detail_location_id\":4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/inventory/create",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"inventory",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "getInventoriesByDetailLocation",
 							"request": {
 								"method": "GET",
@@ -1893,6 +1986,107 @@
 										{
 											"key": "id",
 											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "detectBarcode",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"floor_id\": 4,\r\n    \"barcode_list\": [\r\n        \"000000\",\r\n        \"111111\",\r\n        \"222222\",\r\n        \"09880180100026000001\",\r\n        \"09880180100053400001\",\r\n        \"09880180100053400004\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/inventory/detect/barcode",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"inventory",
+										"detect",
+										"barcode"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getInventoryDataByBarcodeList",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"barcode_list\": [\r\n        \"09880180100026000001\",\r\n        \"09880180100062900001\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/inventory/barcodelist",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"inventory",
+										"barcodelist"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateInventoryFloor",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"floor_id\": 68\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-villedenoumea.scanandgo.nc/api/inventory/update/floor?id=6604",
+									"protocol": "https",
+									"host": [
+										"api-villedenoumea",
+										"scanandgo",
+										"nc"
+									],
+									"path": [
+										"api",
+										"inventory",
+										"update",
+										"floor"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "6604"
 										}
 									]
 								}

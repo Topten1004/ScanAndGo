@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CheckTagResponse {
+public class ResponseCheckTag {
     @SerializedName("right_list")
     public List<String> rightLists = new ArrayList<>();
 
@@ -19,10 +19,10 @@ public class CheckTagResponse {
     @SerializedName("unknown_list")
 
     public List<String> unknownLists = new ArrayList<>();
-    public CheckTagResponse() {
+    public ResponseCheckTag() {
     }
 
-    public CheckTagResponse(List<String> rightLists, List<String> wrongLists, List<String> missingLists, List<String> unknownLists) {
+    public ResponseCheckTag(List<String> rightLists, List<String> wrongLists, List<String> missingLists, List<String> unknownLists) {
         this.rightLists = rightLists;
         this.wrongLists = wrongLists;
         this.missingLists = missingLists;

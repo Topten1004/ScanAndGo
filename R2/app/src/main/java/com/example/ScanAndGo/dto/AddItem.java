@@ -2,14 +2,12 @@ package com.example.ScanAndGo.dto;
 
 public class AddItem {
 
-
     public int id;
 
     public int type; // 1: Sub location Items 2: Assign Item part
     public String date;
 
     public String name;
-
     public String barCode;
 
     public boolean isCheck;
