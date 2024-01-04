@@ -36,6 +36,11 @@ public class CheckActivity extends BaseActivity{
     private List<ButtonItem> unknownItemList = new ArrayList<>();
     private List<ButtonItem> missingItemList = new ArrayList<>();
 
+    private String[] rightListValues;
+    private String[] wrongListValues;
+    private String[] unknownListValues;
+    private String[] missingListValues;
+
     private ListView rightListView;
     private ListView wrongListView;
     private ListView unknownListView;
@@ -63,21 +68,47 @@ public class CheckActivity extends BaseActivity{
     public void onCheckRightLocation(View v)
     {
         type = 1;
+
+        Intent intent = new Intent(this, CheckItemActivity.class);
+
+        intent.putExtra("type", 6);
+        intent.putExtra("barcode", rightListValues);
+        this.startActivity(intent);
     }
 
     public void onCheckWrongLocation(View v)
     {
+
         type = 2;
+
+        Intent intent = new Intent(this, CheckItemActivity.class);
+
+        intent.putExtra("type", 7);
+        intent.putExtra("barcode", wrongListValues);
+        this.startActivity(intent);
     }
 
     public void onCheckUnknownLocation(View v)
     {
+
         type = 3;
+
+        Intent intent = new Intent(this, CheckItemActivity.class);
+
+        intent.putExtra("type", 8);
+        intent.putExtra("barcode", unknownListValues);
+        this.startActivity(intent);
     }
 
     public void onCheckMissingLocation(View v)
     {
         type = 4;
+
+        Intent intent = new Intent(this, CheckItemActivity.class);
+
+        intent.putExtra("type", 9);
+        intent.putExtra("barcode", missingListValues);
+        this.startActivity(intent);
     }
     
     public void CallAPI()
@@ -103,27 +134,27 @@ public class CheckActivity extends BaseActivity{
                 missingItemList.clear();
                 unknownItemList.clear();
 
-                for (String p : response.unknownLists) {
-
-                    ButtonItem newVM = new ButtonItem(p, 6, 0, true);
-                    unknownItemList.add(newVM);
-                }
-
                 for (String p : response.rightLists) {
-
+                    rightListValues = response.rightLists.toArray(new String[0]);
                     ButtonItem newVM = new ButtonItem(p, 6, 0, true);
                     rightItemList.add(newVM);
                 }
 
                 for (String p : response.wrongLists) {
-
-                    ButtonItem newVM = new ButtonItem(p, 6, 0, true);
+                    wrongListValues = response.wrongLists.toArray(new String[0]);
+                    ButtonItem newVM = new ButtonItem(p, 7, 0, true);
                     wrongItemList.add(newVM);
                 }
 
-                for (String p : response.missingLists) {
+                for (String p : response.unknownLists) {
+                    unknownListValues = response.unknownLists.toArray(new String[0]);
+                    ButtonItem newVM = new ButtonItem(p, 8, 0, true);
+                    unknownItemList.add(newVM);
+                }
 
-                    ButtonItem newVM = new ButtonItem(p, 6, 0, true);
+                for (String p : response.missingLists) {
+                    missingListValues = response.missingLists.toArray(new String[0]);
+                    ButtonItem newVM = new ButtonItem(p, 9, 0, true);
                     missingItemList.add(newVM);
                 }
             }

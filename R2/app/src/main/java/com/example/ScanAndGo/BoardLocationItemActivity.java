@@ -28,7 +28,6 @@ public class BoardLocationItemActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board_location_item);
 
-
         Globals g = (Globals)getApplication();
 
         if (g.isLogin == false)
@@ -98,7 +97,6 @@ public class BoardLocationItemActivity extends BaseActivity {
     public void btnInventory(View v)
     {
         startActivityForResult(new Intent(getApplicationContext(), BoardInventoryActivity.class), 0);
-
     }
 
     public void btnLocation(View v)

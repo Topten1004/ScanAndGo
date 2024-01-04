@@ -42,6 +42,9 @@
             android:name="com.example.ScanAndGo.CheckActivity" />
 
         <activity
+            android:name="com.example.ScanAndGo.CheckItemActivity" />
+
+        <activity
             android:name="com.example.ScanAndGo.ShortCutActivity" />
 
         <activity

@@ -19,6 +19,7 @@ import com.example.ScanAndGo.BoardLocationActivity;
 import com.example.ScanAndGo.BoardLocationItemActivity;
 import com.example.ScanAndGo.BoardSubCategoryActivity;
 import com.example.ScanAndGo.BoardSubLocationActivity;
+import com.example.ScanAndGo.CheckItemActivity;
 import com.example.ScanAndGo.Globals;
 import com.example.ScanAndGo.R;
 import com.example.ScanAndGo.dto.ButtonItem;
@@ -71,6 +72,7 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
         {
             editButton.setVisibility(View.GONE);
             trashButton.setVisibility(View.GONE);
+
             mainButton.setBackgroundResource(android.R.color.transparent);
         }
 
@@ -124,8 +126,13 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
                     intent.putExtra("subLocationId", Globals.subLocationId);
 
                     getContext().startActivity(intent);
-                } else if (type == 6)           // when user click the check tag part
+                } else if (type >= 6)           // when user click the check tag part
                 {
+                    Intent intent = new Intent(getContext(), CheckItemActivity.class);
+
+                    intent.putExtra("type", type);
+                    intent.putExtra("barcode", item.getMainButtonText());
+                    getContext().startActivity(intent);
 
                 }
             }

@@ -71,7 +71,7 @@ public class ListAddItemView extends ArrayAdapter<AddItem> {
             date.setVisibility(View.GONE);
         }
 
-        if (type == 6)
+        if (type >= 6)
         {
             edit.setVisibility(View.GONE);
             trash.setVisibility(View.GONE);
