@@ -43,6 +43,7 @@ public class CheckActivity extends BaseActivity{
 
     private TextView shortCut;
 
+    public int type = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +60,26 @@ public class CheckActivity extends BaseActivity{
         CallAPI();
     }
 
+    public void onCheckRightLocation(View v)
+    {
+        type = 1;
+    }
+
+    public void onCheckWrongLocation(View v)
+    {
+        type = 2;
+    }
+
+    public void onCheckUnknownLocation(View v)
+    {
+        type = 3;
+    }
+
+    public void onCheckMissingLocation(View v)
+    {
+        type = 4;
+    }
+    
     public void CallAPI()
     {
         Globals g = (Globals) getApplication();
@@ -72,7 +93,6 @@ public class CheckActivity extends BaseActivity{
             model.barcodes = Globals.tagsList;
 
             CheckTagResponse response = new CheckTagResponse();
-
 
             response = new JsonTaskCheckTag().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req, model.toJsonString()).get();
 

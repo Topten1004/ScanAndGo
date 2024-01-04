@@ -23,11 +23,25 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView2"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="right location" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="262dp"
+                android:layout_height="wrap_content"
+                android:text="right location"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btnCheckRightLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckRightLocation"
+                android:text="Check" />
+        </LinearLayout>
 
         <ListView
             android:id="@+id/rightItems"
@@ -36,11 +50,24 @@
             android:layout_weight="1"
             android:background="#64EB8A" />
 
-        <TextView
-            android:id="@+id/textView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="wrong location" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="262dp"
+                android:layout_height="wrap_content"
+                android:text="wrong location"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btnCheckWrongLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckWrongLocation"
+                android:text="Check" />
+        </LinearLayout>
 
         <ListView
             android:id="@+id/wrongItems"
@@ -49,11 +76,24 @@
             android:layout_weight="1"
             android:background="#FAB2B2" />
 
-        <TextView
-            android:id="@+id/textView3"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="missing" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="262dp"
+                android:layout_height="wrap_content"
+                android:text="unknown location"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btnCheckUnknownLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckUnknownLocation"
+                android:text="Check" />
+        </LinearLayout>
 
         <ListView
             android:id="@+id/unknownItems"
@@ -62,11 +102,24 @@
             android:layout_weight="1"
             android:background="#CCCCCC" />
 
-        <TextView
-            android:id="@+id/textView4"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="unknown" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="262dp"
+                android:layout_height="wrap_content"
+                android:text="missing location"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btnCheckMissingLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckMissingLocation"
+                android:text="Check" />
+        </LinearLayout>
 
         <ListView
             android:id="@+id/missingItems"

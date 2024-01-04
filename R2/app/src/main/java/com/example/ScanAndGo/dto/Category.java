@@ -22,7 +22,6 @@ public class Category implements  Comparable<Category> {
     }
 
     public Category()
-
     {
 
     }
