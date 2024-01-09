@@ -15,6 +15,5 @@ public class QrReturn {
     public  int area_id = -1;
 
     @SerializedName("floor_id")
-
     public int floor_id = -1;
 }

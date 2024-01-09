@@ -45,8 +45,8 @@ public class ListAddItemView extends ArrayAdapter<AddItem> {
         AddItem item = getItem(position);
 
         CheckBox checkBox = convertView.findViewById(R.id.checkAssign);
-        TextView date = convertView.findViewById(R.id.txtDate);
-        TextView barCode = convertView.findViewById(R.id.txtBarCode);
+        TextView date = convertView.findViewById(R.id.txtLocation);
+        TextView barCode = convertView.findViewById(R.id.txtCheckItemBarCode);
         TextView name = convertView.findViewById(R.id.txtName);
         Button trash = convertView.findViewById(R.id.trashButton);
         Button edit = convertView.findViewById(R.id.editButton);
