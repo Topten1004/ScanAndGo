@@ -115,7 +115,7 @@ public class BoardLocationActivity extends BaseActivity{
 
                 for (Location p : locations) {
 
-                    ButtonItem newVM = new ButtonItem(p.name, 2, p.id, true);
+                    ButtonItem newVM = new ButtonItem(p.name, 2, p.id);
                     itemList.add(newVM);
                 }
             }

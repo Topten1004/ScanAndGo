@@ -11,10 +11,6 @@ public class Category implements  Comparable<Category> {
 
     public String name;
 
-    @SerializedName("isUsed")
-
-    public boolean isUsed;
-
     @Override
     public int compareTo(Category otherCategory) {
         // Compare by id
@@ -31,10 +27,9 @@ public class Category implements  Comparable<Category> {
         return name;
     }
 
-    public Category(int _id, String _name, boolean _isUsed) {
+    public Category(int _id, String _name) {
         id = _id;
         name = _name;
-        isUsed = _isUsed;
     }
 
     // Add getters and setters as needed
@@ -43,8 +38,11 @@ public class Category implements  Comparable<Category> {
     public String toString() {
         return "Category {" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", isUsed=" + isUsed +
+                ", name='" + name +
                 '}';
+    }
+
+    public int getId() {
+        return this.id;
     }
 }

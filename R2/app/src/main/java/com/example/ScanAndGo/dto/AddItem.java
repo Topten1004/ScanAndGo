@@ -9,7 +9,6 @@ public class AddItem {
 
     public String name;
     public String barCode;
-
     public boolean isCheck;
     public AddItem(int id, int type, String name, String date, String barCode, boolean isCheck) {
 

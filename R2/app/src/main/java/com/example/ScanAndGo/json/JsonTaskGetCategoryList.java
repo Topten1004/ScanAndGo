@@ -81,9 +81,8 @@ public class JsonTaskGetCategoryList extends AsyncTask<String, String, List<Cate
 
                 int id = jsonObject.getInt("id");
                 String name = jsonObject.getString("name");
-                boolean isUsed = jsonObject.getBoolean("isUsed");
 
-                Category category = new Category(id, name, isUsed);
+                Category category = new Category(id, name);
                 categories.add(category);
             }
 

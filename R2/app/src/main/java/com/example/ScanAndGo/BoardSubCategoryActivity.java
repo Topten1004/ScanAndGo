@@ -152,7 +152,7 @@ public class BoardSubCategoryActivity extends BaseActivity {
                 for (SubCategory p : subCategories) {
 
                     Log.d("sub Items::", String.valueOf(subCategories.size()));
-                    ButtonItem newVM = new ButtonItem(p.getName(), 3, p.id, p.isUsed);
+                    ButtonItem newVM = new ButtonItem(p.getName(), 3, p.id);
 
                     itemList.add(newVM);
                 }

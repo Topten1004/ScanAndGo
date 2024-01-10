@@ -12,13 +12,9 @@ public class Item  implements  Comparable<Item> {
 
     public String name;
 
-    @SerializedName("isUsed")
+    @SerializedName("category_id")
 
-    public boolean isUsed;
-
-    @SerializedName("subcategoryId")
-
-    public int subcategoryId;
+    public int categoryId;
 
     @Override
     public int compareTo(Item otherItem) {
@@ -26,21 +22,30 @@ public class Item  implements  Comparable<Item> {
         return Integer.compare(this.id, otherItem.id);
     }
 
+    @Override
+    public String toString() {
+        return "Item {" +
+                "id=" + id +
+                ", name='" + name + ",categoryId=" + categoryId +
+                '}';
+    }
     public Item()
-
     {
 
     }
 
     public String getName()
     {
-        return name;
+        return this.name;
     }
 
-    public Item(int id, int subCategoryId, String name, boolean isUsed) {
+    public int getId()
+    {
+        return this.id;
+    }
+    public Item(int id, int categoryId, String name) {
         this.id = id;
-        this.subcategoryId = subCategoryId;
+        this.categoryId = categoryId;
         this.name = name;
-        this.isUsed = isUsed;
     }
 }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,7 @@ import com.example.ScanAndGo.R;
 import com.example.ScanAndGo.dto.ButtonItem;
 import com.example.ScanAndGo.json.JsonTaskDeleteItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListItemView extends ArrayAdapter<ButtonItem> {
@@ -67,6 +69,7 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
         Button mainButton = convertView.findViewById(R.id.mainButton);
         ImageButton editButton = convertView.findViewById(R.id.editButton);
         ImageButton trashButton = convertView.findViewById(R.id.trashButton);
+        CheckBox checkBarcode = convertView.findViewById(R.id.checkBarcode);
 
         if(item.type >= 6)
         {
@@ -130,10 +133,15 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
                 {
                     Intent intent = new Intent(getContext(), CheckItemActivity.class);
 
-                    intent.putExtra("type", type);
-                    intent.putExtra("barcode", item.getMainButtonText());
-                    getContext().startActivity(intent);
+                    ArrayList<String> barcodes = new ArrayList<>();
+                    barcodes.add(item.getMainButtonText());
 
+                    String[] barcode = new String[barcodes.size()];
+                    barcode = barcodes.toArray(barcode);
+
+                    intent.putExtra("type", type);
+                    intent.putExtra("barcode", barcode);
+                    getContext().startActivity(intent);
                 }
             }
         });
@@ -163,6 +171,32 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
                         break;
                 }
 
+            }
+        });
+
+        // Set click listeners for buttons if needed
+        checkBarcode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle edit button click
+
+                if (type == 9)
+                {
+                    if(checkBarcode.isChecked())
+                    {
+                        if(!Globals.unknownItems.contains(mainButton.getText()))
+                        {
+                            Globals.unknownItems.add(mainButton.getText().toString());
+
+                            Log.d("checkbox:::", mainButton.getText().toString());
+                        }
+                    } else{
+                        if(Globals.unknownItems.contains(mainButton.getText()))
+                        {
+                            Globals.unknownItems.remove(mainButton.getText());
+                        }
+                    }
+                }
             }
         });
 

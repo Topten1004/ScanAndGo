@@ -45,16 +45,18 @@ public class ShortCutActivity extends BaseActivity{
             QrReturn result = new JsonTaskQrCode().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,
                     req, model.toJsonString()).get();
 
-            if (result.floor_id != -1)
+            if (result.block_id != -1)
             {
                 Globals.shortCutName = String.valueOf(shortcut.getText());
 
                 Globals.buildingId = result.building_id;
                 Globals.areaId = result.area_id;
                 Globals.floorId = result.floor_id;
+                Globals.detailLocationId = result.block_id;
 
                 startActivityForResult(new Intent(getApplicationContext(), MainActivity.class), 0);
                 Globals.tagsList = new ArrayList<>();
+
             } else if(result.building_id == -1)
             {
                 showToast("Building doesn't exists");

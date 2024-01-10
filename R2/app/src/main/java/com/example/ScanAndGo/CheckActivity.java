@@ -3,6 +3,7 @@ package com.example.ScanAndGo;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,6 +35,12 @@ public class CheckActivity extends BaseActivity{
     private ListView unknownListView;
     private ListView missingListView;
 
+    private TextView txtRight;
+    private TextView txtWrong;
+    private TextView txtMissing;
+
+    private TextView txtUnknown;
+
     private TextView shortCut;
 
     public int type = 0;
@@ -47,55 +54,86 @@ public class CheckActivity extends BaseActivity{
         unknownListView = (ListView)findViewById(R.id.unknownItems);
         missingListView = (ListView)findViewById(R.id.missingItems);
 
+        txtMissing = (TextView)findViewById(R.id.txtMissingCount);
+        txtRight = (TextView)findViewById(R.id.txtRightCount);
+        txtUnknown = (TextView)findViewById(R.id.txtUnknownCount);
+        txtWrong = (TextView)findViewById(R.id.txtWrongCount);
+
         shortCut = (TextView)findViewById(R.id.shortCutName);
 
         shortCut.setText(Globals.shortCutName);
         CallAPI();
+
+        Globals.unknownItems.clear();
     }
 
     public void onCheckRightLocation(View v)
     {
-        type = 1;
+        if(rightItemList.size() > 0){
+            type = 1;
 
-        Intent intent = new Intent(this, CheckItemActivity.class);
+            Intent intent = new Intent(this, CheckItemActivity.class);
 
-        intent.putExtra("type", 6);
-        intent.putExtra("barcode", rightListValues);
-        this.startActivity(intent);
+            intent.putExtra("type", 6);
+            intent.putExtra("barcode", rightListValues);
+            this.startActivity(intent);
+        }
+
     }
 
     public void onCheckWrongLocation(View v)
     {
+        if(wrongItemList.size() > 0){
+            type = 2;
 
-        type = 2;
+            Intent intent = new Intent(this, CheckItemActivity.class);
 
-        Intent intent = new Intent(this, CheckItemActivity.class);
-
-        intent.putExtra("type", 7);
-        intent.putExtra("barcode", wrongListValues);
-        this.startActivity(intent);
+            intent.putExtra("type", 7);
+            intent.putExtra("barcode", wrongListValues);
+            this.startActivity(intent);
+        }
     }
 
     public void onCheckUnknownLocation(View v)
     {
+        if(unknownItemList.size() > 0)
+        {
+            type = 3;
 
-        type = 3;
+            Intent intent = new Intent(this, CheckItemActivity.class);
 
-        Intent intent = new Intent(this, CheckItemActivity.class);
-
-        intent.putExtra("type", 8);
-        intent.putExtra("barcode", unknownListValues);
-        this.startActivity(intent);
+            intent.putExtra("type", 8);
+            intent.putExtra("barcode", unknownListValues);
+            this.startActivity(intent);
+        }
     }
 
     public void onCheckMissingLocation(View v)
     {
-        type = 4;
+        if (missingItemList.size() > 0)
+        {
+            type = 4;
 
+            Intent intent = new Intent(this, CheckItemActivity.class);
+
+            intent.putExtra("type", 9);
+            intent.putExtra("barcode", missingListValues);
+            this.startActivity(intent);
+        }
+    }
+
+    public void onAddMissingItems(View v)
+    {
         Intent intent = new Intent(this, CheckItemActivity.class);
 
-        intent.putExtra("type", 9);
-        intent.putExtra("barcode", missingListValues);
+        String[] missingItems = new String[Globals.unknownItems.size()];
+
+        missingItems = Globals.unknownItems.toArray(missingItems);
+
+        Log.d("missingItems::::", missingItems.toString());
+
+        intent.putExtra("type", 10);
+        intent.putExtra("barcode", missingItems);
         this.startActivity(intent);
     }
     
@@ -124,25 +162,25 @@ public class CheckActivity extends BaseActivity{
 
                 for (String p : response.rightLists) {
                     rightListValues = response.rightLists.toArray(new String[0]);
-                    ButtonItem newVM = new ButtonItem(p, 6, 0, true);
+                    ButtonItem newVM = new ButtonItem(p, 6, 0);
                     rightItemList.add(newVM);
                 }
 
                 for (String p : response.wrongLists) {
                     wrongListValues = response.wrongLists.toArray(new String[0]);
-                    ButtonItem newVM = new ButtonItem(p, 7, 0, true);
+                    ButtonItem newVM = new ButtonItem(p, 7, 0);
                     wrongItemList.add(newVM);
                 }
 
                 for (String p : response.unknownLists) {
                     unknownListValues = response.unknownLists.toArray(new String[0]);
-                    ButtonItem newVM = new ButtonItem(p, 8, 0, true);
+                    ButtonItem newVM = new ButtonItem(p, 8, 0);
                     unknownItemList.add(newVM);
                 }
 
                 for (String p : response.missingLists) {
                     missingListValues = response.missingLists.toArray(new String[0]);
-                    ButtonItem newVM = new ButtonItem(p, 9, 0, true);
+                    ButtonItem newVM = new ButtonItem(p, 9, 0);
                     missingItemList.add(newVM);
                 }
             }
@@ -167,5 +205,10 @@ public class CheckActivity extends BaseActivity{
         ListItemView missingAdapter = new ListItemView(this, missingItemList, null, null, null, null, null);
         // Set the adapter for the ListView
         missingListView.setAdapter(missingAdapter);
+
+        txtWrong.setText(wrongItemList.size() + " tags");
+        txtRight.setText(rightItemList.size() + " tags");
+        txtUnknown.setText(unknownItemList.size() + " tags");
+        txtMissing.setText(missingItemList.size() + " tags");
     }
 }

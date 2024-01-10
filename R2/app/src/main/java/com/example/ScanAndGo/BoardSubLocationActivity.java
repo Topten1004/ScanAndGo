@@ -154,7 +154,7 @@ public class BoardSubLocationActivity extends BaseActivity {
                 for (SubLocation p : subLocations) {
 
                     Log.d("sub Location Items::", String.valueOf(subLocations.size()));
-                    ButtonItem newVM = new ButtonItem(p.getName(), 4, p.id, true);
+                    ButtonItem newVM = new ButtonItem(p.getName(), 4, p.id);
 
                     itemList.add(newVM);
                 }

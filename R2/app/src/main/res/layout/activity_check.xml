@@ -28,19 +28,22 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="262dp"
-                android:layout_height="wrap_content"
-                android:text="right location"
-                android:textSize="20sp" />
-
             <Button
                 android:id="@+id/btnCheckRightLocation"
-                android:layout_width="match_parent"
+                android:layout_width="293dp"
                 android:layout_height="wrap_content"
+                android:minHeight="@dimen/fab_margin"
                 android:onClick="onCheckRightLocation"
-                android:text="Check" />
+                android:text="in the right location"
+                android:textAlignment="viewStart"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/txtRightCount"
+                android:layout_width="324dp"
+                android:layout_height="wrap_content"
+                android:textSize="14sp" />
+
         </LinearLayout>
 
         <ListView
@@ -55,18 +58,22 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="262dp"
-                android:layout_height="wrap_content"
-                android:text="wrong location"
-                android:textSize="20sp" />
-
             <Button
                 android:id="@+id/btnCheckWrongLocation"
-                android:layout_width="match_parent"
+                android:layout_width="292dp"
                 android:layout_height="wrap_content"
+                android:minHeight="?attr/listPreferredItemPaddingStart"
                 android:onClick="onCheckWrongLocation"
-                android:text="Check" />
+                android:text="in the wrong location"
+                android:textAlignment="viewStart"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/txtWrongCount"
+                android:layout_width="318dp"
+                android:layout_height="wrap_content"
+                android:textSize="14sp" />
+
         </LinearLayout>
 
         <ListView
@@ -81,44 +88,23 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="262dp"
-                android:layout_height="wrap_content"
-                android:text="unknown location"
-                android:textSize="20sp" />
-
             <Button
                 android:id="@+id/btnCheckUnknownLocation"
-                android:layout_width="match_parent"
+                android:layout_width="291dp"
                 android:layout_height="wrap_content"
+                android:minWidth="@dimen/fab_margin"
+                android:minHeight="@dimen/fab_margin"
                 android:onClick="onCheckUnknownLocation"
-                android:text="Check" />
-        </LinearLayout>
-
-        <ListView
-            android:id="@+id/unknownItems"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="#CCCCCC" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                android:text="missing in the location"
+                android:textAlignment="viewStart"
+                android:textSize="10sp" />
 
             <TextView
-                android:layout_width="262dp"
+                android:id="@+id/txtMissingCount"
+                android:layout_width="316dp"
                 android:layout_height="wrap_content"
-                android:text="missing location"
-                android:textSize="20sp" />
+                android:textSize="14sp" />
 
-            <Button
-                android:id="@+id/btnCheckMissingLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="onCheckMissingLocation"
-                android:text="Check" />
         </LinearLayout>
 
         <ListView
@@ -127,6 +113,48 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="#006ED3" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnCheckMissingLocation"
+                android:layout_width="225dp"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/fab_margin"
+                android:minHeight="@dimen/fab_margin"
+                android:onClick="onCheckMissingLocation"
+                android:text="unknown from database"
+                android:textAlignment="viewStart"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/txtUnknownCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btnAddMissing"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minWidth="@dimen/fab_margin"
+                android:minHeight="@dimen/fab_margin"
+                android:onClick="onAddMissingItems"
+                android:text="add"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/unknownItems"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#CCCCCC" />
 
     </LinearLayout>
 

@@ -2,9 +2,14 @@ package com.example.ScanAndGo.json;
 
 import android.os.AsyncTask;
 
+import com.example.ScanAndGo.dto.Category;
 import com.example.ScanAndGo.dto.Item;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,6 +19,7 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JsonTaskGetItemList extends AsyncTask<String, String, List<Item>> {
@@ -43,9 +49,11 @@ public class JsonTaskGetItemList extends AsyncTask<String, String, List<Item>> {
             if(!authOk) authOk = !buffer.substring(0, 15).equals("<!DOCTYPE html>");
             if(authOk){
 
-                Type t = new TypeToken<List<Item>>(){}.getType();
-                return new Gson().fromJson(buffer.toString(), t);
+                String jsonString = buffer.toString();
 
+                List<Item> items = parseJsonToList(jsonString);
+
+                return items;
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -66,6 +74,29 @@ public class JsonTaskGetItemList extends AsyncTask<String, String, List<Item>> {
         return null;
     }
 
+    private List<Item> parseJsonToList(String jsonString) {
+        List<Item> items = new ArrayList<>();
+
+        try {
+            JSONArray jsonArray = new JSONArray(jsonString);
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                int id = jsonObject.getInt("id");
+                String name = jsonObject.getString("name");
+                int categoryId = jsonObject.getInt("category_id");
+
+                Item tempItem = new Item(id, categoryId, name);
+                items.add(tempItem);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return items;
+    }
     @Override
     protected void onPostExecute(List<Item> result) {
         super.onPostExecute(result);

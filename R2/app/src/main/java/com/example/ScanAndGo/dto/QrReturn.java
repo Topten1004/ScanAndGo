@@ -16,4 +16,7 @@ public class QrReturn {
 
     @SerializedName("floor_id")
     public int floor_id = -1;
+
+    @SerializedName("block_id")
+    public int block_id = -1;
 }

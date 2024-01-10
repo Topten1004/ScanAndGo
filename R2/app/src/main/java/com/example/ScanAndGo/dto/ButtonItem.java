@@ -9,12 +9,11 @@ public class ButtonItem {
     public boolean isUsed;
     private String mainButtonText;
 
-    public ButtonItem(String mainButtonText, int type, int id, boolean isUsed) {
+    public ButtonItem(String mainButtonText, int type, int id) {
 
         this.mainButtonText = mainButtonText;
         this.type = type;
         this.id = id;
-        this.isUsed = isUsed;
 
     }
 

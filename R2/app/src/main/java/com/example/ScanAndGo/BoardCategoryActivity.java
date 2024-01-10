@@ -139,7 +139,7 @@ public class BoardCategoryActivity extends BaseActivity {
 
                 for (Category p : categories) {
 
-                    ButtonItem newVM = new ButtonItem(p.getName(), 1, p.id, p.isUsed);
+                    ButtonItem newVM = new ButtonItem(p.getName(), 1, p.id);
 
                     itemList.add(newVM);
 
