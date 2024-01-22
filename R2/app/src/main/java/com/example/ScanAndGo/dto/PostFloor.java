@@ -2,28 +2,28 @@ package com.example.ScanAndGo.dto;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PostSubCategory {
+public class PostFloor {
 
     @SerializedName("name")
     public String name;
 
-    @SerializedName("categoryId")
+    @SerializedName("areaId")
 
-    public int categoryId;
-    public PostSubCategory() {
+    public int areaId;
+    public PostFloor() {
 
     }
 
-    public PostSubCategory(String name, int categoryId) {
+    public PostFloor(String name, int areaId) {
 
         this.name = name;
-        this.categoryId = categoryId;
+        this.areaId = areaId;
     }
 
     public String toJsonString() {
         return "{"
                 + "\"name\":\"" + this.name + "\","
-                + "\"categoryId\":\"" + this.categoryId + "\""
+                + "\"areaId\":\"" + this.areaId + "\""
                 + "}";
     }
 }

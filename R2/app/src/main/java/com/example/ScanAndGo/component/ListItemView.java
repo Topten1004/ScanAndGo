@@ -16,7 +16,8 @@ import androidx.annotation.Nullable;
 
 import com.example.ScanAndGo.BoardCategoryActivity;
 import com.example.ScanAndGo.BoardBuildingActivity;
-import com.example.ScanAndGo.BoardLocationItemActivity;
+import com.example.ScanAndGo.BoardDetailLocationActivity;
+import com.example.ScanAndGo.BoardFloorActivity;
 import com.example.ScanAndGo.BoardItemActivity;
 import com.example.ScanAndGo.BoardAreaActivity;
 import com.example.ScanAndGo.CheckItemActivity;
@@ -34,21 +35,24 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
 
     public int id;
     public boolean isUsed;
-
     private BoardCategoryActivity categoryActivity;
-    private BoardBuildingActivity locationActivity;
     private BoardItemActivity itemActivity;
-    private BoardAreaActivity subLocationActivity;
+    private BoardBuildingActivity buildingActivity;
+    private BoardAreaActivity areaActivity;
+    private BoardDetailLocationActivity detailLocationActivity;
+    private BoardFloorActivity floorActivity;
 
-    public ListItemView(@NonNull Context context, @NonNull List<ButtonItem> objects, BoardCategoryActivity categoryActivity, BoardBuildingActivity locationActivity, BoardItemActivity itemActivity, BoardAreaActivity subLocationActivity) {
+    public ListItemView(@NonNull Context context, @NonNull List<ButtonItem> objects, BoardCategoryActivity categoryActivity, BoardItemActivity itemActivity, BoardBuildingActivity buildingActivity, BoardAreaActivity areaActivity, BoardFloorActivity floorActivity, BoardDetailLocationActivity detailLocationActivity) {
 
         super(context, 0, objects);
 
         this.categoryActivity = categoryActivity;
-        this.locationActivity = locationActivity;
         this.itemActivity = itemActivity;
-        this.subLocationActivity = subLocationActivity;
 
+        this.buildingActivity = buildingActivity;
+        this.areaActivity = areaActivity;
+        this.floorActivity = floorActivity;
+        this.detailLocationActivity = detailLocationActivity;
     }
 
     @NonNull
@@ -102,22 +106,22 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
                     intent.putExtra("categoryId", item.id);
                     getContext().startActivity(intent);
 
-                } else if (type == 2)
+                }
+                else if (type == 3)
                 {
-                    Globals.locationId = item.id;
+                    Globals.buildingId = item.id;
 
                     Intent intent = new Intent(getContext(), BoardAreaActivity.class);
-                    intent.putExtra("locationId", item.id);
+                    intent.putExtra("buildingId", item.id);
                     getContext().startActivity(intent);
 
-                }  else if (type == 4)
+                } else if (type == 4)
                 {
-                    Globals.subLocationId = item.id;
+                    Globals.areaId = item.id;
 
-                    Intent intent = new Intent(getContext(), BoardLocationItemActivity.class);
+                    Intent intent = new Intent(getContext(), BoardFloorActivity.class);
 
-                    intent.putExtra("locationId", Globals.locationId);
-                    intent.putExtra("subLocationId", Globals.subLocationId);
+                    intent.putExtra("areaId", Globals.areaId);
 
                     getContext().startActivity(intent);
                 } else if (type >= 6)           // when user click the check tag part
@@ -149,13 +153,19 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
                         categoryActivity.updateCategory(item.getMainButtonText(), item.id);
                         break;
                     case 2:
-                        locationActivity.updateLocation(item.getMainButtonText(), item.id);
+                        itemActivity.UpdateItem(item.getMainButtonText(), item.id);
                         break;
                     case 3:
-                        itemActivity.updateCategory(item.getMainButtonText(), item.id);
+                        buildingActivity.UpdateBuilding(item.getMainButtonText(), item.id);
                         break;
                     case 4:
-                        subLocationActivity.updateSubLocation(item.getMainButtonText(), item.id);
+                        areaActivity.UpdateArea(item.getMainButtonText(), item.id);
+                        break;
+                    case 5:
+                        floorActivity.UpdateFloor(item.getMainButtonText(), item.id);
+                        break;
+                    case 6:
+                        detailLocationActivity.UpdateDetailLocation(item.getMainButtonText(), item.id);
                         break;
                 }
 
@@ -201,21 +211,30 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
                     categoryActivity.reCallAPI();
 
                 } else if (type == 2){
-                    String req = Globals.apiUrl + "location/delete?id=" + String.valueOf(item.id);
-                    new JsonTaskDeleteItem().execute(req);
-
-                    locationActivity.reCallAPI();
-                } else if (type == 3) {
                     String req = Globals.apiUrl + "item/delete?id=" + String.valueOf(item.id);
                     new JsonTaskDeleteItem().execute(req);
 
                     itemActivity.reCallAPI();
-                } else if (type == 4) {
-                    String req = Globals.apiUrl + "sublocation/delete?id=" + String.valueOf(item.id);
+                } else if (type == 3) {
+                    String req = Globals.apiUrl + "building/delete?id=" + String.valueOf(item.id);
                     new JsonTaskDeleteItem().execute(req);
 
-                    Log.e("subLocation:::", String.valueOf(item.id));
-                    subLocationActivity.reCallAPI();
+                    buildingActivity.reCallAPI();
+                } else if (type == 4) {
+                    String req = Globals.apiUrl + "area/delete?id=" + String.valueOf(item.id);
+                    new JsonTaskDeleteItem().execute(req);
+
+                    areaActivity.reCallAPI();
+                } else if (type == 5) {
+                    String req = Globals.apiUrl + "floor/delete?id=" + String.valueOf(item.id);
+                    new JsonTaskDeleteItem().execute(req);
+
+                    floorActivity.reCallAPI();
+                } else if (type == 6) {
+                    String req = Globals.apiUrl + "detaillocation/delete?id=" + String.valueOf(item.id);
+                    new JsonTaskDeleteItem().execute(req);
+
+                    detailLocationActivity.reCallAPI();
                 }
             }
         });

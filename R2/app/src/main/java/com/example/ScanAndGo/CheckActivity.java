@@ -190,19 +190,19 @@ public class CheckActivity extends BaseActivity{
             throw new RuntimeException(e);
         }
 
-        ListItemView rightAdapter = new ListItemView(this, rightItemList, null, null, null, null);
+        ListItemView rightAdapter = new ListItemView(this, rightItemList, null, null, null, null, null, null);
         // Set the adapter for the ListView
         rightListView.setAdapter(rightAdapter);
 
-        ListItemView wrongAdapter = new ListItemView(this, wrongItemList, null, null, null, null);
+        ListItemView wrongAdapter = new ListItemView(this, wrongItemList, null, null, null, null, null, null);
         // Set the adapter for the ListView
         wrongListView.setAdapter(wrongAdapter);
 
-        ListItemView missingAdapter = new ListItemView(this, missingItemList, null, null, null, null);
+        ListItemView missingAdapter = new ListItemView(this, missingItemList, null, null, null, null, null, null);
         // Set the adapter for the ListView
         missingListView.setAdapter(missingAdapter);
 
-        ListItemView unknownAdapter = new ListItemView(this, unknownItemList, null, null, null, null);
+        ListItemView unknownAdapter = new ListItemView(this, unknownItemList, null, null, null, null, null, null);
         // Set the adapter for the ListView
         unknownListView.setAdapter(unknownAdapter);
 

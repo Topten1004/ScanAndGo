@@ -39,7 +39,7 @@
             android:text="Category" />
 
         <Button
-            android:id="@+id/btnLocation"
+            android:id="@+id/btnBuilding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

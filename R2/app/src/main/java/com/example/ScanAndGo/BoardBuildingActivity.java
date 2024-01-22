@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.ScanAndGo.component.ListItemView;
 import com.example.ScanAndGo.dto.ButtonItem;
 import com.example.ScanAndGo.dto.Location;
+import com.example.ScanAndGo.dto.PostBuilding;
 import com.example.ScanAndGo.dto.PostCategory;
 import com.example.ScanAndGo.dto.StatusVM;
 import com.example.ScanAndGo.json.JsonTaskGetLocationList;
@@ -26,29 +27,28 @@ import java.util.concurrent.ExecutionException;
 public class BoardBuildingActivity extends BaseActivity{
 
     private ListView listView;
-    private TextView addLocationName;
+    private TextView tvBuildingName;
     private List<ButtonItem> itemList = new ArrayList<>();
 
-    private Button addLocation;
-
-    private Button updateLocation;
-
-    public int updateLocationId = 0;
+    private Button btnAddBuilding;
+    private Button btnUpdateBuilding;
+    public int updateBuildingId = 0;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_board_location);
+        setContentView(R.layout.activity_board_building);
 
         Globals g = (Globals)getApplication();
 
-        addLocationName = (TextView) findViewById(R.id.txtNameLocation);
+        tvBuildingName = (TextView) findViewById(R.id.tvBuildingName);
 
-        addLocation = (Button) findViewById(R.id.addLocation);
+        btnAddBuilding = (Button) findViewById(R.id.btnAddBuilding);
 
-        updateLocation = (Button) findViewById(R.id.updateLocation);
-        updateLocation.setVisibility(View.GONE);
+        btnUpdateBuilding = (Button) findViewById(R.id.btnUpdateBuilding);
+
+        btnUpdateBuilding.setVisibility(View.GONE);
 
         if (g.isLogin == false)
         {
@@ -58,31 +58,31 @@ public class BoardBuildingActivity extends BaseActivity{
         reCallAPI();
     }
 
-    public void updateLocation(String text, int id)
+    public void UpdateBuilding(String text, int id)
     {
-        addLocationName.setText(text);
-        updateLocation.setVisibility(View.VISIBLE);
-        addLocation.setText("Cancel");
+        btnAddBuilding.setText(text);
+        btnUpdateBuilding.setVisibility(View.VISIBLE);
+        btnAddBuilding.setText("Cancel");
 
-        updateLocationId = id;
+        updateBuildingId = id;
     }
 
-    public void btnUpdateLocation(View v)
+    public void OnUpdateBuilding(View v)
     {
-        if ( updateLocationId > 0 && addLocationName.length() > 0)
+        if ( updateBuildingId > 0 && btnAddBuilding.length() > 0)
         {
-            String req = Globals.apiUrl +  "location/update?id=" + updateLocationId;
+            String req = Globals.apiUrl +  "building/update?id=" + updateBuildingId;
 
             PostCategory model = new PostCategory();
 
-            model.name = addLocationName.getText().toString();
+            model.name = tvBuildingName.getText().toString();
 
             new JsonTaskUpdateItem().execute(req, model.toJsonString());
 
-            updateLocationId = 0;
+            updateBuildingId = 0;
 
-            updateLocation.setVisibility(View.GONE);
-            addLocationName.setText("");
+            btnUpdateBuilding.setVisibility(View.GONE);
+            tvBuildingName.setText("");
 
             reCallAPI();
         }
@@ -125,21 +125,21 @@ public class BoardBuildingActivity extends BaseActivity{
             throw new RuntimeException(e);
         }
 
-        listView = findViewById(R.id.listLocations);
-        ListItemView adapter = new ListItemView(this, itemList, null, this, null, null);
+        listView = findViewById(R.id.listBuildings);
+        ListItemView adapter = new ListItemView(this, itemList, null, null, this, null, null, null);
 
         // Set the adapter for the ListView
         listView.setAdapter(adapter);
     }
 
-    public void btnAddLocation(View v)
+    public void OnAddBuilding(View v)
     {
-        if (addLocation.getText() == "Add")
+        if (btnAddBuilding.getText() == "Add")
         {
-            if(addLocationName.length() > 0 )
+            if(tvBuildingName.length() > 0 )
             {
                 try {
-                    PostCategory model = new PostCategory(addLocationName.getText().toString());
+                    PostBuilding model = new PostBuilding(tvBuildingName.getText().toString());
                     StatusVM result = new StatusVM();
 
                     String req = Globals.apiUrl + "building/create";
@@ -160,9 +160,9 @@ public class BoardBuildingActivity extends BaseActivity{
             }
         } else {
 
-            addLocation.setText("Add");
-            updateLocation.setVisibility(View.GONE);
-            updateLocationId = 0;
+            btnAddBuilding.setText("Add");
+            btnUpdateBuilding.setVisibility(View.GONE);
+            updateBuildingId = 0;
         }
     }
 

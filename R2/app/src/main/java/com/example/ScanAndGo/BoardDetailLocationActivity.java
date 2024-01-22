@@ -3,6 +3,7 @@ package com.example.ScanAndGo;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -10,8 +11,8 @@ import android.widget.TextView;
 
 import com.example.ScanAndGo.component.ListItemView;
 import com.example.ScanAndGo.dto.ButtonItem;
-import com.example.ScanAndGo.dto.PostArea;
 import com.example.ScanAndGo.dto.PostCategory;
+import com.example.ScanAndGo.dto.PostDetailLocation;
 import com.example.ScanAndGo.dto.StatusVM;
 import com.example.ScanAndGo.dto.SubLocation;
 import com.example.ScanAndGo.json.JsonTaskGetSubLocationList;
@@ -23,36 +24,39 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class BoardAreaActivity extends BaseActivity {
+public class BoardDetailLocationActivity extends BaseActivity {
 
-    public int buildingId = 0;
+    public int floorId = 0;
     private ListView listView;
     private List<ButtonItem> itemList = new ArrayList<>();
-    private TextView tvAreaName;
-    private Button btnUpdateArea;
-    private Button btnAddArea;
-    public int updateAreaId = 0;
+    private TextView tvDetailLocationName;
+    private Button btnUpdateDetailLocation;
+    private Button btnAddDetailLocation;
+    public int updateDetailLocationId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_board_area);
+        setContentView(R.layout.activity_board_detail_location);
 
         Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("buildingId")) {
+        if (intent != null && intent.hasExtra("floorId")) {
 
-            buildingId = intent.getIntExtra("buildingId", 0); // 0 is the default value if the key is not found
+            floorId = intent.getIntExtra("floorId", 0); // 0 is the default value if the key is not found
 
-            Globals.buildingId = buildingId;
+            Log.d("", String.valueOf(floorId));
+
+            Globals.floorId = floorId;
+
         }
 
-        btnUpdateArea = (Button)findViewById(R.id.btnUpdateFloor);
+        btnUpdateDetailLocation = (Button)findViewById(R.id.btnUpdateFloor);
 
-        btnAddArea = (Button)findViewById(R.id.btnAddFloor);
+        btnAddDetailLocation = (Button)findViewById(R.id.btnAddFloor);
 
-        btnUpdateArea.setVisibility(View.GONE);
+        btnUpdateDetailLocation.setVisibility(View.GONE);
 
-        tvAreaName = (TextView)findViewById(R.id.tvFloorName);
+        tvDetailLocationName = (TextView)findViewById(R.id.tvFloorName);
 
         Globals g = (Globals)getApplication();
 
@@ -65,18 +69,18 @@ public class BoardAreaActivity extends BaseActivity {
     }
 
 
-    public void btnAddSubLocation(View v) {
+    public void OnAddDetailLocation(View v) {
 
-        if(tvAreaName.getText() == "Add")
+        if(btnAddDetailLocation.getText() == "Add")
         {
-            if(tvAreaName.length() > 0 )
+            if(tvDetailLocationName.length() > 0 )
             {
                 try {
 
-                    PostArea model = new PostArea(tvAreaName.getText().toString(), buildingId);
+                    PostDetailLocation model = new PostDetailLocation(tvDetailLocationName.getText().toString(), floorId, "");
                     StatusVM result = new StatusVM();
 
-                    String req = Globals.apiUrl + "area/create";
+                    String req = Globals.apiUrl + "detaillocation/create";
 
                     result = new JsonTaskPostItem().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req, model.toJsonString()).get();
 
@@ -90,36 +94,36 @@ public class BoardAreaActivity extends BaseActivity {
             }
         } else {
 
-            btnUpdateArea.setVisibility(View.GONE);
-            btnAddArea.setText("Add");
+            btnUpdateDetailLocation.setVisibility(View.GONE);
+            btnAddDetailLocation.setText("Add");
         }
     }
 
-    public void UpdateArea(String text, int id)
+    public void UpdateDetailLocation(String text, int id)
     {
-        btnUpdateArea.setVisibility(View.VISIBLE);
-        btnAddArea.setText("Cancel");
-        tvAreaName.setText(text);
+        btnUpdateDetailLocation.setVisibility(View.VISIBLE);
+        btnAddDetailLocation.setText("Cancel");
+        tvDetailLocationName.setText(text);
 
-        updateAreaId = id;
+        updateDetailLocationId = id;
     }
 
-    public void OnUpdateArea(View v)
+    public void btnUpdateCategory(View v)
     {
-        if (updateAreaId > 0 && tvAreaName.length() > 0)
+        if (updateDetailLocationId > 0 && tvDetailLocationName.length() > 0)
         {
-            String req = Globals.apiUrl +  "area/update?id=" + updateAreaId;
+            String req = Globals.apiUrl +  "detaillocation/update?id=" + updateDetailLocationId;
 
             PostCategory model = new PostCategory();
 
-            model.name = tvAreaName.getText().toString();
+            model.name = tvDetailLocationName.getText().toString();
 
             new JsonTaskUpdateItem().execute(req, model.toJsonString());
 
-            updateAreaId = 0;
+            updateDetailLocationId = 0;
 
-            btnUpdateArea.setVisibility(View.GONE);
-            tvAreaName.setText("");
+            btnUpdateDetailLocation.setVisibility(View.GONE);
+            tvDetailLocationName.setText("");
 
             reCallAPI();
         }
@@ -127,9 +131,11 @@ public class BoardAreaActivity extends BaseActivity {
 
     public void reCallAPI()
     {
+        Log.d("Area:::", String.valueOf(floorId) + " ReCall API");
+
         Globals g = (Globals)getApplication();
 
-        String req = g.apiUrl + "area/read?id=" + String.valueOf(buildingId);
+        String req = g.apiUrl + "detaillocation/read?id=" + String.valueOf(floorId);
 
         try {
             itemList.clear();
@@ -146,6 +152,7 @@ public class BoardAreaActivity extends BaseActivity {
 
                 for (SubLocation p : subLocations) {
 
+                    Log.d("Detail Location Items::", String.valueOf(subLocations.size()));
                     ButtonItem newVM = new ButtonItem(p.getName(), 4, p.id);
 
                     itemList.add(newVM);
@@ -158,7 +165,7 @@ public class BoardAreaActivity extends BaseActivity {
         }
 
         listView = findViewById(R.id.listFloors);
-        ListItemView adapter = new ListItemView(this, itemList, null, null , null, this, null, null);
+        ListItemView adapter = new ListItemView(this, itemList, null, null , null, null, null, this);
 
         // Set the adapter for the ListView
         listView.setAdapter(adapter);

@@ -13,7 +13,7 @@ import com.example.ScanAndGo.component.ListItemView;
 import com.example.ScanAndGo.dto.ButtonItem;
 import com.example.ScanAndGo.dto.Item;
 import com.example.ScanAndGo.dto.PostCategory;
-import com.example.ScanAndGo.dto.PostSubCategory;
+import com.example.ScanAndGo.dto.PostItem;
 import com.example.ScanAndGo.dto.StatusVM;
 import com.example.ScanAndGo.json.JsonTaskGetItemList;
 import com.example.ScanAndGo.json.JsonTaskPostItem;
@@ -29,15 +29,15 @@ public class BoardItemActivity extends BaseActivity {
     public int categoryId = 0;
     private ListView listView;
     private List<ButtonItem> itemList = new ArrayList<>();
-    private TextView categoryName;
-    private Button updateCategory;
-    private Button addCategory;
-    public int updateCategoryId = 0;
+    private TextView tvItemName;
+    private Button btnUpdateItem;
+    private Button btnAddItem;
+    public int updateItemId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_board_sub_category);
+        setContentView(R.layout.activity_board_item);
 
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("categoryId")) {
@@ -47,13 +47,13 @@ public class BoardItemActivity extends BaseActivity {
             Globals.categoryId = categoryId;
         }
 
-        updateCategory = (Button)findViewById(R.id.updateSubCategory);
+        btnUpdateItem = (Button)findViewById(R.id.btnUpdateItem);
 
-        addCategory = (Button)findViewById(R.id.addSubCategory);
+        btnAddItem = (Button)findViewById(R.id.btnAddItem);
 
-        updateCategory.setVisibility(View.GONE);
+        btnUpdateItem.setVisibility(View.GONE);
 
-        categoryName = (TextView)findViewById(R.id.txtNameSubCategory);
+        tvItemName = (TextView)findViewById(R.id.tvItemName);
 
         Globals g = (Globals)getApplication();
 
@@ -65,18 +65,18 @@ public class BoardItemActivity extends BaseActivity {
         reCallAPI();
     }
 
-    public void btnAddSubCategory(View v) {
+    public void OnAddItem(View v) {
 
-        if(addCategory.getText() == "Add")
+        if(btnAddItem.getText() == "Add")
         {
-            if(categoryName.length() > 0 )
+            if(tvItemName.length() > 0 )
             {
                 try {
 
-                    PostSubCategory model = new PostSubCategory(categoryName.getText().toString(), categoryId);
+                    PostItem model = new PostItem(tvItemName.getText().toString(), categoryId, "");
                     StatusVM result = new StatusVM();
 
-                    String req = Globals.apiUrl + "subcategory/create";
+                    String req = Globals.apiUrl + "item/create";
 
                     result = new JsonTaskPostItem().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req, model.toJsonString()).get();
 
@@ -90,36 +90,36 @@ public class BoardItemActivity extends BaseActivity {
             }
         } else {
 
-            updateCategory.setVisibility(View.GONE);
-            addCategory.setText("Add");
+            btnUpdateItem.setVisibility(View.GONE);
+            btnAddItem.setText("Add");
         }
     }
 
-    public void updateCategory(String text, int id)
+    public void UpdateItem(String text, int id)
     {
-        updateCategory.setVisibility(View.VISIBLE);
-        addCategory.setText("Cancel");
-        categoryName.setText(text);
+        btnUpdateItem.setVisibility(View.VISIBLE);
+        btnAddItem.setText("Cancel");
+        tvItemName.setText(text);
 
-        updateCategoryId = id;
+        updateItemId = id;
     }
 
-    public void btnUpdateCategory(View v)
+    public void OnUpdateItem(View v)
     {
-        if (updateCategoryId > 0 && categoryName.length() > 0)
+        if (updateItemId > 0 && tvItemName.length() > 0)
         {
-            String req = Globals.apiUrl +  "subcategory/update?id=" + updateCategoryId;
+            String req = Globals.apiUrl +  "item/update?id=" + updateItemId;
 
             PostCategory model = new PostCategory();
 
-            model.name = categoryName.getText().toString();
+            model.name = tvItemName.getText().toString();
 
             new JsonTaskUpdateItem().execute(req, model.toJsonString());
 
-            updateCategoryId = 0;
+            updateItemId = 0;
 
-            updateCategory.setVisibility(View.GONE);
-            categoryName.setText("");
+            btnUpdateItem.setVisibility(View.GONE);
+            tvItemName.setText("");
 
             reCallAPI();
         }
@@ -159,7 +159,7 @@ public class BoardItemActivity extends BaseActivity {
         }
 
         listView = findViewById(R.id.listSubCategoryItems);
-        ListItemView adapter = new ListItemView(this, itemList, null, null , this, null);
+        ListItemView adapter = new ListItemView(this, itemList, null, this , null, null, null, null );
 
         // Set the adapter for the ListView
         listView.setAdapter(adapter);

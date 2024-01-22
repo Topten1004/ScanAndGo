@@ -3,18 +3,19 @@ package com.example.ScanAndGo;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.ScanAndGo.component.ListItemView;
-import com.example.ScanAndGo.dto.Category;
 import com.example.ScanAndGo.dto.ButtonItem;
 import com.example.ScanAndGo.dto.PostCategory;
+import com.example.ScanAndGo.dto.PostFloor;
 import com.example.ScanAndGo.dto.StatusVM;
-import com.example.ScanAndGo.json.JsonTaskGetCategoryList;
+import com.example.ScanAndGo.dto.SubLocation;
+import com.example.ScanAndGo.json.JsonTaskGetSubLocationList;
 import com.example.ScanAndGo.json.JsonTaskPostItem;
 import com.example.ScanAndGo.json.JsonTaskUpdateItem;
 
@@ -23,26 +24,37 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class BoardCategoryActivity extends BaseActivity {
-
+public class BoardFloorActivity extends BaseActivity {
+    public int areaId = 0;
     private ListView listView;
     private List<ButtonItem> itemList = new ArrayList<>();
-    private TextView categoryName;
-    private Button updateCategory;
-    private Button addCategory;
-    public int updateCategoryId = 0;
+    private TextView tvFloorName;
+    private Button btnUpdateFloor;
+    private Button btnAddFloor;
+    public int updateFloorId = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_board_category);
+        setContentView(R.layout.activity_board_floor);
 
-        updateCategory = (Button)findViewById(R.id.updateCategory);
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("areaId")) {
 
-        addCategory = (Button)findViewById(R.id.btnSearchDevice);
+            areaId = intent.getIntExtra("areaId", 0); // 0 is the default value if the key is not found
 
-        updateCategory.setVisibility(View.GONE);
+            Log.d("", String.valueOf(areaId));
 
-        categoryName = (TextView)findViewById(R.id.txtNameCategory);
+            Globals.areaId = areaId;
+
+        }
+
+        btnUpdateFloor = (Button)findViewById(R.id.btnUpdateFloor);
+
+        btnAddFloor = (Button)findViewById(R.id.btnAddFloor);
+
+        btnUpdateFloor.setVisibility(View.GONE);
+
+        tvFloorName = (TextView)findViewById(R.id.tvFloorName);
 
         Globals g = (Globals)getApplication();
 
@@ -54,26 +66,24 @@ public class BoardCategoryActivity extends BaseActivity {
         reCallAPI();
     }
 
-    public void btnAddCategory(View v) throws ExecutionException, InterruptedException {
 
-        if(addCategory.getText() == "Add")
+    public void OnAddFloor(View v) {
+
+        if(btnAddFloor.getText() == "Add")
         {
-            if(categoryName.length() > 0 )
+            if(tvFloorName.length() > 0 )
             {
                 try {
-                    PostCategory model = new PostCategory(categoryName.getText().toString());
+
+                    PostFloor model = new PostFloor(tvFloorName.getText().toString(), areaId);
                     StatusVM result = new StatusVM();
 
-                    String req = Globals.apiUrl + "category/create";
+                    String req = Globals.apiUrl + "floor/create";
 
                     result = new JsonTaskPostItem().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req, model.toJsonString()).get();
 
-                    if (result != null) {
-                        reCallAPI();
+                    reCallAPI();
 
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Can't save successfully", Toast.LENGTH_SHORT).show();
-                    }
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
@@ -82,38 +92,36 @@ public class BoardCategoryActivity extends BaseActivity {
             }
         } else {
 
-            updateCategory.setVisibility(View.GONE);
-            addCategory.setText("Add");
-            return;
-
+            btnUpdateFloor.setVisibility(View.GONE);
+            btnAddFloor.setText("Add");
         }
     }
 
-    public void updateCategory(String text, int id)
+    public void UpdateFloor(String text, int id)
     {
-        updateCategory.setVisibility(View.VISIBLE);
-        addCategory.setText("Cancel");
-        categoryName.setText(text);
+        btnUpdateFloor.setVisibility(View.VISIBLE);
+        btnAddFloor.setText("Cancel");
+        tvFloorName.setText(text);
 
-        updateCategoryId = id;
+        updateFloorId = id;
     }
 
-    public void btnUpdateCategory(View v)
+    public void OnUpdateFloor(View v)
     {
-        if (updateCategoryId > 0 && categoryName.length() > 0)
+        if (updateFloorId > 0 && tvFloorName.length() > 0)
         {
-            String req = Globals.apiUrl +  "category/update?id=" + updateCategoryId;
+            String req = Globals.apiUrl +  "floor/update?id=" + updateFloorId;
 
             PostCategory model = new PostCategory();
 
-            model.name = categoryName.getText().toString();
+            model.name = tvFloorName.getText().toString();
 
             new JsonTaskUpdateItem().execute(req, model.toJsonString());
 
-            updateCategoryId = 0;
+            updateFloorId = 0;
 
-            updateCategory.setVisibility(View.GONE);
-            categoryName.setText("");
+            tvFloorName.setVisibility(View.GONE);
+            tvFloorName.setText("");
 
             reCallAPI();
         }
@@ -121,28 +129,31 @@ public class BoardCategoryActivity extends BaseActivity {
 
     public void reCallAPI()
     {
+        Log.d("Area:::", String.valueOf(areaId) + " ReCall API");
+
         Globals g = (Globals)getApplication();
 
-        String req = g.apiUrl + "category/read";
+        String req = g.apiUrl + "floor/read?id=" + String.valueOf(areaId);
 
         try {
             itemList.clear();
 
-            List<Category> categories = new ArrayList<>();
+            List<SubLocation> subLocations = new ArrayList<>();
 
-            categories = new JsonTaskGetCategoryList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req).get();
+            subLocations = new JsonTaskGetSubLocationList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req).get();
 
-            Collections.sort(categories);
+            Collections.sort(subLocations);
 
-            if (categories != null) {
-                g.categoryLists = categories;
+            if (subLocations != null) {
 
-                for (Category p : categories) {
+                g.subLocationLists = subLocations;
 
-                    ButtonItem newVM = new ButtonItem(p.getName(), 1, p.id);
+                for (SubLocation p : subLocations) {
+
+                    Log.d("sub Location Items::", String.valueOf(subLocations.size()));
+                    ButtonItem newVM = new ButtonItem(p.getName(), 4, p.id);
 
                     itemList.add(newVM);
-
                 }
             }
         } catch (ExecutionException e) {
@@ -151,8 +162,8 @@ public class BoardCategoryActivity extends BaseActivity {
             throw new RuntimeException(e);
         }
 
-        listView = findViewById(R.id.listCategoryItems);
-        ListItemView adapter = new ListItemView(this, itemList, this, null, null , null, null, null);
+        listView = findViewById(R.id.listFloors);
+        ListItemView adapter = new ListItemView(this, itemList, null, null , null, null, this,null);
 
         // Set the adapter for the ListView
         listView.setAdapter(adapter);
@@ -160,7 +171,6 @@ public class BoardCategoryActivity extends BaseActivity {
     public void btnLogOut(View v)
     {
         Globals g = (Globals) getApplication();
-
         g.isLogin = false;
 
         startActivityForResult(new Intent(getApplicationContext(), LoginActivity.class), 0);
@@ -169,13 +179,11 @@ public class BoardCategoryActivity extends BaseActivity {
     public void btnItem(View v)
     {
         startActivityForResult(new Intent(getApplicationContext(), BoardCategoryActivity.class), 0);
-
     }
 
     public void btnInventory(View v)
     {
         startActivityForResult(new Intent(getApplicationContext(), BoardInventoryActivity.class), 0);
-
     }
 
     public void btnLocation(View v)
