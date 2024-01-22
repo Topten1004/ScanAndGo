@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class BoardLocationActivity extends BaseActivity{
+public class BoardBuildingActivity extends BaseActivity{
 
     private ListView listView;
     private TextView addLocationName;
@@ -101,7 +101,7 @@ public class BoardLocationActivity extends BaseActivity{
     {
         Globals g = (Globals) getApplication();
 
-        String req = g.apiUrl + "location/read";
+        String req = g.apiUrl + "building/read";
 
         try {
             List<Location> locations = new ArrayList<>();
@@ -126,7 +126,7 @@ public class BoardLocationActivity extends BaseActivity{
         }
 
         listView = findViewById(R.id.listLocations);
-        ListItemView adapter = new ListItemView(this, itemList, null, this, null, null, null);
+        ListItemView adapter = new ListItemView(this, itemList, null, this, null, null);
 
         // Set the adapter for the ListView
         listView.setAdapter(adapter);
@@ -142,7 +142,7 @@ public class BoardLocationActivity extends BaseActivity{
                     PostCategory model = new PostCategory(addLocationName.getText().toString());
                     StatusVM result = new StatusVM();
 
-                    String req = Globals.apiUrl + "location/create";
+                    String req = Globals.apiUrl + "building/create";
 
                     result = new JsonTaskPostItem().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req, model.toJsonString()).get();
 
@@ -163,7 +163,6 @@ public class BoardLocationActivity extends BaseActivity{
             addLocation.setText("Add");
             updateLocation.setVisibility(View.GONE);
             updateLocationId = 0;
-
         }
     }
 
@@ -180,6 +179,6 @@ public class BoardLocationActivity extends BaseActivity{
 
     public void btnLocation(View v)
     {
-        startActivityForResult(new Intent(getApplicationContext(), BoardLocationActivity.class), 0);
+        startActivityForResult(new Intent(getApplicationContext(), BoardBuildingActivity.class), 0);
     }
 }

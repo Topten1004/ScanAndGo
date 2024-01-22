@@ -15,11 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.ScanAndGo.BoardCategoryActivity;
-import com.example.ScanAndGo.BoardCategoryItemActivity;
-import com.example.ScanAndGo.BoardLocationActivity;
+import com.example.ScanAndGo.BoardBuildingActivity;
 import com.example.ScanAndGo.BoardLocationItemActivity;
-import com.example.ScanAndGo.BoardSubCategoryActivity;
-import com.example.ScanAndGo.BoardSubLocationActivity;
+import com.example.ScanAndGo.BoardItemActivity;
+import com.example.ScanAndGo.BoardAreaActivity;
 import com.example.ScanAndGo.CheckItemActivity;
 import com.example.ScanAndGo.Globals;
 import com.example.ScanAndGo.R;
@@ -34,27 +33,22 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
     public int type;
 
     public int id;
-
     public boolean isUsed;
 
     private BoardCategoryActivity categoryActivity;
+    private BoardBuildingActivity locationActivity;
+    private BoardItemActivity itemActivity;
+    private BoardAreaActivity subLocationActivity;
 
-    private BoardLocationActivity locationActivity;
-
-    private BoardSubCategoryActivity subCategoryActivity;
-
-    private BoardSubLocationActivity subLocationActivity;
-
-    private BoardCategoryItemActivity itemActivity;
-    public ListItemView(@NonNull Context context, @NonNull List<ButtonItem> objects, BoardCategoryActivity categoryActivity, BoardLocationActivity locationActivity, BoardSubCategoryActivity subCategoryActivity, BoardSubLocationActivity subLocationActivity, BoardCategoryItemActivity itemActivity) {
+    public ListItemView(@NonNull Context context, @NonNull List<ButtonItem> objects, BoardCategoryActivity categoryActivity, BoardBuildingActivity locationActivity, BoardItemActivity itemActivity, BoardAreaActivity subLocationActivity) {
 
         super(context, 0, objects);
 
         this.categoryActivity = categoryActivity;
         this.locationActivity = locationActivity;
-        this.subCategoryActivity = subCategoryActivity;
-        this.subLocationActivity = subLocationActivity;
         this.itemActivity = itemActivity;
+        this.subLocationActivity = subLocationActivity;
+
     }
 
     @NonNull
@@ -79,6 +73,13 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
             mainButton.setBackgroundResource(android.R.color.transparent);
         }
 
+        if (type < 9)
+        {
+            checkBarcode.setVisibility(View.GONE);
+        } else {
+            checkBarcode.setVisibility(View.VISIBLE);
+        }
+
         // Set the data for each view
         mainButton.setText(item.getMainButtonText());
 
@@ -97,7 +98,7 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
                 {
                     Globals.categoryId = item.id;
 
-                    Intent intent = new Intent(getContext(), BoardSubCategoryActivity.class);
+                    Intent intent = new Intent(getContext(), BoardItemActivity.class);
                     intent.putExtra("categoryId", item.id);
                     getContext().startActivity(intent);
 
@@ -105,21 +106,11 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
                 {
                     Globals.locationId = item.id;
 
-                    Intent intent = new Intent(getContext(), BoardSubLocationActivity.class);
+                    Intent intent = new Intent(getContext(), BoardAreaActivity.class);
                     intent.putExtra("locationId", item.id);
                     getContext().startActivity(intent);
 
-                } else if (type == 3)
-                {
-                    Globals.subCategoryId = item.id;
-
-                    Intent intent = new Intent(getContext(), BoardCategoryItemActivity.class);
-
-                    intent.putExtra("categoryId", Globals.categoryId);
-                    intent.putExtra("subCategoryId", Globals.subCategoryId);
-
-                    getContext().startActivity(intent);
-                } else if (type == 4)
+                }  else if (type == 4)
                 {
                     Globals.subLocationId = item.id;
 
@@ -161,13 +152,10 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
                         locationActivity.updateLocation(item.getMainButtonText(), item.id);
                         break;
                     case 3:
-                        subCategoryActivity.updateCategory(item.getMainButtonText(), item.id);
+                        itemActivity.updateCategory(item.getMainButtonText(), item.id);
                         break;
                     case 4:
                         subLocationActivity.updateSubLocation(item.getMainButtonText(), item.id);
-                        break;
-                    case 5:
-                        itemActivity.updateItem(item.getMainButtonText(), item.id);
                         break;
                 }
 
@@ -218,23 +206,16 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
 
                     locationActivity.reCallAPI();
                 } else if (type == 3) {
-                    String req = Globals.apiUrl + "subcategory/delete?id=" + String.valueOf(item.id);
+                    String req = Globals.apiUrl + "item/delete?id=" + String.valueOf(item.id);
                     new JsonTaskDeleteItem().execute(req);
 
-                    Log.e("subCategory:::", String.valueOf(item.id));
-                    subCategoryActivity.reCallAPI();
+                    itemActivity.reCallAPI();
                 } else if (type == 4) {
                     String req = Globals.apiUrl + "sublocation/delete?id=" + String.valueOf(item.id);
                     new JsonTaskDeleteItem().execute(req);
 
                     Log.e("subLocation:::", String.valueOf(item.id));
                     subLocationActivity.reCallAPI();
-                } else if (type == 5) {
-                    String req = Globals.apiUrl + "item/delete?id=" + String.valueOf(item.id);
-                    new JsonTaskDeleteItem().execute(req);
-
-                    Log.e("item:::", String.valueOf(item.id));
-                    itemActivity.reCallAPI();
                 }
             }
         });

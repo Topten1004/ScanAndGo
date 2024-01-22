@@ -16,6 +16,10 @@ public class Item  implements  Comparable<Item> {
 
     public int categoryId;
 
+    @SerializedName("barcode")
+
+    public String barcode;
+
     @Override
     public int compareTo(Item otherItem) {
         // Compare by id
@@ -26,7 +30,7 @@ public class Item  implements  Comparable<Item> {
     public String toString() {
         return "Item {" +
                 "id=" + id +
-                ", name='" + name + ",categoryId=" + categoryId +
+                ", name='" + name + ",categoryId=" + categoryId + ", barcode=" + barcode +
                 '}';
     }
     public Item()
@@ -43,9 +47,10 @@ public class Item  implements  Comparable<Item> {
     {
         return this.id;
     }
-    public Item(int id, int categoryId, String name) {
+    public Item(int id, int categoryId, String name, String barcode) {
         this.id = id;
         this.categoryId = categoryId;
         this.name = name;
+        this.barcode = barcode;
     }
 }

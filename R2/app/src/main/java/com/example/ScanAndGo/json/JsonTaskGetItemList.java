@@ -86,8 +86,9 @@ public class JsonTaskGetItemList extends AsyncTask<String, String, List<Item>> {
                 int id = jsonObject.getInt("id");
                 String name = jsonObject.getString("name");
                 int categoryId = jsonObject.getInt("category_id");
+                String barcode = jsonObject.has("barcode") ? jsonObject.getString("barcode") : "";
 
-                Item tempItem = new Item(id, categoryId, name);
+                Item tempItem = new Item(id, categoryId, name, barcode);
                 items.add(tempItem);
             }
 

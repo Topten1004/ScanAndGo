@@ -59,8 +59,12 @@ public class ShortCutActivity extends BaseActivity{
 
             } else if(result.building_id == -1)
             {
+                startActivityForResult(new Intent(getApplicationContext(), BoardBuildingActivity.class), 0);
+
                 showToast("Building doesn't exists");
             } else{
+
+                startActivityForResult(new Intent(getApplicationContext(), BoardBuildingActivity.class), 0);
                 showToast("Please input detail location shortcut");
             }
 

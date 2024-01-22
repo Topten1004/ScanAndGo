@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center"
     android:orientation="horizontal"
-    android:padding="4dp"
-    android:gravity="center">
+    android:padding="1dp">
 
     <!-- Main Button with 70% width -->
     <Button
         android:id="@+id/mainButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="7"
+        android:layout_weight="6"
         android:width="360px"
-        android:minHeight="@dimen/fab_margin"
+        android:minHeight="@dimen/appbar_padding_top"
         android:text="Main Button"
         android:textSize="12sp" />
 

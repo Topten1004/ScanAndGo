@@ -172,16 +172,16 @@ public class CheckActivity extends BaseActivity{
                     wrongItemList.add(newVM);
                 }
 
-                for (String p : response.unknownLists) {
-                    unknownListValues = response.unknownLists.toArray(new String[0]);
-                    ButtonItem newVM = new ButtonItem(p, 8, 0);
-                    unknownItemList.add(newVM);
-                }
-
                 for (String p : response.missingLists) {
                     missingListValues = response.missingLists.toArray(new String[0]);
-                    ButtonItem newVM = new ButtonItem(p, 9, 0);
+                    ButtonItem newVM = new ButtonItem(p, 8, 0);
                     missingItemList.add(newVM);
+                }
+
+                for (String p : response.unknownLists) {
+                    unknownListValues = response.unknownLists.toArray(new String[0]);
+                    ButtonItem newVM = new ButtonItem(p, 9, 0);
+                    unknownItemList.add(newVM);
                 }
             }
         } catch (ExecutionException e) {
@@ -190,21 +190,21 @@ public class CheckActivity extends BaseActivity{
             throw new RuntimeException(e);
         }
 
-        ListItemView rightAdapter = new ListItemView(this, rightItemList, null, null, null, null, null);
+        ListItemView rightAdapter = new ListItemView(this, rightItemList, null, null, null, null);
         // Set the adapter for the ListView
         rightListView.setAdapter(rightAdapter);
 
-        ListItemView wrongAdapter = new ListItemView(this, wrongItemList, null, null, null, null, null);
+        ListItemView wrongAdapter = new ListItemView(this, wrongItemList, null, null, null, null);
         // Set the adapter for the ListView
         wrongListView.setAdapter(wrongAdapter);
 
-        ListItemView unknownAdapter = new ListItemView(this, unknownItemList, null, null, null, null, null);
-        // Set the adapter for the ListView
-        unknownListView.setAdapter(unknownAdapter);
-
-        ListItemView missingAdapter = new ListItemView(this, missingItemList, null, null, null, null, null);
+        ListItemView missingAdapter = new ListItemView(this, missingItemList, null, null, null, null);
         // Set the adapter for the ListView
         missingListView.setAdapter(missingAdapter);
+
+        ListItemView unknownAdapter = new ListItemView(this, unknownItemList, null, null, null, null);
+        // Set the adapter for the ListView
+        unknownListView.setAdapter(unknownAdapter);
 
         txtWrong.setText(wrongItemList.size() + " tags");
         txtRight.setText(rightItemList.size() + " tags");

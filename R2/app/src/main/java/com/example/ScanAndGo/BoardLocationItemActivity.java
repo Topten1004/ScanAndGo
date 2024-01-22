@@ -101,6 +101,6 @@ public class BoardLocationItemActivity extends BaseActivity {
 
     public void btnLocation(View v)
     {
-        startActivityForResult(new Intent(getApplicationContext(), BoardLocationActivity.class), 0);
+        startActivityForResult(new Intent(getApplicationContext(), BoardBuildingActivity.class), 0);
     }
 }
