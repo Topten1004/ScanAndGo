@@ -5,9 +5,11 @@ import android.os.AsyncTask;
 
 import com.example.ScanAndGo.component.Connectivity;
 import com.example.ScanAndGo.component.NetworkTask;
+import com.example.ScanAndGo.dto.Area;
 import com.example.ScanAndGo.dto.Category;
+import com.example.ScanAndGo.dto.Floor;
 import com.example.ScanAndGo.dto.Item;
-import com.example.ScanAndGo.dto.Location;
+import com.example.ScanAndGo.dto.Building;
 import com.example.ScanAndGo.dto.SubLocation;
 
 import java.util.ArrayList;
@@ -22,9 +24,10 @@ public class Globals extends Application {
 
     public static String url = "https://api-villedenoumea.scanandgo.nc/";
     public static List<Category> categoryLists = new ArrayList<>();
-    public static List<Location> locationLists = new ArrayList<>();
     public static List<Item> itemLists = new ArrayList<>();
-    public static List<SubLocation> subLocationLists = new ArrayList<>();
+    public static List<Building> buildingList = new ArrayList<>();
+    public static List<Area> areaList = new ArrayList<>();
+    public static List<Floor> floorList = new ArrayList<>();
     public static List<String> tagsList = new ArrayList<>();
     public static List<String> unknownItems = new ArrayList<>();
 

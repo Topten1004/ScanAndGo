@@ -11,10 +11,12 @@ import android.widget.TextView;
 
 import com.example.ScanAndGo.component.ListItemView;
 import com.example.ScanAndGo.dto.ButtonItem;
+import com.example.ScanAndGo.dto.Floor;
 import com.example.ScanAndGo.dto.PostCategory;
 import com.example.ScanAndGo.dto.PostFloor;
 import com.example.ScanAndGo.dto.StatusVM;
 import com.example.ScanAndGo.dto.SubLocation;
+import com.example.ScanAndGo.json.JsonTaskGetFloorList;
 import com.example.ScanAndGo.json.JsonTaskGetSubLocationList;
 import com.example.ScanAndGo.json.JsonTaskPostItem;
 import com.example.ScanAndGo.json.JsonTaskUpdateItem;
@@ -138,20 +140,18 @@ public class BoardFloorActivity extends BaseActivity {
         try {
             itemList.clear();
 
-            List<SubLocation> subLocations = new ArrayList<>();
+            List<Floor> floorList = new ArrayList<>();
 
-            subLocations = new JsonTaskGetSubLocationList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req).get();
+            floorList = new JsonTaskGetFloorList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req).get();
 
-            Collections.sort(subLocations);
+            Collections.sort(floorList);
 
-            if (subLocations != null) {
+            if (floorList != null) {
 
-                g.subLocationLists = subLocations;
 
-                for (SubLocation p : subLocations) {
+                for (Floor p : floorList) {
 
-                    Log.d("sub Location Items::", String.valueOf(subLocations.size()));
-                    ButtonItem newVM = new ButtonItem(p.getName(), 4, p.id);
+                    ButtonItem newVM = new ButtonItem(p.getName(), 5, p.id);
 
                     itemList.add(newVM);
                 }

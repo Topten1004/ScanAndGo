@@ -9,11 +9,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.ScanAndGo.component.ListItemView;
+import com.example.ScanAndGo.dto.Area;
 import com.example.ScanAndGo.dto.ButtonItem;
 import com.example.ScanAndGo.dto.PostArea;
 import com.example.ScanAndGo.dto.PostCategory;
 import com.example.ScanAndGo.dto.StatusVM;
 import com.example.ScanAndGo.dto.SubLocation;
+import com.example.ScanAndGo.json.JsonTaskGetAreaList;
 import com.example.ScanAndGo.json.JsonTaskGetSubLocationList;
 import com.example.ScanAndGo.json.JsonTaskPostItem;
 import com.example.ScanAndGo.json.JsonTaskUpdateItem;
@@ -134,17 +136,16 @@ public class BoardAreaActivity extends BaseActivity {
         try {
             itemList.clear();
 
-            List<SubLocation> subLocations = new ArrayList<>();
+            List<Area> areas = new ArrayList<>();
 
-            subLocations = new JsonTaskGetSubLocationList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req).get();
+            areas = new JsonTaskGetAreaList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req).get();
 
-            Collections.sort(subLocations);
+            Collections.sort(areas);
 
-            if (subLocations != null) {
+            if (areas != null) {
 
-                g.subLocationLists = subLocations;
 
-                for (SubLocation p : subLocations) {
+                for (Area p : areas) {
 
                     ButtonItem newVM = new ButtonItem(p.getName(), 4, p.id);
 

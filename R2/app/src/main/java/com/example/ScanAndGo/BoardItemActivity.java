@@ -130,8 +130,6 @@ public class BoardItemActivity extends BaseActivity {
         Globals g = (Globals)getApplication();
 
         String req = g.apiUrl + "item/read?id=" + String.valueOf(categoryId);
-
-        Log.d("itemActivity:::::", req);
         try {
             itemList.clear();
 
@@ -147,7 +145,7 @@ public class BoardItemActivity extends BaseActivity {
 
                 for (Item p : items) {
 
-                    ButtonItem newVM = new ButtonItem(p.getName(), 3, p.id);
+                    ButtonItem newVM = new ButtonItem(p.getName(), 2, p.id);
 
                     itemList.add(newVM);
                 }

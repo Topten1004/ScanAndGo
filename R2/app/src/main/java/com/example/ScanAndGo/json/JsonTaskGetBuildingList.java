@@ -2,7 +2,7 @@ package com.example.ScanAndGo.json;
 
 import android.os.AsyncTask;
 
-import com.example.ScanAndGo.dto.Location;
+import com.example.ScanAndGo.dto.Building;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,13 +18,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonTaskGetLocationList extends AsyncTask<String, String, List<Location>> {
+public class JsonTaskGetBuildingList extends AsyncTask<String, String, List<Building>> {
 
-    public JsonTaskGetLocationList() {
+    public JsonTaskGetBuildingList() {
         super();
     }
 
-    protected List<Location> doInBackground(String... params) {
+    protected List<Building> doInBackground(String... params) {
 
         HttpURLConnection connection = null;
         BufferedReader reader = null;
@@ -47,7 +47,7 @@ public class JsonTaskGetLocationList extends AsyncTask<String, String, List<Loca
 
                 String jsonString = buffer.toString();
 
-                List<Location> locations = parseJsonToList(jsonString);
+                List<Building> locations = parseJsonToList(jsonString);
 
                 return locations;
             }
@@ -70,8 +70,8 @@ public class JsonTaskGetLocationList extends AsyncTask<String, String, List<Loca
         return null;
     }
 
-    private List<Location> parseJsonToList(String jsonString) {
-        List<Location> locations = new ArrayList<>();
+    private List<Building> parseJsonToList(String jsonString) {
+        List<Building> locations = new ArrayList<>();
 
         try {
             JSONArray jsonArray = new JSONArray(jsonString);
@@ -82,7 +82,7 @@ public class JsonTaskGetLocationList extends AsyncTask<String, String, List<Loca
                 int id = jsonObject.getInt("id");
                 String name = jsonObject.getString("name");
 
-                Location location = new Location(id, name);
+                Building location = new Building(id, name);
                 locations.add(location);
             }
 
@@ -94,7 +94,7 @@ public class JsonTaskGetLocationList extends AsyncTask<String, String, List<Loca
     }
 
     @Override
-    protected void onPostExecute(List<Location> result) {
+    protected void onPostExecute(List<Building> result) {
         super.onPostExecute(result);
     }
 }

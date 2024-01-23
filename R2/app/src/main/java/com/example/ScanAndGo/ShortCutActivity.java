@@ -74,4 +74,19 @@ public class ShortCutActivity extends BaseActivity{
             throw new RuntimeException(e);
         }
     }
+
+    public void btnItem(View v)
+    {
+        startActivityForResult(new Intent(getApplicationContext(), BoardCategoryActivity.class), 0);
+    }
+
+    public void btnInventory(View v)
+    {
+        startActivityForResult(new Intent(getApplicationContext(), BoardInventoryActivity.class), 0);
+    }
+
+    public void btnLocation(View v)
+    {
+        startActivityForResult(new Intent(getApplicationContext(), BoardBuildingActivity.class), 0);
+    }
 }

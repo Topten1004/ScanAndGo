@@ -2,10 +2,9 @@ package com.example.ScanAndGo.dto;
 
 public class ButtonItem {
 
-    public int type; // 1: Category, 2: Location, 3: Sub Category, 4: Sub Location
+    public int type; // 1: Category, 2: Item, 3: Building, 4: Area, 5: Floor, 6: Detail_location
 
     public int id;
-
     public boolean isUsed;
     private String mainButtonText;
 

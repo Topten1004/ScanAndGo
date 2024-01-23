@@ -23,7 +23,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="431dp"
         android:orientation="horizontal">
 
         <EditText
@@ -31,8 +31,8 @@
             android:layout_width="253dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text"
-            android:hint="Input the shortcut" />
+            android:hint="Input the shortcut"
+            android:inputType="text" />
 
 
         <Button
@@ -42,5 +42,35 @@
             android:layout_weight="1"
             android:onClick="onGoShortCut"
             android:text="Go" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="btnItem"
+            android:text="Category" />
+
+        <Button
+            android:id="@+id/btnBuilding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="btnLocation"
+            android:text="Building" />
+
+        <Button
+            android:id="@+id/btnInventory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="btnInventory"
+            android:text="Inventory" />
     </LinearLayout>
 </LinearLayout>

@@ -12,11 +12,11 @@ import android.widget.Toast;
 
 import com.example.ScanAndGo.component.ListItemView;
 import com.example.ScanAndGo.dto.ButtonItem;
-import com.example.ScanAndGo.dto.Location;
+import com.example.ScanAndGo.dto.Building;
 import com.example.ScanAndGo.dto.PostBuilding;
 import com.example.ScanAndGo.dto.PostCategory;
 import com.example.ScanAndGo.dto.StatusVM;
-import com.example.ScanAndGo.json.JsonTaskGetLocationList;
+import com.example.ScanAndGo.json.JsonTaskGetBuildingList;
 import com.example.ScanAndGo.json.JsonTaskPostItem;
 import com.example.ScanAndGo.json.JsonTaskUpdateItem;
 
@@ -25,11 +25,9 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class BoardBuildingActivity extends BaseActivity{
-
     private ListView listView;
     private TextView tvBuildingName;
     private List<ButtonItem> itemList = new ArrayList<>();
-
     private Button btnAddBuilding;
     private Button btnUpdateBuilding;
     public int updateBuildingId = 0;
@@ -104,18 +102,17 @@ public class BoardBuildingActivity extends BaseActivity{
         String req = g.apiUrl + "building/read";
 
         try {
-            List<Location> locations = new ArrayList<>();
+            List<Building> buildingList = new ArrayList<>();
 
-            locations = new JsonTaskGetLocationList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req).get();
+            buildingList = new JsonTaskGetBuildingList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req).get();
 
-            if (locations != null) {
+            if (buildingList != null) {
 
                 itemList.clear();
-                g.locationLists = locations;
 
-                for (Location p : locations) {
+                for (Building p : buildingList) {
 
-                    ButtonItem newVM = new ButtonItem(p.name, 2, p.id);
+                    ButtonItem newVM = new ButtonItem(p.name, 3, p.id);
                     itemList.add(newVM);
                 }
             }

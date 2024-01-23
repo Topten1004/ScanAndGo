@@ -148,12 +148,10 @@ public class BoardDetailLocationActivity extends BaseActivity {
 
             if (subLocations != null) {
 
-                g.subLocationLists = subLocations;
-
                 for (SubLocation p : subLocations) {
 
                     Log.d("Detail Location Items::", String.valueOf(subLocations.size()));
-                    ButtonItem newVM = new ButtonItem(p.getName(), 4, p.id);
+                    ButtonItem newVM = new ButtonItem(p.getName(), 6, p.id);
 
                     itemList.add(newVM);
                 }

@@ -100,6 +100,7 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
 
                 if (type == 1)
                 {
+                    Log.d("mainButton", "11111");
                     Globals.categoryId = item.id;
 
                     Intent intent = new Intent(getContext(), BoardItemActivity.class);
@@ -109,6 +110,8 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
                 }
                 else if (type == 3)
                 {
+                    Log.d("mainButton", "22222");
+
                     Globals.buildingId = item.id;
 
                     Intent intent = new Intent(getContext(), BoardAreaActivity.class);
