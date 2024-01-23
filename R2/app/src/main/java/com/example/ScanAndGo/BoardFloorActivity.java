@@ -15,11 +15,11 @@ import com.example.ScanAndGo.dto.Floor;
 import com.example.ScanAndGo.dto.PostCategory;
 import com.example.ScanAndGo.dto.PostFloor;
 import com.example.ScanAndGo.dto.StatusVM;
-import com.example.ScanAndGo.dto.SubLocation;
 import com.example.ScanAndGo.json.JsonTaskGetFloorList;
-import com.example.ScanAndGo.json.JsonTaskGetSubLocationList;
 import com.example.ScanAndGo.json.JsonTaskPostItem;
 import com.example.ScanAndGo.json.JsonTaskUpdateItem;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,6 +34,8 @@ public class BoardFloorActivity extends BaseActivity {
     private Button btnUpdateFloor;
     private Button btnAddFloor;
     public int updateFloorId = 0;
+
+    private TextView path;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +46,7 @@ public class BoardFloorActivity extends BaseActivity {
 
             areaId = intent.getIntExtra("areaId", 0); // 0 is the default value if the key is not found
 
-            Log.d("", String.valueOf(areaId));
-
             Globals.areaId = areaId;
-
         }
 
         btnUpdateFloor = (Button)findViewById(R.id.btnUpdateFloor);
@@ -57,6 +56,10 @@ public class BoardFloorActivity extends BaseActivity {
         btnUpdateFloor.setVisibility(View.GONE);
 
         tvFloorName = (TextView)findViewById(R.id.tvFloorName);
+
+        path = (TextView)findViewById(R.id.tvLocationFloor);
+
+        path.setText(Globals.buildingName + "/" + Globals.areaName + "/");
 
         Globals g = (Globals)getApplication();
 

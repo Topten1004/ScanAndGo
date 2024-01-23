@@ -20,6 +20,11 @@
         android:onClick="btnLogOut"
         android:text="Log Out" />
 
+    <TextView
+        android:id="@+id/tvLocationArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

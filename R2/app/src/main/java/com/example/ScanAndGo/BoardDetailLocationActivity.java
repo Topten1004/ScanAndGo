@@ -11,13 +11,15 @@ import android.widget.TextView;
 
 import com.example.ScanAndGo.component.ListItemView;
 import com.example.ScanAndGo.dto.ButtonItem;
+import com.example.ScanAndGo.dto.DetailLocation;
 import com.example.ScanAndGo.dto.PostCategory;
 import com.example.ScanAndGo.dto.PostDetailLocation;
 import com.example.ScanAndGo.dto.StatusVM;
-import com.example.ScanAndGo.dto.SubLocation;
-import com.example.ScanAndGo.json.JsonTaskGetSubLocationList;
+import com.example.ScanAndGo.json.JsonTaskGetDetailLocationList;
 import com.example.ScanAndGo.json.JsonTaskPostItem;
 import com.example.ScanAndGo.json.JsonTaskUpdateItem;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,6 +36,7 @@ public class BoardDetailLocationActivity extends BaseActivity {
     private Button btnAddDetailLocation;
     public int updateDetailLocationId = 0;
 
+    private TextView path;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +60,10 @@ public class BoardDetailLocationActivity extends BaseActivity {
         btnUpdateDetailLocation.setVisibility(View.GONE);
 
         tvDetailLocationName = (TextView)findViewById(R.id.tvFloorName);
+
+        path = (TextView)findViewById(R.id.tvLocationDetailLocation);
+
+        path.setText(Globals.buildingName + "/" + Globals.areaName + "/" + Globals.floorName + "/");
 
         Globals g = (Globals)getApplication();
 
@@ -140,17 +147,14 @@ public class BoardDetailLocationActivity extends BaseActivity {
         try {
             itemList.clear();
 
-            List<SubLocation> subLocations = new ArrayList<>();
+            List<DetailLocation> detailLocations = new ArrayList<>();
 
-            subLocations = new JsonTaskGetSubLocationList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req).get();
+            detailLocations = new JsonTaskGetDetailLocationList().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, req).get();
 
-            Collections.sort(subLocations);
+            if (detailLocations != null) {
 
-            if (subLocations != null) {
+                for (DetailLocation p : detailLocations) {
 
-                for (SubLocation p : subLocations) {
-
-                    Log.d("Detail Location Items::", String.valueOf(subLocations.size()));
                     ButtonItem newVM = new ButtonItem(p.getName(), 6, p.id);
 
                     itemList.add(newVM);

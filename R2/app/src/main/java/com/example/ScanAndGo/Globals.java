@@ -10,7 +10,6 @@ import com.example.ScanAndGo.dto.Category;
 import com.example.ScanAndGo.dto.Floor;
 import com.example.ScanAndGo.dto.Item;
 import com.example.ScanAndGo.dto.Building;
-import com.example.ScanAndGo.dto.SubLocation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +33,11 @@ public class Globals extends Application {
     public static String apiUrl = url + "api/";
     public static int categoryId = 0;
 
+    public static String buildingName = "";
+    public static String areaName = "";
+    public static String floorName = "";
+
+    public static String detailLocationName = "";
     public static int itemId = 0;
     public static int checkedItem = 0;
     public static int buildingId = 0;

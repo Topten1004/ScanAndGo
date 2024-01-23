@@ -100,7 +100,6 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
 
                 if (type == 1)
                 {
-                    Log.d("mainButton", "11111");
                     Globals.categoryId = item.id;
 
                     Intent intent = new Intent(getContext(), BoardItemActivity.class);
@@ -110,9 +109,8 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
                 }
                 else if (type == 3)
                 {
-                    Log.d("mainButton", "22222");
-
                     Globals.buildingId = item.id;
+                    Globals.buildingName = item.getMainButtonText();
 
                     Intent intent = new Intent(getContext(), BoardAreaActivity.class);
                     intent.putExtra("buildingId", item.id);
@@ -121,13 +119,26 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
                 } else if (type == 4)
                 {
                     Globals.areaId = item.id;
+                    Globals.areaName = item.getMainButtonText();
 
                     Intent intent = new Intent(getContext(), BoardFloorActivity.class);
 
                     intent.putExtra("areaId", Globals.areaId);
 
                     getContext().startActivity(intent);
-                } else if (type >= 6)           // when user click the check tag part
+                }
+                else if (type == 5)
+                {
+                    Globals.floorId = item.id;
+                    Globals.floorName = item.getMainButtonText();
+
+                    Intent intent = new Intent(getContext(), BoardDetailLocationActivity.class);
+
+                    intent.putExtra("floorId", Globals.floorId);
+
+                    getContext().startActivity(intent);
+                }
+                else if (type >= 7)           // when user click the check tag part
                 {
                     Intent intent = new Intent(getContext(), CheckItemActivity.class);
 

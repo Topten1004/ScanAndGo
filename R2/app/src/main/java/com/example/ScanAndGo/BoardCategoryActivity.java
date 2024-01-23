@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class BoardCategoryActivity extends BaseActivity {
-
     private ListView listView;
     private List<ButtonItem> itemList = new ArrayList<>();
     private TextView categoryName;

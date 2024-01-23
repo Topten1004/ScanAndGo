@@ -3,7 +3,6 @@ package com.example.ScanAndGo.json;
 import android.os.AsyncTask;
 
 import com.example.ScanAndGo.dto.Floor;
-import com.example.ScanAndGo.dto.SubLocation;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

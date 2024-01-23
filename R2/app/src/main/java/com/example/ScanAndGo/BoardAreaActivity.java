@@ -14,11 +14,11 @@ import com.example.ScanAndGo.dto.ButtonItem;
 import com.example.ScanAndGo.dto.PostArea;
 import com.example.ScanAndGo.dto.PostCategory;
 import com.example.ScanAndGo.dto.StatusVM;
-import com.example.ScanAndGo.dto.SubLocation;
 import com.example.ScanAndGo.json.JsonTaskGetAreaList;
-import com.example.ScanAndGo.json.JsonTaskGetSubLocationList;
 import com.example.ScanAndGo.json.JsonTaskPostItem;
 import com.example.ScanAndGo.json.JsonTaskUpdateItem;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,6 +34,7 @@ public class BoardAreaActivity extends BaseActivity {
     private Button btnUpdateArea;
     private Button btnAddArea;
     public int updateAreaId = 0;
+    private TextView path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,10 @@ public class BoardAreaActivity extends BaseActivity {
         btnUpdateArea.setVisibility(View.GONE);
 
         tvAreaName = (TextView)findViewById(R.id.tvFloorName);
+
+        path = (TextView)findViewById(R.id.tvLocationArea);
+
+        path.setText(Globals.buildingName + "/");
 
         Globals g = (Globals)getApplication();
 

@@ -162,25 +162,25 @@ public class CheckActivity extends BaseActivity{
 
                 for (String p : response.rightLists) {
                     rightListValues = response.rightLists.toArray(new String[0]);
-                    ButtonItem newVM = new ButtonItem(p, 6, 0);
+                    ButtonItem newVM = new ButtonItem(p, 7, 0);
                     rightItemList.add(newVM);
                 }
 
                 for (String p : response.wrongLists) {
                     wrongListValues = response.wrongLists.toArray(new String[0]);
-                    ButtonItem newVM = new ButtonItem(p, 7, 0);
+                    ButtonItem newVM = new ButtonItem(p, 8, 0);
                     wrongItemList.add(newVM);
                 }
 
                 for (String p : response.missingLists) {
                     missingListValues = response.missingLists.toArray(new String[0]);
-                    ButtonItem newVM = new ButtonItem(p, 8, 0);
+                    ButtonItem newVM = new ButtonItem(p, 9, 0);
                     missingItemList.add(newVM);
                 }
 
                 for (String p : response.unknownLists) {
                     unknownListValues = response.unknownLists.toArray(new String[0]);
-                    ButtonItem newVM = new ButtonItem(p, 9, 0);
+                    ButtonItem newVM = new ButtonItem(p, 10, 0);
                     unknownItemList.add(newVM);
                 }
             }
