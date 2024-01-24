@@ -31,6 +31,8 @@ import com.example.ScanAndGo.json.JsonTaskGetItemList;
 import com.example.ScanAndGo.json.JsonTaskLogin;
 import com.example.ScanAndGo.json.JsonTaskPostInventory;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -44,9 +46,9 @@ public class CheckItemActivity extends BaseActivity{
 
     public String[] barcode ;
     public ListView listView;
-
     public int categoryId = 0;
 
+    private TextView tvTitle;
     public int itemId = 0;
     public Spinner categoryList;
 
@@ -74,6 +76,8 @@ public class CheckItemActivity extends BaseActivity{
         shortCut = (TextView)findViewById(R.id.shortCutName);
         shortCut.setText(Globals.shortCutName);
 
+        tvTitle = (TextView)findViewById(R.id.tvTitle);
+
         if(barcode.length > 0)
         {
             CallAPI();
@@ -88,19 +92,27 @@ public class CheckItemActivity extends BaseActivity{
 
         if (type != 0)
         {
-            if (type == 6) // right
+            if (type == 7) // right
             {
-
                 listView.setBackgroundColor(Color.parseColor("#64EB8A"));
-            } else if(type == 7) {  // wrong
+                tvTitle.setText("Right Location Items");
+
+            } else if(type == 8) {  // wrong
 
                 listView.setBackgroundColor(Color.parseColor("#FAB2B2"));
-            } else if(type == 8) {  // missing
+                tvTitle.setText("Wrong Location Items");
+
+            } else if(type == 9) {  // missing
 
                 listView.setBackgroundColor(Color.parseColor("#CCCCCC"));
-
-            } else if(type == 9 || type == 10) {  // unknown
+                tvTitle.setText("Missing Location Items");
+            } else if(type == 10) {  // unknown
                 listView.setBackgroundColor(Color.parseColor("#006ED3"));
+                tvTitle.setText("Unknown Location Items");
+            } else if(type == 11)
+            {
+                listView.setBackgroundColor(Color.parseColor("#006ED3"));
+                tvTitle.setText("Unknown Location Items Add");
             }
         }
         if(type != 10)
@@ -171,8 +183,6 @@ public class CheckItemActivity extends BaseActivity{
     public void onReadCategory()
     {
         String req = Globals.apiUrl + "category/read";
-
-        Log.d("req::::::::", req);
 
         try {
 

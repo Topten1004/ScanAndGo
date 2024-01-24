@@ -89,12 +89,12 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnCheckUnknownLocation"
+                android:id="@+id/btnCheckMissingLocation"
                 android:layout_width="291dp"
                 android:layout_height="wrap_content"
                 android:minWidth="@dimen/fab_margin"
                 android:minHeight="@dimen/fab_margin"
-                android:onClick="onCheckUnknownLocation"
+                android:onClick="onCheckMissingLocation"
                 android:text="missing in the location"
                 android:textAlignment="viewStart"
                 android:textSize="10sp" />
@@ -120,12 +120,12 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnCheckMissingLocation"
+                android:id="@+id/btnCheckUnknownLocation"
                 android:layout_width="225dp"
                 android:layout_height="wrap_content"
                 android:minWidth="@dimen/fab_margin"
                 android:minHeight="@dimen/fab_margin"
-                android:onClick="onCheckMissingLocation"
+                android:onClick="onCheckUnknownLocation"
                 android:text="unknown from database"
                 android:textAlignment="viewStart"
                 android:textSize="10sp" />

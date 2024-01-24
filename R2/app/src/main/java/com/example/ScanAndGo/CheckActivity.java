@@ -74,7 +74,7 @@ public class CheckActivity extends BaseActivity{
 
             Intent intent = new Intent(this, CheckItemActivity.class);
 
-            intent.putExtra("type", 6);
+            intent.putExtra("type", 7);
             intent.putExtra("barcode", rightListValues);
             this.startActivity(intent);
         }
@@ -88,7 +88,7 @@ public class CheckActivity extends BaseActivity{
 
             Intent intent = new Intent(this, CheckItemActivity.class);
 
-            intent.putExtra("type", 7);
+            intent.putExtra("type", 8);
             intent.putExtra("barcode", wrongListValues);
             this.startActivity(intent);
         }
@@ -102,7 +102,7 @@ public class CheckActivity extends BaseActivity{
 
             Intent intent = new Intent(this, CheckItemActivity.class);
 
-            intent.putExtra("type", 8);
+            intent.putExtra("type", 9);
             intent.putExtra("barcode", unknownListValues);
             this.startActivity(intent);
         }
@@ -116,7 +116,7 @@ public class CheckActivity extends BaseActivity{
 
             Intent intent = new Intent(this, CheckItemActivity.class);
 
-            intent.putExtra("type", 9);
+            intent.putExtra("type", 10);
             intent.putExtra("barcode", missingListValues);
             this.startActivity(intent);
         }
@@ -130,9 +130,7 @@ public class CheckActivity extends BaseActivity{
 
         missingItems = Globals.unknownItems.toArray(missingItems);
 
-        Log.d("missingItems::::", missingItems.toString());
-
-        intent.putExtra("type", 10);
+        intent.putExtra("type", 11);
         intent.putExtra("barcode", missingItems);
         this.startActivity(intent);
     }

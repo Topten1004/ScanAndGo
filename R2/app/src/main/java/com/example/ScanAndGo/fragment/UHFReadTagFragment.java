@@ -161,8 +161,10 @@ public class UHFReadTagFragment extends Fragment implements View.OnClickListener
 
     public void onCheck()
     {
-        Log.d("error", "OnCheck");
-        startActivityForResult(new Intent(mContext.getApplicationContext(), CheckActivity.class), 0);
+        if(tagList.size() > 0)
+        {
+            startActivityForResult(new Intent(mContext.getApplicationContext(), CheckActivity.class), 0);
+        }
     }
     @Override
     public void onClick(View view) {
