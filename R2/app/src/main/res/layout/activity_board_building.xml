@@ -64,30 +64,5 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="btnItem"
-            android:text="Category" />
-
-        <Button
-            android:id="@+id/btnBuilding"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="btnBuilding"
-            android:text="Building" />
-
-        <Button
-            android:id="@+id/btnInventory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="btnInventory"
-            android:text="Inventory" />
-    </LinearLayout>
+        android:orientation="horizontal"/>
 </LinearLayout>

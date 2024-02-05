@@ -41,7 +41,6 @@ public class BoardInventoryActivity extends BaseActivity{
     public void btnItem(View v)
     {
         startActivityForResult(new Intent(getApplicationContext(), BoardCategoryActivity.class), 0);
-
     }
 
     public void btnInventory(View v)

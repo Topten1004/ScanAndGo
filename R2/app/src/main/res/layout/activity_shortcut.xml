@@ -21,9 +21,16 @@
         android:paddingTop="12px"
         />
 
+    <Button
+        android:id="@+id/btnLogOut2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="btnLogOut"
+        android:text="Log Out" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="431dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <EditText
@@ -45,32 +52,38 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnItem"
+        <EditText
+            android:id="@+id/tvBuildingName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="btnItem"
-            android:text="Category" />
+            android:ems="10"
+            android:inputType="textPersonName" />
 
         <Button
-            android:id="@+id/btnBuilding"
+            android:id="@+id/btnUpdateBuilding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="btnLocation"
-            android:text="Building" />
+            android:onClick="OnUpdateBuilding"
+            android:text="Update" />
 
         <Button
-            android:id="@+id/btnInventory"
+            android:id="@+id/btnAddBuilding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="btnInventory"
-            android:text="Inventory" />
+            android:onClick="OnAddBuilding"
+            android:text="Add" />
+
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/listBuildings"
+        android:layout_width="match_parent"
+        android:layout_height="400dp" />
 </LinearLayout>

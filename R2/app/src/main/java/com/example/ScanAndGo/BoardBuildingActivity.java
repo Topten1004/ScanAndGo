@@ -123,7 +123,7 @@ public class BoardBuildingActivity extends BaseActivity{
         }
 
         listView = findViewById(R.id.listBuildings);
-        ListItemView adapter = new ListItemView(this, itemList, null, null, this, null, null, null);
+        ListItemView adapter = new ListItemView(this, itemList, null, null, this, null, null, null, null);
 
         // Set the adapter for the ListView
         listView.setAdapter(adapter);
@@ -161,17 +161,6 @@ public class BoardBuildingActivity extends BaseActivity{
             btnUpdateBuilding.setVisibility(View.GONE);
             updateBuildingId = 0;
         }
-    }
-
-    public void btnItem(View v)
-    {
-        startActivityForResult(new Intent(getApplicationContext(), BoardCategoryActivity.class), 0);
-    }
-
-    public void btnInventory(View v)
-    {
-        startActivityForResult(new Intent(getApplicationContext(), BoardInventoryActivity.class), 0);
-
     }
 
     public void btnLocation(View v)

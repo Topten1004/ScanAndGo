@@ -166,7 +166,7 @@ public class BoardFloorActivity extends BaseActivity {
         }
 
         listView = findViewById(R.id.listFloors);
-        ListItemView adapter = new ListItemView(this, itemList, null, null , null, null, this,null);
+        ListItemView adapter = new ListItemView(this, itemList, null, null , null, null, this,null, null);
 
         // Set the adapter for the ListView
         listView.setAdapter(adapter);

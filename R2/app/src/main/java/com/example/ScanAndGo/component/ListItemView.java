@@ -23,6 +23,7 @@ import com.example.ScanAndGo.BoardAreaActivity;
 import com.example.ScanAndGo.CheckItemActivity;
 import com.example.ScanAndGo.Globals;
 import com.example.ScanAndGo.R;
+import com.example.ScanAndGo.ShortCutActivity;
 import com.example.ScanAndGo.dto.ButtonItem;
 import com.example.ScanAndGo.json.JsonTaskDeleteItem;
 
@@ -42,7 +43,9 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
     private BoardDetailLocationActivity detailLocationActivity;
     private BoardFloorActivity floorActivity;
 
-    public ListItemView(@NonNull Context context, @NonNull List<ButtonItem> objects, BoardCategoryActivity categoryActivity, BoardItemActivity itemActivity, BoardBuildingActivity buildingActivity, BoardAreaActivity areaActivity, BoardFloorActivity floorActivity, BoardDetailLocationActivity detailLocationActivity) {
+    private ShortCutActivity shortCutActivity;
+
+    public ListItemView(@NonNull Context context, @NonNull List<ButtonItem> objects, BoardCategoryActivity categoryActivity, BoardItemActivity itemActivity, BoardBuildingActivity buildingActivity, BoardAreaActivity areaActivity, BoardFloorActivity floorActivity, BoardDetailLocationActivity detailLocationActivity, ShortCutActivity shortCutActivity) {
 
         super(context, 0, objects);
 
@@ -50,9 +53,11 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
         this.itemActivity = itemActivity;
 
         this.buildingActivity = buildingActivity;
+        this.buildingActivity = buildingActivity;
         this.areaActivity = areaActivity;
         this.floorActivity = floorActivity;
         this.detailLocationActivity = detailLocationActivity;
+        this.shortCutActivity = shortCutActivity;
     }
 
     @NonNull
@@ -170,7 +175,13 @@ public class ListItemView extends ArrayAdapter<ButtonItem> {
                         itemActivity.UpdateItem(item.getMainButtonText(), item.id);
                         break;
                     case 3:
-                        buildingActivity.UpdateBuilding(item.getMainButtonText(), item.id);
+                        if(buildingActivity != null)
+                        {
+                            buildingActivity.UpdateBuilding(item.getMainButtonText(), item.id);
+                        } if(shortCutActivity != null)
+                        {
+                            shortCutActivity.UpdateBuilding(item.getMainButtonText(), item.id);
+                        }
                         break;
                     case 4:
                         areaActivity.UpdateArea(item.getMainButtonText(), item.id);

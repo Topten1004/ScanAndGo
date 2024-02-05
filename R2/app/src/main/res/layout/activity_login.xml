@@ -19,6 +19,14 @@
         app:srcCompat="@drawable/logo" />
 
     <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ville de Noumea 1.0.0"
+        android:textAlignment="textEnd"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <TextView
         android:id="@+id/lblUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

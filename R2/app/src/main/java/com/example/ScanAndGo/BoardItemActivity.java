@@ -157,7 +157,7 @@ public class BoardItemActivity extends BaseActivity {
         }
 
         listView = findViewById(R.id.listSubCategoryItems);
-        ListItemView adapter = new ListItemView(this, itemList, null, this , null, null, null, null );
+        ListItemView adapter = new ListItemView(this, itemList, null, this , null, null, null, null, null);
 
         // Set the adapter for the ListView
         listView.setAdapter(adapter);
